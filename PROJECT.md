@@ -18,6 +18,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Derived fields beat discipline.** The `PROJECT.md` status block is generated from `HANDOFF.md`; `ahp sync --check` fails when they drift.
 - **Structure is not truth.** The gates catch shape and stale state; a cold read catches contradictions. `docs/limits.md` is part of the protocol.
 - **Cold read is a release gate.** A v0.1 release needs a zero-context read of the four core files with no contradictions.
+- **Multi-model work is one writer + one reviewer.** Two models do not edit the same branch. A reviewer produces evidence-backed findings; the primary fixes them, adds a test, or explicitly accepts the risk. See `docs/multi-model-review.md`.
 - **No secrets in memory.** The `SECRETS` gate is a backstop, not a permission to store credentials.
 - **MIT license.** The protocol is a public good; the paid layer, if any, is team workflow and support, not the markdown.
 

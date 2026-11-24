@@ -18,6 +18,7 @@ The **four core files** are `AGENTS.md`, `INDEX.md`, `PROJECT.md`, and `HANDOFF.
 - Do not weaken a gate to make a check pass. Fix the fixture or the state, and record why.
 - Keep the runtime dependency-free: Node.js standard library only.
 - Every new gate needs a negative test in `tests/` and a short note in `SPEC.md`.
+- Multi-model work follows `docs/multi-model-review.md`: **one writer, one reviewer**; no concurrent edits to the same files.
 
 ## Handoff contract
 

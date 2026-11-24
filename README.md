@@ -93,6 +93,16 @@ ahp test               # 运行测试
 
 把每一条矛盾变成门禁断言，或书面接受不修。详见 [`SPEC.md`](SPEC.md) §8。
 
+## 多模型审查
+
+两个模型不要同时改同一份文件。默认是**一个主写、一个独立审查**：
+
+- 主写：拥有 HANDOFF 租约，改代码/测试、跑门禁、提交。
+- 审查：只读四文件 + diff，独立跑 `npm test`/`ahp check`，输出 `file:line` + 证据。
+- 主写逐条裁决：修掉、加测试/门禁，或书面接受不修。
+
+需要并行写代码时，用两个独立 git worktree/branch，主写比较后最多合并一个。详见 [`docs/multi-model-review.md`](docs/multi-model-review.md) 和 [`docs/reviews/TEMPLATE.md`](docs/reviews/TEMPLATE.md)。
+
 ## 设计原则
 
 - **一个当前状态源**：`HANDOFF.md`。

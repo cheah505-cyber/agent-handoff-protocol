@@ -24,6 +24,9 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [docs/lessons-from-production.md](docs/lessons-from-production.md) | Distilled production lessons |
 | [docs/case-studies.md](docs/case-studies.md) | Failure cases that shaped the gates |
 | [docs/open-source-report.md](docs/open-source-report.md) | Open-source pairing report |
+| [docs/multi-model-review.md](docs/multi-model-review.md) | One-writer/one-reviewer protocol |
+| [docs/reviews/README.md](docs/reviews/README.md) | Review note policy |
+| [docs/reviews/TEMPLATE.md](docs/reviews/TEMPLATE.md) | Review note template |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution and gate rules |
 | [CHANGELOG.md](CHANGELOG.md) | Release history |
 | [LICENSE](LICENSE) | MIT license |
