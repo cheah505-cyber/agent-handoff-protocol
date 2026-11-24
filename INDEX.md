@@ -24,9 +24,12 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [docs/lessons-from-production.md](docs/lessons-from-production.md) | Distilled production lessons |
 | [docs/case-studies.md](docs/case-studies.md) | Failure cases that shaped the gates |
 | [docs/open-source-report.md](docs/open-source-report.md) | Open-source pairing report |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution and gate rules |
+| [CHANGELOG.md](CHANGELOG.md) | Release history |
+| [LICENSE](LICENSE) | MIT license |
 | [memory/MEMORY.md](memory/MEMORY.md) | Lesson index |
 
 ## Status pointer
 
-- Current state: see [HANDOFF.md](HANDOFF.md) §2 and §4.
-- Long-term context: see [PROJECT.md](PROJECT.md).
+- Current state: see [HANDOFF.md](HANDOFF.md) §2 and §4. This is the only current-state source.
+- [PROJECT.md](PROJECT.md) carries a derived status block; verify it with `ahp sync --check`. Do not edit the block by hand.

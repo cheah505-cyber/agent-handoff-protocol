@@ -37,7 +37,7 @@ This repository builds **AHP**, a machine-checkable handoff protocol for AI codi
 ## Commands
 
 ```bash
-npm test                         # 22+ gate/CLI tests
+npm test                         # 22 gate/CLI tests
 node bin/ahp.mjs check           # 12 gates on this repo
 node bin/ahp.mjs check --json
 node bin/ahp.mjs resume

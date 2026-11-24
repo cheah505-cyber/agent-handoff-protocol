@@ -25,8 +25,8 @@ AHP 用四个核心文件 + 12 条门禁 + 一次冷读，把这六类问题压�
 ```bash
 node bin/ahp.mjs init /tmp/my-agent-project
 cd /tmp/my-agent-project
-node /home/will/Projects/开源项目/bin/ahp.mjs check
-node /home/will/Projects/开源项目/bin/ahp.mjs resume
+node /path/to/ahp/bin/ahp.mjs check
+node /path/to/ahp/bin/ahp.mjs resume
 ```
 
 或者把本仓库链接为全局命令：
