@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "paths": {
+    "agents": "AGENTS.md",
+    "index": "INDEX.md",
+    "project": "PROJECT.md",
+    "handoff": "HANDOFF.md",
+    "memoryDir": "memory"
+  },
+  "statuses": ["ACTIVE", "PAUSED", "BLOCKED", "COMPLETE", "MONITORING"],
+  "freshness": {
+    "handoffDays": 21,
+    "projectDays": 30
+  },
+  "requireProjectStatusBlock": true,
+  "requireMemoryIndex": true
+}

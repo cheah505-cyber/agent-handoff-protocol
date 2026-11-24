@@ -1,0 +1,37 @@
+{
+  "name": "agent-handoff-protocol",
+  "version": "0.1.0",
+  "description": "A machine-checkable handoff protocol for AI coding agents.",
+  "type": "module",
+  "bin": {
+    "ahp": "./bin/ahp.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node bin/ahp.mjs check",
+    "init": "node bin/ahp.mjs init",
+    "sync": "node bin/ahp.mjs sync"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ai-agents",
+    "coding-agents",
+    "handoff",
+    "memory",
+    "governance",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "files": [
+    "bin",
+    "lib",
+    "templates",
+    "docs",
+    "README.md",
+    "README.en.md",
+    "SPEC.md",
+    "LICENSE"
+  ]
+}
