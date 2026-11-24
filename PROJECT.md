@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: v0.1-released
-- Next: Open AHP-CONTENT-001: write the war-story article and memory-security checklist.
+- Next: Open AHP-CONTENT-001 with `tasks/AHP-CONTENT-001.md`: write the war-story article and memory-security checklist.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
