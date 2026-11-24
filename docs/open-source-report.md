@@ -75,6 +75,8 @@ AHP（Agent Handoff Protocol）是一套**仓库内的、可机器检查的交�
 
 这些不是编的案例，是 AHP 的测试来源。
 
+AHP 自己也做了一次冷读：12 条门禁全绿的情况下，冷读找出 8 处文档不一致——git 归属警告过期、验收漏了冷读、`PROJECT.md`/`HANDOFF.md` 对“测试→冷读→提交→文章”的顺序有四种写法、`last_verified_command` 漏记 `npm test`、文档完成度含糊等。代码没问题，交接文本有问题；这正是 AHP 要抓的失败。
+
 ### 2.3 市场时机
 
 - 编码 Agent 从“单次补全”变成“多会话、长任务、多 Agent”。

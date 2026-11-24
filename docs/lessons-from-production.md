@@ -1,5 +1,7 @@
 # Lessons from production: what a real handoff system taught us
 
+Coverage: all 71 memory files in the production project, its root governance docs, and the audit cards WP-111/123/134/135/136/137/138/139; production application code was read only where a cited handoff rule depended on it. This is a governance review, not a security audit.
+
 This note distills a read-only review of two real projects:
 
 - **Project A:** a live production analytics site with a mature handoff system, 70+ memory files, 279 wiki links, a 211 KB `HANDOFF.md`, a 185 KB long-term summary, five derived mirrors, and multiple independent audits.
@@ -74,6 +76,19 @@ A learning project's four core files passed 13 gates. A fresh read found 12 issu
 - The status was `ACTIVE` with an expired lease; the last verification command was a lifecycle command.
 
 **Lesson:** structural checks are necessary, not sufficient. A cold read is part of the protocol.
+
+### 3.7 Dogfooding AHP
+
+The first cold read of AHP itself found eight issues that the 12 gates did not see:
+
+- a stale warning that the repo might still live inside a larger workspace git repo;
+- an acceptance criterion that omitted the cold read;
+- four different orderings of “test → cold read → commit/tag → article” across `PROJECT.md` and `HANDOFF.md`;
+- an incomplete `last_verified_command` that recorded only `ahp check` while the actual verification also ran `npm test`;
+- an ambiguous “finish docs” when the docs were already drafted;
+- a missing explicit statement that `PROJECT.md`'s status block is derived.
+
+All eight were documentation issues. The code was fine; the handoff was not. That is exactly the failure AHP is meant to catch.
 
 ## 4. What survived
 
