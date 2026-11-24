@@ -33,6 +33,7 @@ This repository builds **AHP**, a machine-checkable handoff protocol for AI codi
 4. Run `node bin/ahp.mjs sync` when the derived status block changes.
 5. Run `npm test` and `node bin/ahp.mjs check`; record the actual command.
 6. Commit. Do not declare completion with a dirty tree when status is `PAUSED` or `COMPLETE`.
+7. If a release needs to validate a dirty tree, say so explicitly and run the validation twice: once before the commit (non-git gates) and once after the commit (all gates). Do not call a dirty tree `PAUSED`.
 
 ## Commands
 

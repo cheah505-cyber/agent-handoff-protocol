@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: v0.1-publish
-- Next: Tag v0.1.0 after the final commit; then open AHP-CONTENT-001 for the war-story article and memory-security checklist.
+- Next: Complete the v0.1 release sequence in §4: commit, validate on the clean commit, cold read, then create the local tag v0.1.0.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -29,8 +29,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 ## Retrospective
 
-### 2026-11-25 · Build, cold read, and publish gate `#result-v0.1`
+### 2026-11-25 · Build, cold reads, and release gate `#result-v0.1`
 
 - **Did:** Built the CLI, 12 gates, templates, 22 tests, and the documentation set; dogfooded the protocol on this repository.
-- **Learned:** A cold read found eight issues the gates could not see: stale git-ownership risk, an incomplete acceptance, inconsistent step order across `PROJECT.md`/`HANDOFF.md`, and an incomplete verification record. The first version of a memory system fails in the verifier, not in the memory.
-- **Next:** Final commit, tag `v0.1.0`, then `AHP-CONTENT-001`: war-story article and memory-security checklist.
+- **Learned:** Cold read v1 found eight documentation issues; v2 found two sequencing/ambiguity issues (clean-tree validation order, local-vs-remote tag, where the next unit is opened). The code was fine; the handoff was not. The first version of a memory system fails in the verifier, not in the memory.
+- **Next:** Complete the §4 release sequence, create local tag `v0.1.0`, then open `AHP-CONTENT-001` for the war-story article and memory-security checklist.
