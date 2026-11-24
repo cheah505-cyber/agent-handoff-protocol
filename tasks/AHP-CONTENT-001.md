@@ -1,7 +1,9 @@
 # AHP-CONTENT-001 — War story + memory-security checklist
 
 Status: ready for the next session
-Owner: next session (take the lease in `HANDOFF.md`)
+Owner: MiniMax (primary; take the lease in `HANDOFF.md`)
+Reviewer: DeepSeek (read-only; findings only)
+Fallback: if MiniMax is unavailable, swap roles and record it in `HANDOFF.md`
 Depends on: AHP-OPEN-SOURCE-001 (v0.1.0)
 
 ## Goal

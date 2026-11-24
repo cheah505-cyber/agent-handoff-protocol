@@ -9,13 +9,13 @@ This protocol is part of AHP. It follows the same rule as external findings: eve
 
 ## 1. Roles
 
-| Role | Example | Permission | Output |
+| Role | This unit | Permission | Output |
 |---|---|---|---|
-| Primary | DeepSeek / current agent | Write, lease, run tests, commit, merge | Code, tests, docs, commits |
-| Reviewer | MiniMax / another model | Read-only on main; separate worktree if it must run code | Findings with file:line and evidence |
+| Primary | **MiniMax** | Write, lease, run tests, commit, merge | Code, tests, docs, commits |
+| Reviewer | **DeepSeek** | Read-only on main; separate worktree if it must run code | Findings with file:line and evidence |
 | Human | You | Final decision | Approve, reject, or ask for another pass |
 
-The model names are examples. The role separation matters more than the brand.
+The model names are examples and **roles are swappable per work unit**. For `AHP-CONTENT-001`, MiniMax is the primary writer and DeepSeek is the independent reviewer. If MiniMax is unavailable, swap the roles and record the change in `HANDOFF.md`; do not run both as writers.
 
 ## 2. Hard rules
 
