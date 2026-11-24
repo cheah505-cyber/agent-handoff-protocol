@@ -32,4 +32,4 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 ## Status pointer
 
 - Current state: see [HANDOFF.md](HANDOFF.md) §2 and §4. This is the only current-state source.
-- [PROJECT.md](PROJECT.md) carries a derived status block; verify it with `ahp sync --check`. Do not edit the block by hand.
+- [PROJECT.md](PROJECT.md) carries a derived status block; verify it with `ahp sync --check` (or `node bin/ahp.mjs sync --check`). Do not edit the block by hand.

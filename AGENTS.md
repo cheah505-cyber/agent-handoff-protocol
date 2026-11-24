@@ -10,6 +10,8 @@ This repository builds **AHP**, a machine-checkable handoff protocol for AI codi
 4. `HANDOFF.md` — the only current-state source.
 5. `memory/MEMORY.md` — lessons and links.
 
+The **four core files** are `AGENTS.md`, `INDEX.md`, `PROJECT.md`, and `HANDOFF.md`. `memory/` is the lesson layer; it is not a fifth current-state source.
+
 ## Boundaries
 
 - This is a tooling repository. Do not add customer data, credentials, or private project facts.
@@ -29,13 +31,15 @@ This repository builds **AHP**, a machine-checkable handoff protocol for AI codi
 
 1. Save the real artifact or evidence first.
 2. Distill durable conclusions into `PROJECT.md`.
-3. Update `HANDOFF.md` frontmatter and §1/§2/§4/§5/§6.
+3. Update `HANDOFF.md` frontmatter and §0/§1/§2/§3/§4/§5/§6.
 4. Run `node bin/ahp.mjs sync` when the derived status block changes.
-5. Run `npm test` and `node bin/ahp.mjs check`; record the actual command.
+5. Run `npm test`, `node bin/ahp.mjs check`, and `node bin/ahp.mjs sync --check`; record the actual command.
 6. Commit. Do not declare completion with a dirty tree when status is `PAUSED` or `COMPLETE`.
 7. If a release needs to validate a dirty tree, say so explicitly and run the validation twice: once before the commit (non-git gates) and once after the commit (all gates). Do not call a dirty tree `PAUSED`.
 
 ## Commands
+
+In this repository, `ahp` in the docs means `node bin/ahp.mjs`; if the package is installed/linked, the `ahp` shim works too.
 
 ```bash
 npm test                         # 22 gate/CLI tests
@@ -49,7 +53,7 @@ node bin/ahp.mjs init /tmp/demo  # scaffold a project
 ## Change rules
 
 - `bin/`, `lib/`, and `tests/` are the product. `templates/` is the copied starter.
-- `docs/` carries the rationale. If a change alters a gate, update `SPEC.md`, `docs/limits.md`, and the test matrix.
+- `docs/` carries the rationale. If a change alters a gate, update `SPEC.md`, `docs/limits.md`, and the tests that exercise that gate.
 - The protocol must remain useful for a solo developer: no database, no daemon, no vendor lock-in.
 
 ## Status machine
