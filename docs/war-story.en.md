@@ -46,7 +46,7 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 
 One number matters more than the others: **fail-open gates are forbidden**. Every gate needs a negative fixture that *must* turn red; a check with no failing fixture is a claim, not a check. The whole suite was 22 tests at v0.1.0: 15 negative "must turn red" fixtures (one per gate), 6 CLI/scaffold tests, and 1 positive "a valid project should pass everything". `npm test` → 22/22.
 
-> **This is the v0.1.0 snapshot.** After this post was written, the `SECRETS` gate grew a `docs/` scan, so the suite is now **27 tests, 20 of them negative fixtures** — the numbers moved, the method did not.
+> **This is the v0.1.0 snapshot.** After this post was written, the `SECRETS` gate grew a `docs/` scan, so the suite is now **27 tests, 19 of them negative fixtures** — the numbers moved, the method did not.
 
 That is where I thought the story ended.
 

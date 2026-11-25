@@ -46,7 +46,7 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 
 一个数字：fail-open 门禁。每条门禁都必须有一个**必须变红**的负向夹具，否则它只是声明，不是检查。整套东西当时 22 个测试：其中 15 个是"必须变红"的负向夹具（一条门禁一个），6 个是 CLI 和脚手架测试，1 个是正向的"合法项目应该全绿"。`npm test` 22/22。
 
-> **这是 v0.1.0 的快照。** 写完这篇之后 `SECRETS` 门禁增加了 `docs/` 扫描，现在是 **27 个测试、20 个负向夹具**——数字变了，方法没变。
+> **这是 v0.1.0 的快照。** 写完这篇之后 `SECRETS` 门禁增加了 `docs/` 扫描，现在是 **27 个测试、19 个负向夹具**——数字变了，方法没变。
 
 **顺带说一句**：写这个单元的时候仓库状态是 `ACTIVE`（我在干活），同一条命令的输出会不一样——`LEASE` 那行变成 `lease valid until ...`，`GIT_STATE` 变成一条 WARN（工作树是脏的，所以跳过提交日比对）。同一段代码、同一份配置，输出随状态变化。**门禁必须连着状态一起读**，这也正是我下面要讲的那类问题。
 
@@ -226,7 +226,7 @@ node bin/ahp.mjs init /tmp/demo && cd /tmp/demo
 | 数字 | 出处 |
 |---|---|
 | 12 条门禁、0 FAIL | `node bin/ahp.mjs check`；门禁列表见 `SPEC.md` §6 |
-| 22 个测试（v0.1.0 快照；现为 27，其中 20 个负向夹具） | `npm test` |
+| 22 个测试（v0.1.0 快照；现为 27，其中 19 个负向夹具） | `npm test` |
 | 冷读 12 处矛盾（学习项目） | `docs/case-studies.md` 案例 8 |
 | 冷读 8 / 3 / 5 处（AHP 自身） | `docs/lessons-from-production.md` §3.7；`HANDOFF.md` §1 |
 | 生产项目 70+ 文件、279 链接、211 KB、185 KB、5 镜像 | `docs/lessons-from-production.md` 开篇 |

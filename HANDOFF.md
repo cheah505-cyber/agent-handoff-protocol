@@ -37,7 +37,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · Review triage closed two regressions and two false claims: the `docs`-is-a-file crash in `buildContext`, and the "三类真实发生过的失败" claim that cited files without that class. The war story's 22/15 numbers are now labelled a v0.1.0 snapshot (the published copies stay as they were).
 ## 2. Exact pause point
 - The security article is written, reviewed, fixed, and ready to publish. Nothing is half-written.
-- The test suite is 27 (20 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
+- The test suite is 27 (19 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
 - Two publication facts settled this session: 掘金 allows exactly **one** tag per article (the second tag was never achievable), and 知乎's draft plus session were both lost to its anti-automation check, so 知乎 is handed back to the human.
 - The tree is clean; no owner, session, or lease.
 ## 3. Current working set
@@ -57,7 +57,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Numbers in prose are not gated. The war story and the security article now carry different test counts (22 snapshot vs 27 current) on purpose; do not "align" them by editing the published text.
 - Publishing is external and unverified by any gate. A platform can log a session out silently (知乎 did).
 ## 6. Last verification
-- 2026-11-25 · `npm test` → 27/27 (20 negative fixtures); `node bin/ahp.mjs check` → 12 PASS / 0 FAIL on a clean tree; `node bin/ahp.mjs sync --check` → in sync.
+- 2026-11-25 · `npm test` → 27/27 (19 negative fixtures); `node bin/ahp.mjs check` → 12 PASS / 0 FAIL on a clean tree; `node bin/ahp.mjs sync --check` → in sync.
 - 2026-11-25 · `SECRETS` on the real repo: PASS. Negative fixtures added for: a token under `docs/`, in a dotfile, in an uppercase `.MD`, and a modern `sk-proj-` key; plus a guard for `docs` being a regular file.
 - 2026-11-25 · `docs/agent-memory-attack-surface.md` → 3209 Chinese characters (target 3000–4200); links resolve; every number traced in the appendix.
 - 2026-11-25 · Reviewer baseline (`deepseek-flash`, read-only): `npm test` 23/23 at review time, `check` 1 FAIL (GIT_STATE, dirty tree), `sync --check` in sync; it replayed the pre-change commit in a temp copy to confirm the new test really turns red.
