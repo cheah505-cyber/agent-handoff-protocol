@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: content-v0.1-shipped
-- Next: Publish `docs/war-story.en.md` to dev.to (English); add the `Agent` and `GitHub` tags to the 掘金 article in 创作者中心; post the Chinese article to V2EX from a normal browser; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
+- Next: Post the Chinese article to V2EX from a normal browser (node 分享); add the `Agent` and `GitHub` tags to the 掘金 article in 创作者中心; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -50,4 +50,10 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 - **Did:** Published the Chinese war story to 掘金 (https://juejin.cn/post/7711934164547141659 — category 人工智能, tag AI编程, 原创, 所有人可见, no review banner) and drove the browser through juejin's editor: the real editor route is `/editor/drafts/new?v=2`, not `/creator/post`, which redirects to the home page. Then corrected the language split: wrote `docs/war-story.en.md` and `docs/memory-security-checklist.en.md`, made `README.md` English and moved the Chinese quickstart to `README.zh-CN.md`.
 - **Learned:** Three platform facts cost real time and are worth writing down. (1) 掘金's tag select is a Vue multi-select whose options only commit on a real click — `fill` + Enter sets the search text and adds nothing; the same applies to dev.to's tag autocomplete. (2) The OpenCode desktop app's browser is **Electron**, and Cloudflare scores it as automated: V2EX serves an interstitial on every page, the challenge loops (`cf_chl_rc_ni` climbing, a new Ray ID per reload) and never issues `cf_clearance` — while the **same egress IP** gets HTTP 200 from `curl` on `/`, `/signin` and `/go/share`. So the blocker is the browser environment, not the IP, the network, or the human clicking. (3) A Cloudflare human check is a human check; automating it would defeat its purpose, so that platform stays manual.
-- **Next:** Publish the English article to dev.to; add the two missing 掘金 tags in 创作者中心; post the Chinese article to V2EX from a normal browser; then open `AHP-CONTENT-002` (reviewer `deepseek/deepseek-flash`).
+- **Next:** Post the Chinese article to V2EX from a normal browser; add the two missing 掘金 tags in 创作者中心; then open `AHP-CONTENT-002` (reviewer `deepseek/deepseek-flash`).
+
+### 2026-11-25 · The English track shipped: dev.to live, README in English `#result-english-track`
+
+- **Did:** Wrote `docs/war-story.en.md` and `docs/memory-security-checklist.en.md`, made `README.md` English with the Chinese quickstart moved to `README.zh-CN.md`, and published the English article to dev.to: https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 (tags devtools/ai/llm/agents, canonical = the repo). The Chinese article stays on 掘金: https://juejin.cn/post/7711934164547141659.
+- **Learned:** A public repo's landing page has one audience — GitHub and dev.to are international, 掘金 and V2EX are Chinese. Splitting the repo by audience (English README + Chinese translation, one source file per track) is cheaper than pretending one language serves both. Two platform details cost time: dev.to's account had **no username**, so it used the account id as the URL prefix until it was set to `willcheah`; and dev.to's article API needs the body wrapped as `{article:{...}}` with an `x-csrf-token` header, otherwise it answers "Invalid authenticity token" and then "article param must be a JSON object".
+- **Next:** V2EX needs a normal browser (the in-app Electron browser cannot pass Cloudflare); add the two missing 掘金 tags; open `AHP-CONTENT-002`.

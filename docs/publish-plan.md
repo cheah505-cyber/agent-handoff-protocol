@@ -1,7 +1,7 @@
 # 发布计划：war story（`docs/war-story.md` / `docs/war-story.en.md`）
 
 > 单一来源：正文只有两份——中文 `docs/war-story.md`、英文 `docs/war-story.en.md`。这里只放**每个平台的元数据**，不要复制正文。
-> 状态：2026-11-25 起。掘金已发布；dev.to 待发（英文版）；V2EX 待用户手动发（Cloudflare 拦截）。
+> 状态：2026-11-25 起。掘金已发布（中文）；dev.to 已发布（英文）；V2EX 待用户手动发（Cloudflare 拦截）。
 
 ## 语言策略（2026-11-25 定）
 
@@ -54,19 +54,21 @@
 
 正文和标题都在上面，仓库链接齐全；你贴进去改两个表格就能发。
 
-## 3. dev.to — 📝 待发（英文版）
+## 3. dev.to — ✅ 已发布（英文版）
 
 | 字段 | 值 |
 |---|---|
+| 文章 | https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 |
 | 编辑器 | https://dev.to/new |
 | 正文 | `docs/war-story.en.md` 全文（英文） |
 | 标题 | `0 FAIL, 12 Contradictions: How My Agent Memory System Lied to Me` |
 | 标签（最多 4 个） | `ai`、`agents`、`llm`、`devtools` |
 | Description（≤100 字符） | `12 gates, 0 FAIL — and a cold read still found 12 contradictions. My verifier lied; here is what fixed it.` |
 | Canonical URL | https://github.com/cheah505-cyber/agent-handoff-protocol |
-| Published | `true` |
+| Published | `true`（已发布并已核对：4 张表格、2 段代码、CTA 绝对链接、canonical 指向仓库） |
+| 账号用户名 | `willcheah`（原本没设，dev.to 把账号 id 当成 URL 前缀；改完 URL 才变成正常形式） |
 
-dev.to 的标签输入是 autocomplete：**必须点下拉建议项**，`fill` + Enter 加不进去。
+dev.to 的标签输入是 autocomplete：**必须点下拉建议项**，`fill` + Enter 加不进去。改 description 用 `PUT /api/articles/<id>`，body 是 `{article:{...}}`，并带上 `x-csrf-token` 头。
 
 ---
 
