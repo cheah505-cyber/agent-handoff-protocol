@@ -27,7 +27,7 @@ Fix these before you touch anything, and put them on the first page of the repor
 1. **Do not publish exploits.** If you find something exploitable, give the owner a fix window before talking about disclosure.
 2. **Do not touch real user data.** Poisoning and injection tests use an isolated temp repository or synthetic memory files, never production memory.
 
-**How to judge each item:** three states only — `PASS` (evidence sufficient), `FAIL` (evidence sufficient, the problem is real), `CANNOT VERIFY` (missing permission or missing environment; state the reason, do not guess). `CANNOT VERIFY` is not `PASS`; listing it separately is what makes the report honest.
+**How to judge each item:** three states only — `PASS` (evidence sufficient), `FAIL` (evidence sufficient, the problem is real), `CANNOT VERIFY` (no evidence that would settle it — missing permission, missing environment, or no independent witness; state the reason, do not guess). `CANNOT VERIFY` is not `PASS`; listing it separately is what makes the report honest.
 
 **What to do when an item fails (applies to every item):** each item defines a pass criterion; on failure, the finding goes into the findings list (Appendix A) with exactly one of three dispositions — **fix it**, **turn it into a gate assertion or a negative test**, or **accept it in writing** (with a reason and a trigger for re-evaluation). Nothing gets "read and forgotten".
 
