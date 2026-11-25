@@ -28,7 +28,8 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [docs/war-story.en.md](docs/war-story.en.md) | Post-mortem (English) |
 | [docs/memory-security-checklist.md](docs/memory-security-checklist.md) | Authorized memory-security assessment checklist (Chinese) |
 | [docs/memory-security-checklist.en.md](docs/memory-security-checklist.en.md) | Authorized memory-security assessment checklist (English) |
-| [docs/agent-memory-attack-surface.md](docs/agent-memory-attack-surface.md) | Security-circle article: agent memory as an attack surface (Chinese) |
+| [docs/agent-memory-attack-surface.md](docs/agent-memory-attack-surface.md) | Security article: agent memory as an attack surface (Chinese) |
+| [docs/agent-memory-attack-surface.en.md](docs/agent-memory-attack-surface.en.md) | Security article: agent memory as an attack surface (English) |
 | [tasks/AHP-CONTENT-002.md](tasks/AHP-CONTENT-002.md) | Task card: security-circle article |
 | [docs/publish-plan.md](docs/publish-plan.md) | Per-platform metadata for publishing the war story |
 | [docs/multi-model-review.md](docs/multi-model-review.md) | One-writer/one-reviewer protocol |

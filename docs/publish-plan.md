@@ -41,9 +41,9 @@
 
 | 文件 | 用途 |
 |---|---|
-| [`publish/war-story.zhihu.md`](publish/war-story.zhihu.md) | 知乎「导入文档 MD/Doc」用；已去掉开头 H1（标题单独填）、链接改绝对地址、补 CTA |
+| [`publish/war-story.zhihu.md`](../publish/war-story.zhihu.md) | 知乎「导入文档 MD/Doc」用；已去掉开头 H1（标题单独填）、链接改绝对地址、补 CTA |
 | [`publish/war-story.zhihu.html`](publish/war-story.zhihu.html) | 备用：浏览器打开 → Ctrl+A → Ctrl+C → 粘进富文本编辑器 |
-| [`publish/war-story.zhihu.flat.md`](publish/war-story.zhihu.flat.md) | **表格拍平成列表**的版本（4 张表 → 列表），给"预览里表格没了"的情况用 |
+| [`publish/war-story.zhihu.flat.md`](../publish/war-story.zhihu.flat.md) | **表格拍平成列表**的版本（4 张表 → 列表），给"预览里表格没了"的情况用 |
 | [`publish/war-story.zhihu.flat.html`](publish/war-story.zhihu.flat.html) | 同上的 HTML 版 |
 
 这两个文件是**派生快照**，唯一来源仍是 `docs/war-story.md`。生成规则（改正文后要重新做一遍）：
@@ -185,6 +185,34 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 **顺序**：dev.to（当天）→ LinkedIn（当天）→ 隔 2–3 天发**一个**社区（HN 或 r/netsec 二选一）→ 只对 Help Net Security 做一次 pitch。第一波反馈决定要不要加投，别同时铺开。
 
 **风险**：HN 与 r/netsec 对自我推广敏感。文章已具备给足细节的条件（四类失败形态、可查出处、13 项清单），标题里不要出现产品名，正文不要以 CTA 开头。
+
+### 7.3 英语版状态（2026-11-26）
+
+| 项 | 值 |
+|---|---|
+| 正文 | `docs/agent-memory-attack-surface.en.md` → dev.to 用 `publish/agent-memory-attack-surface.en.md`（链接绝对化 + CTA） |
+| 标题 | `Your agent's memory is an attack surface` |
+| 摘要 | `A poisoned memory line breaks no type system and trips no lint; it just makes the next agent do the wrong thing. Four memory attacks, three ways the verifier fails open, and the boundary where no fixture can exist.` |
+| 标签 | `security` `ai` `agents` `devtools` |
+| canonical | `https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/agent-memory-attack-surface.en.md` |
+| dev.to | ✅ 已发布 https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7（article id `5119922`；页面核对 3 表 / 8 个 h2 / 7 个 h3 / 2279 词） |
+| LinkedIn | ⏳ 未登录（跳登录页）；文案已备，用户粘贴即可 |
+
+**发布方式（可复用）**：dev.to 内部接口 `POST /api/articles`，body `{article:{title, body_markdown, tags, canonical_url, description, published}}`，带 `x-csrf-token`（取自页面 `meta[name=csrf-token]`）+ `credentials:"include"`，返回 201 与 id；再 `PUT /api/articles/<id>` 传 `{article:{published:true}}` 发布。正文 14.5 KB，直接从 raw.githubusercontent 取，免去粘贴。
+
+**LinkedIn 文案**（发 post，不建 article；链接放正文首条评论或正文末尾均可）：
+
+> Your agent's memory is an attack surface — and most reviews still only look at code.
+>
+> Four failure shapes I keep seeing, none of them in the code: a low-privilege writer plants "the prod DB is read-only" and the next session believes it; a decision is reversed but the old conclusion stays in the memory file; instruction-shaped text arrives through auto-injected memory and reaches the action layer unread; two sessions edit the same handoff and the loser is "what we are doing and why".
+>
+> The part that matters more is the verifier. A gate that skips when the worktree is dirty is not a check, it is a claim wearing a check's name. Mine did that, and reported green.
+>
+> And there is a boundary no tool crosses: record integrity is testable — hash the words at consent, mutate one character, the check must turn red. Quote truth is not: no second copy, no fixture. Mark it "attested, not verified" and never let it print green.
+>
+> Write-up, defensive only, no exploit steps: https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7
+>
+> #AISecurity #AgenticAI #AppSec #LLM
 
 ## 8. 红线
 
