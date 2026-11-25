@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `SECRETS` now scans `docs/**/*.md` as well as the core files and `memory/`, so published documents are inside the backstop. New negative test (`SECRETS rejects a token in docs`); `SPEC.md`, `docs/limits.md`, and both READMEs updated. 23 tests.
+
 ## v0.1.0 — 2026-11-25
 
 - Initial AHP lite implementation.

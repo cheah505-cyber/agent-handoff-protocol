@@ -78,7 +78,7 @@ ahp test               # 运行测试
 | `INDEX_MAP` | INDEX 无动态状态；本地链接可达 | 索引变成第二张状态表 |
 | `PROJECT_SYNC` | 派生状态块与 HANDOFF 一致；回溯不过期 | 长期记忆漂移 |
 | `MEMORY_LINKS` | MEMORY hook ↔ 文件闭合；`[[links]]` 不悬空 | 记忆库索引腐烂 |
-| `SECRETS` | 核心/记忆文件无高置信密钥 | 凭据泄漏 |
+| `SECRETS` | 核心文件/`memory/`/`docs/` 无高置信密钥 | 凭据泄漏 |
 | `GIT_STATE` | PAUSED/COMPLETE 工作树干净；提交日与 `updated_at` 同日 | 时间戳脱离内容 |
 
 **重要：** 门禁检查结构，不检查语义。跑完 `ahp check` 还要做一次冷读。见 [`docs/limits.md`](docs/limits.md)。

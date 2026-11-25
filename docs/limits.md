@@ -10,7 +10,7 @@ AHP exists because a memory system can be **structurally green and semantically 
 - The index does not contain dynamic state.
 - The memory index and wiki links are closed.
 - The derived status block matches `HANDOFF.md`.
-- A high-confidence secret pattern is absent.
+- A high-confidence secret pattern is absent from the core files, `memory/`, and `docs/` (recursive).
 - A `PAUSED` tree is clean and the handoff's commit day matches its `updated_at`.
 
 ## 2. What the gates cannot see

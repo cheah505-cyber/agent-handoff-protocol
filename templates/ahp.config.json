@@ -5,7 +5,8 @@
     "index": "INDEX.md",
     "project": "PROJECT.md",
     "handoff": "HANDOFF.md",
-    "memoryDir": "memory"
+    "memoryDir": "memory",
+    "docsDir": "docs"
   },
   "statuses": ["ACTIVE", "PAUSED", "BLOCKED", "COMPLETE", "MONITORING"],
   "freshness": {

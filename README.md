@@ -78,7 +78,7 @@ ahp test               # run the test suite
 | `INDEX_MAP` | the index holds no dynamic state; local links resolve | the index became a second status board |
 | `PROJECT_SYNC` | the derived block matches `HANDOFF.md`; the retrospective is fresh | long-term memory drifted |
 | `MEMORY_LINKS` | memory hooks ↔ files are closed; `[[links]]` resolve | the memory index rotted |
-| `SECRETS` | no high-confidence secret in the core or memory files | credential leak |
+| `SECRETS` | no high-confidence secret in the core files, `memory/`, or `docs/` | credential leak |
 | `GIT_STATE` | a `PAUSED`/`COMPLETE` tree is clean; the commit day matches `updated_at` | the timestamp detached from the content |
 
 **Important:** the gates check structure, not meaning. After `ahp check`, run a cold read. See [`docs/limits.md`](docs/limits.md).

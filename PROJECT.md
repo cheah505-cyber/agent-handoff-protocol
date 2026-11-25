@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: content-v0.1-shipped
-- Next: Re-create the 知乎 article from `publish/war-story.zhihu.md` (the old draft is gone; the 知乎 session was logged out) and publish it past the security check, then delete the broken article https://zhuanlan.zhihu.com/p/2108969541657163196; add the `Agent` and `GitHub` tags to the 掘金 article; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
+- Phase: gate-hardening-shipped
+- Next: Open `AHP-CONTENT-002`: the security-circle article 《Agent 的记忆是攻击面》 (先知 / FreeBuf / 安全客 / LinkedIn), reviewer `deepseek/deepseek-flash`. Fold the provenance question from the dev.to thread into it as a section.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -20,6 +20,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Cold read is a release gate.** A v0.1 release needs a zero-context read of the four core files with no contradictions.
 - **Multi-model work is one writer + one reviewer.** Two models do not edit the same branch. A reviewer produces evidence-backed findings; the primary fixes them, adds a test, or explicitly accepts the risk. See `docs/multi-model-review.md`.
 - **Language follows the audience, not the author's preference.** `README.md` is English because GitHub is an international landing page; `README.zh-CN.md` is the translation. dev.to takes `docs/war-story.en.md`; 掘金 and V2EX take `docs/war-story.md`. Each track has exactly one source file, so the two cannot drift apart.
+- **The `SECRETS` gate covers `docs/` too.** Published documents are as public as the core files, so scanning only the core files and `memory/` left the widest surface out. If a repo keeps no `docs/`, the scan is a no-op.
 - **The reviewer model is `deepseek/deepseek-flash`.** Reviews are advisory; a cheaper reviewer changes how much depth you get, not what counts as evidence. `AHP-CONTENT-001` was reviewed on `deepseek-v4-pro` and its note says so.
 - **No secrets in memory.** The `SECRETS` gate is a backstop, not a permission to store credentials.
 - **Every published claim is traceable.** A number in a document must point at a repo file or a command output; a quoted command output must be labelled with the state it was produced in (the war story quoted a `PAUSED` snapshot that no longer reproduces under `ACTIVE`). Reviewers check this, not the author.
@@ -30,7 +31,6 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - Should `MONITORING` require explicit provider/target fields in v0.2?
 - Is the commit-day gate too strict for squash-merge workflows?
 - Which gate is most likely to create alarm fatigue after 30 days?
-- Should the `SECRETS` gate also scan `docs/`? It currently covers the core files and `memory/*.md` only, so published documents sit outside the backstop (raised by the DeepSeek review, accepted for this unit).
 
 ## Retrospective
 

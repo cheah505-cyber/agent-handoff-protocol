@@ -111,7 +111,7 @@ Eight sections, in order:
 | `INDEX_MAP` | no dynamic state; local links resolve | FAIL |
 | `PROJECT_SYNC` | derived status block matches `HANDOFF.md`; retrospective is fresh | FAIL/WARN |
 | `MEMORY_LINKS` | hooks ↔ files; no duplicates; `[[links]]` resolve; orphans warn | FAIL/WARN |
-| `SECRETS` | high-confidence secret patterns in core/memory files | FAIL |
+| `SECRETS` | high-confidence secret patterns in the core files, `memory/`, and `docs/` (recursive) | FAIL |
 | `GIT_STATE` | `PAUSED`/`COMPLETE` tree clean; commit day matches `updated_at` | FAIL/WARN |
 
 A gate may be disabled only by removing it from the config with a written reason. Do not weaken a gate silently.

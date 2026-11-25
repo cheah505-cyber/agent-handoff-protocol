@@ -188,6 +188,16 @@ test("SECRETS rejects a high-confidence token", () => {
   }
 });
 
+test("SECRETS rejects a token in docs", () => {
+  const root = makeProject();
+  try {
+    write(root, "docs/reviews/note.md", "# note\n\nAKIAABCDEFGHIJKLMNOP\n");
+    assert.equal(gate(report(root), "SECRETS").status, "FAIL");
+  } finally {
+    cleanup(root);
+  }
+});
+
 test("GIT_STATE rejects PAUSED with a dirty tree", () => {
   const root = makeProject({ git: true });
   try {
