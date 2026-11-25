@@ -19,7 +19,7 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [tests/gates.test.mjs](tests/gates.test.mjs) | Gate and negative-injection tests |
 | [tests/cli.test.mjs](tests/cli.test.mjs) | CLI tests |
 | [docs/design.md](docs/design.md) | Design rationale |
-| [docs/limits.md](docs/limits.md) | Known limits and false confidence |
+| [docs/limits.md](docs/limits.md) | Known limits, false confidence, and the cold read for prose handoffs |
 | [docs/security.md](docs/security.md) | Memory security threat model |
 | [docs/lessons-from-production.md](docs/lessons-from-production.md) | Distilled production lessons |
 | [docs/case-studies.md](docs/case-studies.md) | Failure cases that shaped the gates |

@@ -87,6 +87,27 @@ A cold read is not "read the README and summarize". Ask a fresh session to answe
 
 Then compare with the live state. A cold read that only recovers the project's topic is too shallow.
 
-## 7. No security guarantee
+The same test applied to a prose handoff note — no files, no fixtures — is in §7.
+
+## 7. The same test for a prose handoff note
+
+The four core files are not the only thing a team hands over. Plenty of teams hand over a **note**: a paragraph, a doc, a message thread. The cold read applies, but the check is different — there is no second copy, so there is no fixture to turn red.
+
+**The cheapest useful probe.** Hand the note to someone with no context and ask one question: *can you pick this up and say what is next?* That is worth more than any checklist. Its weakness: "say what's next" can be answered confidently and still be wrong, because a note can be internally consistent and stale, or consistent with itself and inconsistent with the repository it describes.
+
+**Add two questions.**
+
+- *"What would you redo by mistake?"* — the question that surfaces contradictions. If the fresh reader cannot tell what is already done, they will guess, and the guess **is** the contradiction.
+- *"Which file did you take that from?"* — a note that does not cite its sources cannot be checked against them.
+
+**The criterion.** The fresh reader writes the next three steps. Every step must be traceable to a specific file rather than inferred. **Any step they had to guess is a failed handoff — not a failed reader.**
+
+**The closest thing to a failing fixture is a disconfirming question.** Ask the fresh reader something the note claims, and see whether they can answer it from the note alone rather than from your head. If they have to come back to you, that note is a gate that did not turn red.
+
+**And the floor that no check reaches.** A provenance chain — verbatim quotes, each with the speaker's written consent and the message id it came from — is not a check either. There is no second copy, so there is no fixture; the only test that can fail is the speaker saying "no, that isn't what I said", which makes the checker and the subject the same body. What can be made machine-checkable is the **integrity** of the record (hash the consented words at consent time; fail on any divergence), not the **truth** of the quote. Mark the rest `attested, not verified`, and never report it green.
+
+The two problems meet here: a prose handoff and a remembered quotation fail for the same reason — there is nobody independent to contradict them. The discipline is the same too: say which kind of claim you are making, and never let "attested" print as "verified".
+
+## 8. No security guarantee
 
 AHP reduces drift. It does not prevent a malicious agent, a poisoned memory file, or an authorized user from doing damage. Read `docs/security.md`; use least privilege, review writes, and never store credentials in memory.
