@@ -56,7 +56,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 - **What happened:** the English article on dev.to drew two substantive comments within an hour of publishing. One asks how often the cold read runs in practice; the other argues that a provenance chain (verbatim quotes with written consent and message ids) is **not a check** — with no second copy there is no fixture, and a read-back makes the checker and the subject the same body.
 - **Why it matters:** that second comment is the sharpest statement of the limit in `docs/limits.md` §2. It is not a bug report; it is the boundary case, and the honest answer is to separate *integrity of the record* (testable: hash the consented words, fail on any divergence) from *truth of the quote* (no independent fixture without a recording or a second witness — mark it `attested, not verified`, never green).
-- **Next:** reply to both (no selling, technical only); the provenance question is a strong seed for `AHP-CONTENT-002` or a follow-up section in `docs/limits.md`.
+- **Replied** (2026-11-25, as `willcheah`): comment `3md5g` under `3mcmi` (cold-read cadence — every handoff change, with the 21-day freshness gate as the backstop for forgetting); comment `3md5h` under `3md09` (split the question: integrity of the record is testable by hashing the consented words and failing on any divergence; truth of the quote has no independent fixture without a recording or a second witness, so mark it `attested, not verified` and never green). No selling, technical only.
+- **Next:** the provenance question is a strong seed for `AHP-CONTENT-002` or a follow-up section in `docs/limits.md`.
 
 ### 2026-11-25 · The English track shipped: dev.to live, README in English `#result-english-track`
 
