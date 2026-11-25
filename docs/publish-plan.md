@@ -19,8 +19,8 @@
 | dev.to | ✅ 已发布 | 英文 | https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 |
 | 知乎 | ⚠️ 已备好，等人工点发布 | 中文 | 编辑器已填满（7853 字，草稿已存）；发布接口返回 `code 2015 网络环境或行为异常，请进行安全验证` |
 | V2EX | ⛔ 不可发 | 中文 | 注册需邀请码；无码 |
-| SegmentFault | ⛔ 未登录 | 中文 | 需 GitHub / 邮箱登录 |
-| 博客园 | ⛔ 未登录 | 中文 | 登录有验证码 |
+| SegmentFault | ⛔ 已登录但无发文章权限 | 中文 | 新号（声望 0）：导航没有「写文章」，`/write` 跳转 `/howtowrite`；发文章受声望门槛限制 |
+| 博客园 | ⛔ 已登录但未开通博客 | 中文 | 后台提示「您的账号未开通博客」；需在 `account.cnblogs.com/blog-apply` 提交申请（申请理由 + 姓名 + 职位 + 单位 + 技术方向）并等审核 |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
 
 ## 素材（全部已公开）
@@ -83,7 +83,13 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 
 ## 5. SegmentFault / 博客园 / 即刻 ⛔
 
-都需要先在浏览器里登录：SegmentFault（GitHub/邮箱）、博客园（用户名+密码/短信，有验证码）、即刻（App 扫码）。
+三个账号的状态（2026-11-25）：
+
+- **SegmentFault**：已登录，但账号是新的（声望 0）。导航里没有「写文章」，`segmentfault.com/write` 会跳转到 `/howtowrite` 说明页——SF 的文章发布有声望门槛，新号发不了。
+- **博客园**：已登录，但**没有开通博客**。后台提示「您的账号未开通博客，无法使用博客后台」。开通入口 `https://account.cnblogs.com/blog-apply`，需要填：申请理由（≥10 字）、姓名、职位、单位、技术方向，提交后等审核。
+- **即刻**：App 扫码登录；本轮不做。
+
+这三项都不是技术问题，是账号资格问题，无法绕过。
 
 ---
 
