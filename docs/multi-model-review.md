@@ -12,10 +12,12 @@ This protocol is part of AHP. It follows the same rule as external findings: eve
 | Role | This unit | Permission | Output |
 |---|---|---|---|
 | Primary | **MiniMax** | Write, lease, run tests, commit, merge | Code, tests, docs, commits |
-| Reviewer | **DeepSeek** | Read-only on main; separate worktree if it must run code | Findings with file:line and evidence |
+| Reviewer | **DeepSeek** (`deepseek/deepseek-flash`) | Read-only on main; separate worktree if it must run code | Findings with file:line and evidence |
 | Human | You | Final decision | Approve, reject, or ask for another pass |
 
 The model names are examples and **roles are swappable per work unit**. For `AHP-CONTENT-001`, MiniMax is the primary writer and DeepSeek is the independent reviewer. If MiniMax is unavailable, swap the roles and record the change in `HANDOFF.md`; do not run both as writers.
+
+**Reviewer model:** this repository's independent reviews run on `deepseek/deepseek-flash`. The `AHP-CONTENT-001` review is the one exception — it was run on `deepseek/deepseek-v4-pro`, and its note (`docs/reviews/2026-11-25-deepseek.md`) records the model it actually used. Reviews are advisory either way: a cheaper reviewer changes how much depth you get, not what counts as evidence.
 
 ## 2. Hard rules
 

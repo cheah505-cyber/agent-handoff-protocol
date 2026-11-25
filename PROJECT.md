@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: content-v0.1-shipped
-- Next: Publish `docs/war-story.md` to the AI-engineering channels (掘金/V2EX/dev.to) with `docs/memory-security-checklist.md` as the free CTA; then open `AHP-CONTENT-002` for the security-circle article.
+- Next: Push `master` and the `v0.1.0` tag to `origin` (public repo `cheah505-cyber/agent-handoff-protocol`); then publish `docs/war-story.md` to the AI-engineering channels with the checklist as the free CTA; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -19,6 +19,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Structure is not truth.** The gates catch shape and stale state; a cold read catches contradictions. `docs/limits.md` is part of the protocol.
 - **Cold read is a release gate.** A v0.1 release needs a zero-context read of the four core files with no contradictions.
 - **Multi-model work is one writer + one reviewer.** Two models do not edit the same branch. A reviewer produces evidence-backed findings; the primary fixes them, adds a test, or explicitly accepts the risk. See `docs/multi-model-review.md`.
+- **The reviewer model is `deepseek/deepseek-flash`.** Reviews are advisory; a cheaper reviewer changes how much depth you get, not what counts as evidence. `AHP-CONTENT-001` was reviewed on `deepseek-v4-pro` and its note says so.
 - **No secrets in memory.** The `SECRETS` gate is a backstop, not a permission to store credentials.
 - **Every published claim is traceable.** A number in a document must point at a repo file or a command output; a quoted command output must be labelled with the state it was produced in (the war story quoted a `PAUSED` snapshot that no longer reproduces under `ACTIVE`). Reviewers check this, not the author.
 - **MIT license.** The protocol is a public good; the paid layer, if any, is team workflow and support, not the markdown.
