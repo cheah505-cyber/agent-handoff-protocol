@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-25T14:33:49+08:00"
+updated_at: "2026-11-25T15:50:27+08:00"
 work_unit_id: "AHP-CONTENT-001"
 phase: "content-v0.1-shipped"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "The article is published in at least one AI-engineering channel wit
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "none"
-last_verified_at: "2026-11-25T14:33:49+08:00"
+last_verified_at: "2026-11-25T15:50:27+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -40,17 +40,19 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · DeepSeek review returned `fix-first`: two medium findings (a stale `ahp check` output block, a wrong item count) and six low/info findings. All fixed; two scope items explicitly accepted with reasons. Review note: `docs/reviews/2026-11-25-deepseek.md`.
 - 2026-11-25 · Switched the independent reviewer model to `deepseek/deepseek-flash` for every future review (`docs/multi-model-review.md` §1, `PROJECT.md`). The `AHP-CONTENT-001` note keeps the model it actually used.
 - 2026-11-25 · Created the public GitHub repo `cheah505-cyber/agent-handoff-protocol`, added it as `origin`, and pushed `master` plus the `v0.1.0` tag.
+- 2026-11-25 · Wrote `docs/publish-plan.md`: per-platform metadata (掘金 / V2EX / dev.to) for the war story; one body, no duplicated copy.
 ## 2. Exact pause point
 - The two deliverables are written, reviewed, and fixed; the review note and its dispositions are in `docs/reviews/2026-11-25-deepseek.md`.
 - The repository is **public and pushed**: `origin/master` = `99ff9b5`, `v0.1.0` on the remote still points at the v0.1 release commit `2847eb5`. GitHub push protection did not object to the synthetic `ghp_…` fixture in the `SECRETS` negative test.
 - Everything repo-side in the task card is done. What is **not** done is external: publishing the article, and opening the next unit.
+- Publication is **prepared but not executed**. The in-app browser has no session on 掘金 / dev.to / V2EX, so a human has to log in on the open tabs before anything can be posted. The three tabs are left open.
 - The tree is clean; no owner, session, or lease.
 ## 3. Current working set
 - Current file: none.
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
-1. Publish `docs/war-story.md` (title `0 FAIL，12 处矛盾`) to the AI-engineering channels — 掘金 / V2EX / dev.to — with `docs/memory-security-checklist.md` as the free CTA. Keep the real failures and numbers; no "autonomous hacking" framing.
+1. Publish `docs/war-story.md` (title `0 FAIL，12 处矛盾`) to the AI-engineering channels — 掘金 / V2EX / dev.to — with `docs/memory-security-checklist.md` as the free CTA. Metadata for each platform is in `docs/publish-plan.md`. **Prerequisite: the human logs in on the open tabs** (掘金 needs a phone code or the app scan; dev.to accepts GitHub or email; V2EX has a Cloudflare check). Keep the real failures and numbers; no "autonomous hacking" framing.
 2. Open `AHP-CONTENT-002` with a task card: the security-circle article (`docs/open-source-report.md` §7.1 文章 2: 《Agent 的记忆是攻击面》), channels 先知 / FreeBuf / 安全客 / LinkedIn. The independent reviewer for that unit is `deepseek/deepseek-flash`.
 3. In that task card, also carry the open item from the review: should the `SECRETS` gate scan `docs/` as well as the core files and `memory/`? It currently does not, so published documents sit outside the backstop.
 4. Record the first external signal (star, issue, comment, or a question about the checklist) in `PROJECT.md`.
@@ -63,6 +65,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - The `SECRETS` gate does not scan `docs/`. Both new documents were manually checked for secrets and customer facts; the gap is recorded, not closed.
 - Publishing is external and unverified by any gate. A published URL is evidence only after it is actually checked.
 ## 6. Last verification
+- 2026-11-25 · Publish prep: `docs/publish-plan.md` written and linked from `INDEX.md`; `npm test` → 22/22; `ahp check` → 0 FAIL on a clean tree; three publisher tabs opened in the browser, all showing a logged-out state.
 - 2026-11-25 · After the push, on a clean tree: `npm test` → 22/22; `node bin/ahp.mjs check` → 0 FAIL / 12 PASS / 0 WARN; `node bin/ahp.mjs sync --check` → in sync.
 - 2026-11-25 · Remote verified with `git ls-remote`: `refs/heads/master` = `99ff9b5` (= local HEAD at push time), `refs/tags/v0.1.0^{}` = `2847eb5` (the v0.1 release commit).
 - 2026-11-25 · Reviewer baseline (DeepSeek, read-only): `npm test` 22/22; `ahp check` 0 FAIL / 1 WARN (WARN only because the tree was dirty mid-work); `sync --check` in sync.
