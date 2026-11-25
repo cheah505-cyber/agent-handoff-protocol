@@ -23,7 +23,9 @@
 | CSDN | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171375930 |
 | 博客园 | ⛔ 放弃 | 中文 | 未开通博客，开通需个人信息 + 审核；已换 CSDN |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
-| 先知 / FreeBuf / 安全客 | 🟡 发布包已备好 | 中文 | 安全文章；账号/风控未通，**改由用户手动发布**，步骤见 `publish/agent-memory-attack-surface.meta.md` |
+| 先知（安全文章） | 🟡 待审核 | 中文 | 已提交，`xz.aliyun.com/account/articles` 显示「待审核」；过审后决定 安全客 用原创还是转载 |
+| 安全客（安全文章） | 🟡 草稿已填，未提交 | 中文 | 标题/正文（预览 3 表 8 标题）/标签/分类/封面均已就位；缺手机号（必填）与联系方式，且等 先知 结果再定首发 |
+| FreeBuf | ⛔ 放弃 | 中文 | 用户自己的浏览器也返回 405，WAF 拦截；不去绕 |
 
 ## 素材（全部已公开）
 
@@ -162,9 +164,27 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 
 各站实测（2026-11-26）：
 
-- 先知：未登录，写作页 307 到 `account.aliyun.com`；需阿里云账号 + 实名。
-- FreeBuf：本环境全站 405（WAF `waf_agent_protection_triggered`），浏览器不可用；用户自己的浏览器应正常。
-- 安全客：未登录；在线投稿 `https://www.anquanke.com/contribute/new` 返回 200，字段为 标题/文章分类/文章标签(英文逗号分隔)/手机号(必填)/联系方式/封面/编辑器(可切 Markdown)；《投稿须知》见 `https://www.anquanke.com/contribute/tips`。
+- 先知：已提交，**待审核**（`xz.aliyun.com/account/articles`）。过审前它不算"已发布"。
+- FreeBuf：本环境与**用户自己的浏览器**都返回 405（WAF），放弃，不绕。
+- 安全客：已登录；在线投稿 `https://www.anquanke.com/contribute/new`。字段实测：标题 / 文章分类（`knowledge` 安全知识）/ 标签（英文逗号分隔）/ 手机号（**required**，稿费发放）/ 联系方式（QQ/微信/邮箱）/ 封面（layui 上传，落到 `api.anquanke.com/data/v1/file/pic_blob`）/ 编辑器（`0` = Markdown，Editor.md + CodeMirror；`1` = 普通文本）。正文可用 `.CodeMirror` 实例的 `setValue()` 直接写入，比粘贴稳；预览里 3 张表与 8 个二级标题都正常。草稿保存接口 `/data/v1/draft/save`，返回「保存成功」，但草稿箱计数不刷新，别以计数判断是否存住。
+
+## 7.2 英语渠道（FreeBuf 的替代）
+
+前提：**正文要英文版** `docs/agent-memory-attack-surface.en.md`（尚未写）。中文正文投英文社区不成立，别机翻直贴。
+
+| 渠道 | 门槛 | 受众匹配 | 成本 | 备注 |
+|---|---|---|---|---|
+| dev.to | 无审核，已有账号 `willcheah` | 开发者 / AI 工具 | 低 | **首选**，当天可发；标签 `security` `ai` `agents` |
+| LinkedIn | 无审核，走你自己的网络 | 企业安全 / 决策者 | 低 | 同日发；可精简到 800 词 + 仓库链接 |
+| Hacker News | 无审核，靠投票，方差极大 | 全球技术社区 | 中 | 陈述式标题，**不写 Show HN**（这是文章不是产品）；只发一次 |
+| r/netsec | 严格版规：原创、技术深度、禁博客垃圾、标题需描述性 | 安全从业者，最对口 | 中 | 版主主观；先读 sidebar 再发 |
+| Medium / Hashnode / Substack | 无审核，无自然流量 | 你的订阅者 | 低 | 只做镜像，canonical 指回 dev.to |
+| Help Net Security / Dark Reading / CSO / InfoQ | 需 pitch，编辑决定 | 行业信誉 | 高 | 只挑一家 pitch；被接受才写定制版 |
+| arXiv (cs.CR) | 需 endorsement + 学术格式 | 研究 / 引用 | 高 | 不建议：这是工程复盘，不是论文 |
+
+**顺序**：dev.to（当天）→ LinkedIn（当天）→ 隔 2–3 天发**一个**社区（HN 或 r/netsec 二选一）→ 只对 Help Net Security 做一次 pitch。第一波反馈决定要不要加投，别同时铺开。
+
+**风险**：HN 与 r/netsec 对自我推广敏感。文章已具备给足细节的条件（四类失败形态、可查出处、13 项清单），标题里不要出现产品名，正文不要以 CTA 开头。
 
 ## 8. 红线
 

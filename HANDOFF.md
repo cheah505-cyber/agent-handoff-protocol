@@ -43,7 +43,8 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - The security article is written, reviewed, fixed, and ready to publish. Nothing is half-written.
 - The CI red from `4cbd18f` is closed: master is green, the failure is explained in §1, and the pause contract now checks the clean tree before pushing. No gate status changed and no published number moved (suite is still 27 / 19).
 - All three published copies now carry the v0.1.0 snapshot wording for the test count. CSDN's copy is the only one with a different article id than before (the edit created a new article; the old one is gone).
-- The test suite is 29 (20 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
+- The test suite is 27 (19 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
+- 安全客's draft is **filled but not submitted**: title, the whole Markdown body (preview renders 3 tables and 8 headings), tags `AI安全,Agent,代码审计`, category 安全知识, cover uploaded. It waits on the user's phone number (required, 稿费) and a contact, and on a decision: 先知's submission is still **待审核**, and 安全客's rules require first publication there — so the channel that goes live first is the 首发. 自由布/FreeBuf returns 405 for the user's own browser too, so it is dropped.
 - Two publication facts settled this session: 掘金 allows exactly **one** tag per article (the second tag was never achievable), and 知乎's draft plus session were both lost to its anti-automation check, so 知乎 is handed back to the human.
 - The tree is clean at takeover; this session owns the lease until 2026-11-26T14:00:00+08:00.
 ## 3. Current working set
@@ -51,8 +52,8 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
-1. Publish the security article **by hand** using `publish/agent-memory-attack-surface.meta.md` (one file: metadata, per-site steps, publish order). The article itself is review-ready (two review rounds triaged) and the publish package is prepared; only the login + submit is left, and it needs the user's own browser. Order: 先知 → FreeBuf → 安全客 (安全客 requires first publication).
-2. Decide whether to write the English version for LinkedIn — the article's §4 (integrity is testable, truth of an unrecorded quote is not) is the most portable part.
+1. **Wait for 先知's review** (`xz.aliyun.com/account/articles`, currently 待审核). Then pick: (a) if 先知 passes, submit the 安全客 draft as 转载 with a `本文首发于先知社区 <链接>` line (安全客 allows 转载 without 首发), or (b) if 先知 rejects, submit it to 安全客 as 原创 first publication. The draft needs only the phone number and a contact. FreeBuf is dropped (405 in the user's browser too).
+2. **Write the English version** `docs/agent-memory-attack-surface.en.md` and get it reviewed; then publish on the English channels listed in `docs/publish-plan.md` §7.2 — dev.to first (account exists), LinkedIn the same day, one community after that.
 3. 知乎: the user handles it from `publish/war-story.zhihu.md`; do not automate past its security check.
 4. Then start the 90-day roadmap (`docs/open-source-report.md` §11): submit to one or two awesome lists / newsletters, and line up one free or low-price assessment for a testimonial.
 **Acceptance:** the security article is published in at least one security channel and its URL is recorded in §6; `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.
