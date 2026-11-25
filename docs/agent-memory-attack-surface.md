@@ -177,7 +177,7 @@ Agent 项目多了一层：**下一轮会话读什么，就信什么**。四个�
 | 21 天阈值 / 20 天夹具 | `ahp.config.json`；`docs/limits.md` §3.1 |
 | git 门禁跑在真实仓库 | `docs/limits.md` §3.2；`docs/case-studies.md` 案例 4 |
 | `--check` 留下 10 个改动 | `docs/limits.md` §3.4；`docs/case-studies.md` 案例 5 |
-| 12 条门禁 / 23 个测试 | `SPEC.md` §6；`npm test` |
+| 12 条门禁 / 27 个测试（其中 19 个负向夹具） | `SPEC.md` §6；`npm test` |
 | 13 项评估清单 | `docs/memory-security-checklist.md` |
 | 散文交接笔记的冷读判据 | `docs/limits.md` §7 |
 | 溯源链 vs 检查 | dev.to 评论 `3md09`（2026-11-25）与回复 `3md5h`：https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 |
