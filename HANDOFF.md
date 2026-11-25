@@ -54,6 +54,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 **Acceptance:** the article is published in at least one AI-engineering channel with the checklist as its CTA; `tasks/AHP-CONTENT-002.md` exists; `npm test` 22/22; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; local tag `v0.1.0` still points at the v0.1 release commit.
 ## 5. Open risks
 - AHP has its own git repository. Verify `git rev-parse --show-toplevel` before committing; never commit AHP content to the parent workspace repo.
+- This repository has **no remote yet** (`git remote -v` is empty, `master` has no upstream), so "clean and pushed" cannot be verified here. Publishing it to a public host is still open.
 - The protocol can overclaim. Keep `docs/limits.md` visible: structure is not truth.
 - Numbers in prose are not gated. The review found the article saying "12 项" when the checklist has 13 — no gate can see that. Re-check document numbers against the artifacts before publishing.
 - The `SECRETS` gate does not scan `docs/`. Both new documents were manually checked for secrets and customer facts; the gap is recorded, not closed.
