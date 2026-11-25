@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: content-v0.1-shipped
-- Next: Push `master` and the `v0.1.0` tag to `origin` (public repo `cheah505-cyber/agent-handoff-protocol`); then publish `docs/war-story.md` to the AI-engineering channels with the checklist as the free CTA; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
+- Next: Publish `docs/war-story.md` to the AI-engineering channels (掘金/V2EX/dev.to) with `docs/memory-security-checklist.md` as the free CTA; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
 <!-- AHP:STATUS:END -->
 
 ## Decisions
