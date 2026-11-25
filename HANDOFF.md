@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-25T20:44:48+08:00"
+updated_at: "2026-11-26T06:31:00+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "security-article-reviewed"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "The security article is published in at least one security channel 
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "none"
-last_verified_at: "2026-11-25T20:44:48+08:00"
+last_verified_at: "2026-11-26T06:31:00+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
