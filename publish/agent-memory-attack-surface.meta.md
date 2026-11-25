@@ -73,7 +73,7 @@
 
 - 正文用 `publish/war-story.zhihu.md`；表格没了换 `publish/war-story.zhihu.flat.md`。
 - **必须**勾选「包含 AI 辅助创作 作者对内容负责」。
-- 发布后搜「19 个负向夹具」确认正文没被截断，并删掉旧坏稿 `https://zhuanlan.zhihu.com/p/2108969541657163196`。
+- 发布后搜「20 个负向夹具」确认正文没被截断，并删掉旧坏稿 `https://zhuanlan.zhihu.com/p/2108969541657163196`。
 
 ## 5. 发布后必做
 

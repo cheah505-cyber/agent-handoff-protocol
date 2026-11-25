@@ -1,24 +1,24 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-26T06:31:00+08:00"
+updated_at: "2026-11-26T07:24:14+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "security-article-reviewed"
 owner: "none"
 session_id: "none"
 active_branch: "master"
-started_at: "2026-11-25T18:20:00+08:00"
+started_at: "2026-11-26T09:00:00+08:00"
 lease_until: "none"
 touched_paths: "docs/agent-memory-attack-surface.md;docs/reviews/2026-11-25-deepseek-flash.md;docs/publish-plan.md;docs/limits.md;docs/war-story.md;docs/war-story.en.md;lib/config.mjs;lib/gates.mjs;tests/gates.test.mjs;templates/ahp.config.json;SPEC.md;README.md;README.zh-CN.md;CHANGELOG.md;INDEX.md;PROJECT.md;HANDOFF.md"
 current_file: "none"
 next_action_file: "docs/agent-memory-attack-surface.md"
 next_action_anchor: "# 七、从这里开始"
 next_action: "Publish the security article by hand — `publish/agent-memory-attack-surface.meta.md` has the title, summaries, tags and per-site steps; order 先知 → FreeBuf → 安全客 (安全客 requires first publication, so last). The article is review-ready; the publish package is prepared. Optionally write the English version for LinkedIn. Then the 90-day roadmap: one awesome list / newsletter, and one free or low-price assessment for a testimonial."
-acceptance: "The security article is published in at least one security channel and its URL is recorded in §6; `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
+acceptance: "The security article is published in at least one security channel and its URL is recorded in §6; `npm test` 29/29; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "none"
-last_verified_at: "2026-11-26T06:31:00+08:00"
+last_verified_at: "2026-11-26T07:24:14+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -29,6 +29,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Phase: `security-article-reviewed`
 - External responsibilities: none
 ## 1. Last completed
+- 2026-11-26 · `AHP-GATE-003` (CI red → gate hardening). Diagnosed workflow run `45713848434`: a **true positive** on the superseded commit `4cbd18f` — its handoff body was dated 2026-11-26 while `updated_at` still said 2026-11-25, and the commit landed after local midnight. Master `0b3b05d` is green and the failed run is kept as honest history. The hole that let it reach CI: `GIT_STATE` skipped the commit-day check whenever `HANDOFF.md` was dirty, so the mismatch was invisible locally. It now predicts that check while the file is dirty (a stamp older than today fails, with the remedy in the message) and defers with a WARN only when the stamp is today. Two fixtures added (dirty+stale → FAIL, dirty+today → WARN): suite 27 → 29, negative fixtures 19 → 20. `SPEC.md`, `docs/limits.md`, `CHANGELOG.md` updated; the pause contract in `AGENTS.md` and `templates/AGENTS.md` now says commit → check the clean tree → push.
 - 2026-11-25 · v0.1.0 released: CLI, 12 gates, templates, 22 tests, docs set, cold reads v1/v2/v3.
 - 2026-11-25 · `AHP-CONTENT-001`: war story + memory-security checklist (Chinese + English), reviewed by DeepSeek; published to 掘金 and dev.to, plus CSDN (under review). V2EX, 博客园 and SegmentFault were dropped for account-eligibility reasons.
 - 2026-11-25 · Replied to both dev.to comments as `willcheah` (`3md5g` cold-read cadence, `3md5h` provenance-vs-check).
@@ -40,29 +41,32 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · Review triage closed two regressions and two false claims: the `docs`-is-a-file crash in `buildContext`, and the "三类真实发生过的失败" claim that cited files without that class. The war story's 22/15 numbers are now labelled a v0.1.0 snapshot (the published copies stay as they were).
 ## 2. Exact pause point
 - The security article is written, reviewed, fixed, and ready to publish. Nothing is half-written.
+- The CI red from `4cbd18f` is closed: the gate now predicts the commit-day check locally, and master is green. The three **live** war-story copies (dev.to / 掘金 / CSDN) still say 27/19; repo sources and the unpublished copies are at 29/20 (errata text in `docs/publish-plan.md` §9.1).
 - All three published copies now carry the v0.1.0 snapshot wording for the test count. CSDN's copy is the only one with a different article id than before (the edit created a new article; the old one is gone).
-- The test suite is 27 (19 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
+- The test suite is 29 (20 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
 - Two publication facts settled this session: 掘金 allows exactly **one** tag per article (the second tag was never achievable), and 知乎's draft plus session were both lost to its anti-automation check, so 知乎 is handed back to the human.
-- The tree is clean; no owner, session, or lease.
+- The tree is clean at takeover; this session owns the lease until 2026-11-26T14:00:00+08:00.
 ## 3. Current working set
-- Current file: none.
+- Current file: lib/gates.mjs.
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
 1. Publish the security article **by hand** using `publish/agent-memory-attack-surface.meta.md` (one file: metadata, per-site steps, publish order). The article itself is review-ready (two review rounds triaged) and the publish package is prepared; only the login + submit is left, and it needs the user's own browser. Order: 先知 → FreeBuf → 安全客 (安全客 requires first publication).
-2. Decide whether to write the English version for LinkedIn — the article's §4 (integrity is testable, truth of an unrecorded quote is not) is the most portable part.
-3. 知乎: the user handles it from `publish/war-story.zhihu.md`; do not automate past its security check.
-4. Then start the 90-day roadmap (`docs/open-source-report.md` §11): submit to one or two awesome lists / newsletters, and line up one free or low-price assessment for a testimonial.
-**Acceptance:** the security article is published in at least one security channel and its URL is recorded in §6; `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.
+2. Apply the 29/20 errata to the three live war-story copies (dev.to / 掘金 / CSDN) — exact replacements in `docs/publish-plan.md` §9.1; CSDN's import path creates a second article, so verify the id and delete the old one.
+3. Decide whether to write the English version for LinkedIn — the article's §4 (integrity is testable, truth of an unrecorded quote is not) is the most portable part.
+4. 知乎: the user handles it from `publish/war-story.zhihu.md` (now at 29/20); do not automate past its security check.
+5. Then start the 90-day roadmap (`docs/open-source-report.md` §11): submit to one or two awesome lists / newsletters, and line up one free or low-price assessment for a testimonial.
+**Acceptance:** the security article is published in at least one security channel and its URL is recorded in §6; `npm test` 29/29; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.
 ## 5. Open risks
 - AHP has its own git repository. Verify `git rev-parse --show-toplevel` before committing; never commit AHP content to the parent workspace repo.
 - The repository is public. `SECRETS` covers the core files, `memory/` and `docs/`; it does **not** cover `publish/` or `tasks/`, and it does not follow symlinked directories under `docs/`.
 - A security article is the most likely place to overclaim. The review's `fix-first` verdict exists because one claim cited files that did not contain it; re-check every "真实发生过" / "已验证" before publishing.
-- Numbers in prose are not gated. The war story and the security article carry different test counts (22 snapshot vs 27 current) on purpose; do not "align" them by editing the published text. The 知乎 publish copies are regenerated from `docs/war-story.md` — regenerate them after any edit to that file, or the copies drift (this happened once: the copies carried 20 negative fixtures while the source said 19).
+- Numbers in prose are not gated. The war story and the security article carry different test counts (22 snapshot vs 29 current) on purpose; do not "align" them by editing the published text. The three live war-story copies still carry 27/19 — that is a known, recorded drift (`docs/publish-plan.md` §9.1), not an invitation to hand-edit the repo sources back. The 知乎 publish copies are regenerated from `docs/war-story.md` — regenerate them after any edit to that file, or the copies drift (this happened twice: the copies carried 20 negative fixtures while the source said 19, and later 27/19 while the source said 29/20).
 - Publishing is external and unverified by any gate. A platform can log a session out silently (知乎 did).
 - **A publish action can silently create a second article.** CSDN did exactly that when an edit went through the markdown importer. After every publish, check the article id and the article count in the management list, not just the success banner.
 - Tags are not applied by clicking a list item in some editors (dev.to, CSDN): the click must land on an autocomplete suggestion. Otherwise the platform silently picks its own tag — CSDN chose `arcgis` for an article about agent memory.
 ## 6. Last verification
+- 2026-11-26 · `npm test` → 29/29 (20 negative fixtures); `node bin/ahp.mjs check` → 12 PASS / 0 FAIL on a clean tree; `node bin/ahp.mjs sync --check` → in sync; CI `check` green on the pushed commit. The new fixture was replayed against the pre-patch gate in a temp copy: 28/29, i.e. it really turns red.
 - 2026-11-25 · `npm test` → 27/27 (19 negative fixtures); `node bin/ahp.mjs check` → 12 PASS / 0 FAIL on a clean tree; `node bin/ahp.mjs sync --check` → in sync.
 - 2026-11-25 · `SECRETS` on the real repo: PASS. Negative fixtures added for: a token under `docs/`, in a dotfile, in an uppercase `.MD`, and a modern `sk-proj-` key; plus a guard for `docs` being a regular file.
 - 2026-11-25 · Published copies verified after the errata: dev.to body carries "At v0.1.0 the suite was 22 tests … It is 27 tests (19 negative fixtures) now"; 掘金 page shows all five edits and still one tag (`AI编程`), same article id; CSDN `171375930` shows all five edits with tags `开源/人工智能/软件工程`, `已发布(1)`, `回收站(0)`.

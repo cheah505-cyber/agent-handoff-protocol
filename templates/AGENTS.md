@@ -33,6 +33,7 @@ This project uses the **Agent Handoff Protocol (AHP)**. Read this file first.
 4. Run `ahp sync` if `PROJECT.md` has an AHP status block.
 5. Run `ahp check` and record the actual command in `last_verified_command`.
 6. Commit the result. Do not declare completion with a dirty tree when status is `PAUSED` or `COMPLETE`.
+7. Run `ahp check` again on the clean tree and amend if it fails. The commit-day check can only run after the commit; push only after this pass.
 
 ## Commands
 

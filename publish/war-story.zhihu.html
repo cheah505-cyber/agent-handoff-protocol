@@ -24,7 +24,7 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 
 [ahp] 0 FAIL / 0 WARN / 12 PASS / 0 SKIP</code></pre>
 <p>一个数字：fail-open 门禁。每条门禁都必须有一个<strong>必须变红</strong>的负向夹具，否则它只是声明，不是检查。整套东西当时 22 个测试：其中 15 个是"必须变红"的负向夹具（一条门禁一个），6 个是 CLI 和脚手架测试，1 个是正向的"合法项目应该全绿"。<code>npm test</code> 22/22。</p>
-<blockquote><p><strong>这是 v0.1.0 的快照。</strong> 写完这篇之后 <code>SECRETS</code> 门禁增加了 <code>docs/</code> 扫描，现在是 <strong>27 个测试、19 个负向夹具</strong>——数字变了，方法没变。</p></blockquote>
+<blockquote><p><strong>这是 v0.1.0 的快照。</strong> 写完这篇之后 <code>SECRETS</code> 门禁增加了 <code>docs/</code> 扫描，现在是 <strong>29 个测试、20 个负向夹具</strong>——数字变了，方法没变。</p></blockquote>
 <p><strong>顺带说一句</strong>：写这个单元的时候仓库状态是 <code>ACTIVE</code>（我在干活），同一条命令的输出会不一样——<code>LEASE</code> 那行变成 <code>lease valid until ...</code>，<code>GIT_STATE</code> 变成一条 WARN（工作树是脏的，所以跳过提交日比对）。同一段代码、同一份配置，输出随状态变化。<strong>门禁必须连着状态一起读</strong>，这也正是我下面要讲的那类问题。</p>
 <p>到这里为止，一切都对。</p>
 <p>然后是那个让我坐直的数字。先说清楚它<strong>属于谁</strong>：这是<strong>另一个学习项目</strong>的冷读结果——它的门禁全绿，零上下文读手在四个核心文件里找出 <strong>12 处矛盾</strong>。而我自己的仓库，冷读结果是 8 / 3 / 5 处（下一节）。</p>
@@ -74,7 +74,7 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 <p>五个动作，都是把"发现"变成"不能再犯"。</p>
 <p><strong>1. 单一当前状态源。</strong> 动态状态只住在 <code>HANDOFF.md</code> 里。<code>INDEX.md</code> 只做地图，所以 <code>INDEX_MAP</code> 门禁专门检查它有没有长出状态行。长期决策归 <code>PROJECT.md</code>。同一个事实不允许在三个文件里各有一份。</p>
 <p><strong>2. 派生，而不是复制。</strong> <code>PROJECT.md</code> 顶部那个状态块是 <code>ahp sync</code> 从 <code>HANDOFF.md</code> 生成的，不是手写的。手写就一定会漂移，所以有 <code>ahp sync --check</code> 专门盯着它漂。<strong>能用工具生成的字段，就不要靠纪律维持。</strong></p>
-<p><strong>3. 负向测试就是产品。</strong> 12 条门禁，每条都有必须变红的夹具。一个门禁如果没有能失败的测试，它就只是一句声明。这条规矩的代价是我要多写负向测试（v0.1.0 时 15 个，现在 19 个）；回报是每条门禁都还活着。</p>
+<p><strong>3. 负向测试就是产品。</strong> 12 条门禁，每条都有必须变红的夹具。一个门禁如果没有能失败的测试，它就只是一句声明。这条规矩的代价是我要多写负向测试（v0.1.0 时 15 个，现在 20 个）；回报是每条门禁都还活着。</p>
 <p><strong>4. 隔离 git 夹具。</strong> 见 3.2。</p>
 <p><strong>5. 冷读进协议。</strong> 冷读不是"读一遍 README 总结一下"，而是让一个零上下文的会话回答五个具体问题。<strong>每一条矛盾必须二选一：变成一条门禁断言，或者写成一份"接受，不修"并写清理由。</strong> "读一遍就算了"是禁止的。</p>
 <p>还有一条来自外部审计的铁律，我原样照抄：<strong>每条 findings 要么变成门禁/测试，要么变成一份写明理由和重新评估触发条件的书面接受。</strong> 这一条让"我知道有问题"不会烂在脑子里。</p>
@@ -87,7 +87,7 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 <h3>六、如果你想自己查一遍</h3>
 <p>不需要相信我。拿我的仓库当靶子：</p>
 <pre><code class="language-bash">git clone &lt;this-repo&gt; &amp;&amp; cd &lt;this-repo&gt;
-npm test                       # v0.1.0 时 22 个测试；现在 27 个
+npm test                       # v0.1.0 时 22 个测试；现在 29 个
 node bin/ahp.mjs check         # 12 条门禁
 node bin/ahp.mjs init /tmp/demo &amp;&amp; cd /tmp/demo
 # 然后故意把 HANDOFF.md 的 last_verified_command 改成 "ahp pause"
@@ -104,5 +104,5 @@ node bin/ahp.mjs init /tmp/demo &amp;&amp; cd /tmp/demo
 <p>而对你来说，最便宜的起点不是装什么工具，是<strong>下一次交接的时候，让一个没有上下文的人来读你的状态文件</strong>。他读不懂的地方，就是你的系统正在骗你的地方。</p>
 <hr>
 <h3>附：本文数字出处</h3>
-<table><thead><tr><th>数字</th><th>出处</th></tr></thead><tbody><tr><td>12 条门禁、0 FAIL</td><td><code>node bin/ahp.mjs check</code>；门禁列表见 <code>SPEC.md</code> §6</td></tr><tr><td>22 个测试（v0.1.0 快照；现为 27，其中 19 个负向夹具）</td><td><code>npm test</code></td></tr><tr><td>冷读 12 处矛盾（学习项目）</td><td><code>docs/case-studies.md</code> 案例 8</td></tr><tr><td>冷读 8 / 3 / 5 处（AHP 自身）</td><td><code>docs/lessons-from-production.md</code> §3.7；<code>HANDOFF.md</code> §1</td></tr><tr><td>生产项目 70+ 文件、279 链接、211 KB、185 KB、5 镜像</td><td><code>docs/lessons-from-production.md</code> 开篇</td></tr><tr><td>21 天阈值 / 40 天夹具</td><td><code>ahp.config.json</code>；<code>docs/limits.md</code> §3.1</td></tr><tr><td>20 天夹具</td><td><code>docs/lessons-from-production.md</code> §3.4；<code>docs/case-studies.md</code> 案例 3</td></tr><tr><td><code>--check</code> 留下 10 个改动</td><td><code>docs/lessons-from-production.md</code> §3.5；<code>docs/case-studies.md</code> 案例 5</td></tr><tr><td>租约过期 34 分钟</td><td><code>docs/case-studies.md</code> 案例 6</td></tr><tr><td>五处派生镜像</td><td><code>docs/lessons-from-production.md</code> §6</td></tr><tr><td>冷读五个问题</td><td><code>docs/limits.md</code> §6；<code>AGENTS.md</code> 交接契约</td></tr></tbody></table>
+<table><thead><tr><th>数字</th><th>出处</th></tr></thead><tbody><tr><td>12 条门禁、0 FAIL</td><td><code>node bin/ahp.mjs check</code>；门禁列表见 <code>SPEC.md</code> §6</td></tr><tr><td>22 个测试（v0.1.0 快照；现为 29，其中 20 个负向夹具）</td><td><code>npm test</code></td></tr><tr><td>冷读 12 处矛盾（学习项目）</td><td><code>docs/case-studies.md</code> 案例 8</td></tr><tr><td>冷读 8 / 3 / 5 处（AHP 自身）</td><td><code>docs/lessons-from-production.md</code> §3.7；<code>HANDOFF.md</code> §1</td></tr><tr><td>生产项目 70+ 文件、279 链接、211 KB、185 KB、5 镜像</td><td><code>docs/lessons-from-production.md</code> 开篇</td></tr><tr><td>21 天阈值 / 40 天夹具</td><td><code>ahp.config.json</code>；<code>docs/limits.md</code> §3.1</td></tr><tr><td>20 天夹具</td><td><code>docs/lessons-from-production.md</code> §3.4；<code>docs/case-studies.md</code> 案例 3</td></tr><tr><td><code>--check</code> 留下 10 个改动</td><td><code>docs/lessons-from-production.md</code> §3.5；<code>docs/case-studies.md</code> 案例 5</td></tr><tr><td>租约过期 34 分钟</td><td><code>docs/case-studies.md</code> 案例 6</td></tr><tr><td>五处派生镜像</td><td><code>docs/lessons-from-production.md</code> §6</td></tr><tr><td>冷读五个问题</td><td><code>docs/limits.md</code> §6；<code>AGENTS.md</code> 交接契约</td></tr></tbody></table>
 <p>许可证：MIT。协议和 CLI 开源。</p>

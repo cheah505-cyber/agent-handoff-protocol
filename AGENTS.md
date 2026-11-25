@@ -36,14 +36,15 @@ The **four core files** are `AGENTS.md`, `INDEX.md`, `PROJECT.md`, and `HANDOFF.
 4. Run `node bin/ahp.mjs sync` when the derived status block changes.
 5. Run `npm test`, `node bin/ahp.mjs check`, and `node bin/ahp.mjs sync --check`; record the actual command.
 6. Commit. Do not declare completion with a dirty tree when status is `PAUSED` or `COMPLETE`.
-7. If a release needs to validate a dirty tree, say so explicitly and run the validation twice: once before the commit (non-git gates) and once after the commit (all gates). Do not call a dirty tree `PAUSED`.
+7. Run `node bin/ahp.mjs check` again on the clean tree and amend if it fails. The commit-day check can only be evaluated after the commit, and `GIT_STATE` predicts it beforehand; push only after this pass.
+8. If a release needs to validate a dirty tree, say so explicitly and run the validation twice: once before the commit (non-git gates) and once after the commit (all gates). Do not call a dirty tree `PAUSED`.
 
 ## Commands
 
 In this repository, `ahp` in the docs means `node bin/ahp.mjs`; if the package is installed/linked, the `ahp` shim works too.
 
 ```bash
-npm test                         # 22 gate/CLI tests
+npm test                         # 29 tests (20 negative fixtures)
 node bin/ahp.mjs check           # 12 gates on this repo
 node bin/ahp.mjs check --json
 node bin/ahp.mjs resume

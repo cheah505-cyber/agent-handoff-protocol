@@ -11,7 +11,7 @@ AHP exists because a memory system can be **structurally green and semantically 
 - The memory index and wiki links are closed.
 - The derived status block matches `HANDOFF.md`.
 - A high-confidence secret pattern is absent from the core files, `memory/`, and `docs/` (recursive, case-insensitive, dotfiles included). **Not scanned:** symlinked directories under `docs/`, and the `publish/` and `tasks/` roots. A token pasted there will not be caught.
-- A `PAUSED` tree is clean and the handoff's commit day matches its `updated_at`.
+- A `PAUSED` tree is clean and the handoff's commit day matches its `updated_at`. While `HANDOFF.md` is uncommitted the commit day does not exist yet, so the gate predicts it: a stamp older than today fails, because the next commit is dated today.
 
 ## 2. What the gates cannot see
 

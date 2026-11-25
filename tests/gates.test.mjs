@@ -266,6 +266,46 @@ test("GIT_STATE rejects a commit-day mismatch", () => {
   }
 });
 
+test("GIT_STATE rejects a dirty handoff whose stamp is already stale", () => {
+  const yesterday = new Date(Date.now() - 86_400_000);
+  const root = makeProject({
+    git: true,
+    handoff: {
+      status: "ACTIVE",
+      owner: "agent",
+      session: "session-1",
+      lease: localIso(new Date(Date.now() + 60 * 60 * 1000)),
+      updatedAt: localIso(yesterday),
+      lastVerifiedAt: localIso(yesterday),
+      section6Date: localDate(yesterday),
+    },
+  });
+  try {
+    fs.appendFileSync(path.join(root, "HANDOFF.md"), "\n- an edit made today\n", "utf8");
+    assert.equal(gate(report(root), "GIT_STATE").status, "FAIL");
+  } finally {
+    cleanup(root);
+  }
+});
+
+test("GIT_STATE defers the commit-day check when a dirty handoff is stamped today", () => {
+  const root = makeProject({
+    git: true,
+    handoff: {
+      status: "ACTIVE",
+      owner: "agent",
+      session: "session-1",
+      lease: localIso(new Date(Date.now() + 60 * 60 * 1000)),
+    },
+  });
+  try {
+    fs.appendFileSync(path.join(root, "HANDOFF.md"), "\n- an edit made today\n", "utf8");
+    assert.equal(gate(report(root), "GIT_STATE").status, "WARN");
+  } finally {
+    cleanup(root);
+  }
+});
+
 test("sync check detects and repairs a stale block", () => {
   const root = makeProject();
   try {
