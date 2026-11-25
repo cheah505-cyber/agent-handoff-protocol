@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: security-article-reviewed
-- Next: Publish `docs/agent-memory-attack-surface.md` in one security channel (先知 / FreeBuf / 安全客) after the user picks the order; decide whether to also write the English version for LinkedIn; then start the 90-day roadmap (awesome lists, one free assessment).
+- Next: Publish `docs/agent-memory-attack-surface.md` in one security channel (先知 / FreeBuf / 安全客) — the article is review-ready; the user picks the order. Optionally write the English version for LinkedIn. Then the 90-day roadmap: one awesome list / newsletter, and one free or low-price assessment for a testimonial.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -54,11 +54,12 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 ### 2026-11-25 · Gate hardening + the security article `#result-content-v0.2`
 
-- **Did:** Extended `SECRETS` to scan `docs/**/*.md` (recursive, case-insensitive, dotfiles included) with four new negative fixtures, and wrote `docs/agent-memory-attack-surface.md` (3209 Chinese characters) for the security audience. Reviewed by `deepseek/deepseek-flash`; findings and dispositions in `docs/reviews/2026-11-25-deepseek-flash.md`. Test suite is 27, of which 19 are negative fixtures.
+- **Did:** Extended `SECRETS` to scan `docs/**/*.md` (recursive, case-insensitive, dotfiles included) with four new negative fixtures, and wrote `docs/agent-memory-attack-surface.md` (3315 Chinese characters) for the security audience. Reviewed twice by `deepseek/deepseek-flash` — a full pass (`fix-first`, ten findings) and a diff-scoped re-review that caught two of them still partial; notes in `docs/reviews/2026-11-25-deepseek-flash.md` and `docs/reviews/2026-11-25-deepseek-flash-recheck.md`. Test suite is 27, of which 19 are negative fixtures.
 - **Learned:** The reviewer caught the exact failure the protocol is about — a claim ("三类真实发生过的失败") that cited files which do not contain that class. The template-supply-chain case exists only as a threat-model hypothesis, so it had to be labelled "未观测". It also caught that the already-published war story said 22/15 while the new article said 23/16: the fix was to label the war story as a v0.1.0 snapshot, not to rewrite published history. And it found a real regression in my own change: `docs` as a regular file threw inside `buildContext`, so `check --json` returned `ENOTDIR` text instead of JSON — a case where a new gate path broke the machine-readable contract.
 - **Also learned:** 掘金 allows exactly one tag per article, so the "add Agent/GitHub tags" item was never achievable; recorded as a platform limit rather than an unfinished task. 知乎's draft and session were both lost to its anti-automation check, so that publication is handed back to the human.
 - **Learned (errata round):** updating a published article is not the same operation as publishing one. On CSDN, editing through the markdown importer **created a second article** and silently re-tagged it `arcgis`; on 掘金, opening `/editor/drafts/<article_id>` creates an empty draft instead of editing. The lesson for the protocol: after any publish, verify the article **id** and the **count** of articles, not just the success banner — and tags must be applied by clicking an autocomplete suggestion, because a click on a recommendation list item changes nothing.
 - **Merged the two threads into `docs/limits.md` §7** ("The same test for a prose handoff note"): the ML Systems variant of the cold read (one cheap probe, plus "what would you redo by mistake?" and "which file did you take that from?", with "a guessed step is a failed handoff, not a failed reader") and the provenance floor from Dolores (integrity is testable, truth is not; mark it `attested, not verified`). They are the same problem: nothing independent can contradict you. The old §7 became §8.
+- **Learned (re-review):** a fix that touches one of three copies of the same number leaves the other two stale. The 19-vs-20 split survived in the war story's "cost" sentence and had already reached the 知乎 publish copies, because those copies are *generated* from the source — regenerate them, never hand-edit them.
 - **Next:** publish the security article in one security channel (先知 / FreeBuf / 安全客), decide on the English version for LinkedIn, then move to the 90-day roadmap (awesome lists / one free assessment).
 
 ### 2026-11-25 · First external signals: two dev.to comments `#result-external-signal`

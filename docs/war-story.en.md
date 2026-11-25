@@ -161,7 +161,7 @@ Five moves, each of them turning a discovery into "this cannot happen again".
 
 **2. Derive, do not duplicate.** The status block at the top of `PROJECT.md` is generated from `HANDOFF.md` by `ahp sync`, not written by hand. Hand-written means it will drift, so `ahp sync --check` exists to catch the drift. **Fields a tool can generate should not be maintained by discipline.**
 
-**3. Negative tests are the product.** Twelve gates, each with a fixture that must turn red. The cost is that I had to write negative fixtures (15 at v0.1.0, 20 now); the payoff is that every gate is still alive.
+**3. Negative tests are the product.** Twelve gates, each with a fixture that must turn red. The cost is that I had to write negative fixtures (15 at v0.1.0, 19 now); the payoff is that every gate is still alive.
 
 **4. Isolated git fixtures.** See 3.2.
 

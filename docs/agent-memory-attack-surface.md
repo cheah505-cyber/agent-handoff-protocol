@@ -13,7 +13,7 @@
 
 Agent 项目多了一层：**下一轮会话读什么，就信什么**。四个核心文件——入口、索引、长期决策、当前交接——加上一个记忆目录，会被自动或按需注入上下文。它们决定了下一个 Agent 认为"现在是什么状态、什么已经做过、什么不能碰"。
 
-所以资产不只是代码，是**信念状态**（belief state）。这句话是 `docs/security.md` §1 的结论，不是假设——它是从下面七个假设推出来的。
+所以资产不只是代码，是**信念状态**（belief state）。这句话是 `docs/security.md` §1 的结论，不是假设——它是从那一节的五条威胁假设推出来的。
 
 这带来一个不舒服的结论：**代码 review 看不见它**。一段被投毒的记忆不违反任何类型系统，不触发任何 lint，它只是让下一个 Agent 做错事。
 
@@ -161,7 +161,7 @@ Agent 项目多了一层：**下一轮会话读什么，就信什么**。四个�
 
 **清单免费**，就在仓库里：`docs/memory-security-checklist.md`。它是一份人工流程，不是自动扫描器——**只在有书面授权的系统上用**。
 
-仓库里还有一个可运行的实现：12 条只读门禁、27 个测试（其中 19 个是"必须变红"的负向夹具）、冷读 8 / 3 / 5 处问题。你不需要相信我，可以自己把它跑红。
+仓库里还有一个可运行的实现：12 条只读门禁、27 个测试（其中 19 个是"必须变红"的负向夹具）、三轮冷读分别查出 8 / 3 / 5 处问题。你不需要相信我，可以自己把它跑红。
 
 > **记忆不是数据库，是下一轮的信念状态。**
 > **一旦你的检查不再可能失败，它就变成了又一个漂移源。**
@@ -174,10 +174,13 @@ Agent 项目多了一层：**下一轮会话读什么，就信什么**。四个�
 |---|---|
 | 资产是"信念状态" | `docs/security.md` §1 |
 | 四类记忆攻击 | `docs/security.md` §2 攻击场景表 |
-| 21 天阈值 / 20 天夹具 | `ahp.config.json`；`docs/limits.md` §3.1 |
+| 21 天阈值 | `ahp.config.json`（`freshness.handoffDays`） |
+| 20 天夹具（历史事故，非现行夹具） | `docs/limits.md` §3.1；现行负向夹具是 40 天 |
 | git 门禁跑在真实仓库 | `docs/limits.md` §3.2；`docs/case-studies.md` 案例 4 |
 | `--check` 留下 10 个改动 | `docs/limits.md` §3.4；`docs/case-studies.md` 案例 5 |
-| 12 条门禁 / 27 个测试（其中 19 个负向夹具） | `SPEC.md` §6；`npm test` |
+| 12 条门禁 | `SPEC.md` §6 |
+| 27 个测试，其中 19 个负向夹具 | `npm test`；`tests/gates.test.mjs` 里 19 处 `status, "FAIL"` |
+| 冷读 8 / 3 / 5（三轮） | `docs/war-story.md` §1 |
 | 13 项评估清单 | `docs/memory-security-checklist.md` |
 | 散文交接笔记的冷读判据 | `docs/limits.md` §7 |
 | 溯源链 vs 检查 | dev.to 评论 `3md09`（2026-11-25）与回复 `3md5h`：https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 |

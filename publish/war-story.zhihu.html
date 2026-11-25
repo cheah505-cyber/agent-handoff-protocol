@@ -74,7 +74,7 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 <p>五个动作，都是把"发现"变成"不能再犯"。</p>
 <p><strong>1. 单一当前状态源。</strong> 动态状态只住在 <code>HANDOFF.md</code> 里。<code>INDEX.md</code> 只做地图，所以 <code>INDEX_MAP</code> 门禁专门检查它有没有长出状态行。长期决策归 <code>PROJECT.md</code>。同一个事实不允许在三个文件里各有一份。</p>
 <p><strong>2. 派生，而不是复制。</strong> <code>PROJECT.md</code> 顶部那个状态块是 <code>ahp sync</code> 从 <code>HANDOFF.md</code> 生成的，不是手写的。手写就一定会漂移，所以有 <code>ahp sync --check</code> 专门盯着它漂。<strong>能用工具生成的字段，就不要靠纪律维持。</strong></p>
-<p><strong>3. 负向测试就是产品。</strong> 12 条门禁，每条都有必须变红的夹具。一个门禁如果没有能失败的测试，它就只是一句声明。这条规矩的代价是我要多写负向测试（v0.1.0 时 15 个，现在 20 个）；回报是每条门禁都还活着。</p>
+<p><strong>3. 负向测试就是产品。</strong> 12 条门禁，每条都有必须变红的夹具。一个门禁如果没有能失败的测试，它就只是一句声明。这条规矩的代价是我要多写负向测试（v0.1.0 时 15 个，现在 19 个）；回报是每条门禁都还活着。</p>
 <p><strong>4. 隔离 git 夹具。</strong> 见 3.2。</p>
 <p><strong>5. 冷读进协议。</strong> 冷读不是"读一遍 README 总结一下"，而是让一个零上下文的会话回答五个具体问题。<strong>每一条矛盾必须二选一：变成一条门禁断言，或者写成一份"接受，不修"并写清理由。</strong> "读一遍就算了"是禁止的。</p>
 <p>还有一条来自外部审计的铁律，我原样照抄：<strong>每条 findings 要么变成门禁/测试，要么变成一份写明理由和重新评估触发条件的书面接受。</strong> 这一条让"我知道有问题"不会烂在脑子里。</p>
