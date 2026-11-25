@@ -50,6 +50,11 @@ A green check is structural. It is not proof of truth. Run a cold read: a fresh 
 - Cold read is part of the protocol.
 - Zero runtime dependencies.
 
+## Write-ups
+
+- [`docs/war-story.md`](docs/war-story.md) — post-mortem (Chinese): the green dashboard that lied. 12 gates, 0 FAIL, and a cold read still found 12 contradictions in a "green" memory system.
+- [`docs/memory-security-checklist.md`](docs/memory-security-checklist.md) — authorized memory-security assessment checklist: 13 items, each with what to inspect, why it matters, evidence to collect, and a pass/fix criterion. Use it only on systems you are authorized to assess.
+
 ## License
 
 MIT.

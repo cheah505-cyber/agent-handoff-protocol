@@ -24,10 +24,12 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [docs/lessons-from-production.md](docs/lessons-from-production.md) | Distilled production lessons |
 | [docs/case-studies.md](docs/case-studies.md) | Failure cases that shaped the gates |
 | [docs/open-source-report.md](docs/open-source-report.md) | Open-source pairing report |
+| [docs/war-story.md](docs/war-story.md) | Post-mortem: the green dashboard that lied |
+| [docs/memory-security-checklist.md](docs/memory-security-checklist.md) | Authorized memory-security assessment checklist |
 | [docs/multi-model-review.md](docs/multi-model-review.md) | One-writer/one-reviewer protocol |
 | [docs/reviews/README.md](docs/reviews/README.md) | Review note policy |
 | [docs/reviews/TEMPLATE.md](docs/reviews/TEMPLATE.md) | Review note template |
-| [tasks/AHP-CONTENT-001.md](tasks/AHP-CONTENT-001.md) | Next unit: war story + security checklist |
+| [tasks/AHP-CONTENT-001.md](tasks/AHP-CONTENT-001.md) | Task card: war story + security checklist |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution and gate rules |
 | [CHANGELOG.md](CHANGELOG.md) | Release history |
 | [LICENSE](LICENSE) | MIT license |
