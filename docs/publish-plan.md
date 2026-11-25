@@ -23,6 +23,7 @@
 | CSDN | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171375930 |
 | 博客园 | ⛔ 放弃 | 中文 | 未开通博客，开通需个人信息 + 审核；已换 CSDN |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
+| 先知 / FreeBuf / 安全客 | 🟡 发布包已备好 | 中文 | 安全文章；账号/风控未通，**改由用户手动发布**，步骤见 `publish/agent-memory-attack-surface.meta.md` |
 
 ## 素材（全部已公开）
 
@@ -146,6 +147,24 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 4. 附录 `| 22 个测试 | npm test |` → `| 22 个测试（v0.1.0 快照；现为 27，其中 19 个负向夹具） | npm test |`
 
 除测试数外，文章其余数字（12 条门禁、21 天阈值、20 天夹具、10 个改动、13 项清单）均未变，不需要改。
+
+## 7.1 安全文章（Agent 的记忆是攻击面）
+
+正文源：`docs/agent-memory-attack-surface.md`（未发布，可继续改）。发布包：
+
+| 文件 | 用途 |
+|---|---|
+| `publish/agent-memory-attack-surface.md` | 首选正文（Markdown 编辑器导入/粘贴），相对链接已改 GitHub 绝对地址 |
+| `publish/agent-memory-attack-surface.html` | 备用（富文本粘贴），裸 URL 已转成可点链接 |
+| `publish/agent-memory-attack-surface.meta.md` | 标题/摘要/分类/标签 + 逐站步骤 + 发布顺序 |
+
+**发布顺序：先知 → FreeBuf → 安全客。** 安全客《投稿须知》要求首发且发布后不得再往第三方平台投稿同一篇，所以它必须放最后。只发一个的话选先知（受众最对口）。
+
+各站实测（2026-11-26）：
+
+- 先知：未登录，写作页 307 到 `account.aliyun.com`；需阿里云账号 + 实名。
+- FreeBuf：本环境全站 405（WAF `waf_agent_protection_triggered`），浏览器不可用；用户自己的浏览器应正常。
+- 安全客：未登录；在线投稿 `https://www.anquanke.com/contribute/new` 返回 200，字段为 标题/文章分类/文章标签(英文逗号分隔)/手机号(必填)/联系方式/封面/编辑器(可切 Markdown)；《投稿须知》见 `https://www.anquanke.com/contribute/tips`。
 
 ## 8. 红线
 

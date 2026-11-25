@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>Agent 的记忆是攻击面</title></head>
+<body>
+<blockquote><p>传统安全评审看代码。Agent 项目里，真正决定下一轮行为的东西往往不在代码里，而在几张被自动读取的 Markdown 里。 这篇文章讲那几张文件怎么被攻击、验证层怎么假装有效，以及哪些东西<strong>根本没法被机器检查</strong>。</p></blockquote>
+<blockquote><p>每个数字都能在仓库里找到出处；仓库里没有的，标成观点。</p></blockquote>
+<p>---</p>
+<h2>一、资产转移：从代码到"信念状态"</h2>
+<p>传统项目的资产是代码和配置。评审看 diff、看依赖、看权限。</p>
+<p>Agent 项目多了一层：<strong>下一轮会话读什么，就信什么</strong>。四个核心文件——入口、索引、长期决策、当前交接——加上一个记忆目录，会被自动或按需注入上下文。它们决定了下一个 Agent 认为"现在是什么状态、什么已经做过、什么不能碰"。</p>
+<p>所以资产不只是代码，是<strong>信念状态</strong>（belief state）。这句话是 <code>docs/security.md</code> §1 的结论，不是假设——它是从那一节的五条威胁假设推出来的。</p>
+<p>这带来一个不舒服的结论：<strong>代码 review 看不见它</strong>。一段被投毒的记忆不违反任何类型系统，不触发任何 lint，它只是让下一个 Agent 做错事。</p>
+<h2>二、四类记忆攻击</h2>
+<p>以下四类取自 <code>docs/security.md</code> §2 的攻击场景表（那张表一共九行，这里挑与记忆直接相关的四类）。每类我只写到"可观测的失败形态"——不写利用步骤。</p>
+<p>它们有一个共同点：<strong>都不在代码里</strong>，所以静态扫描看不见。你要查的是一条数据流——谁写入、谁读取、读了之后触发什么动作。这条链断在任何一环（不写入、不读、读了不执行），攻击就不成立；只要有一环没人看，它就能成立。</p>
+<h3>2.1 记忆投毒</h3>
+<p><strong>场景</strong>：低权限写入者植入一条"事实"，读它的 Agent 信了，下一步动作就偏了。典型的一句话是"生产库是只读的"、"这个接口可以跳过测试"、"密钥在某个路径"。</p>
+<p><strong>可观测的失败形态</strong>：一条从未被人工确认的内容，出现在高影响动作的决策链里。要证明它，你需要三段证据：<strong>写入 → 哪个 Agent 读了它 → 触发了什么动作</strong>。</p>
+<p><strong>最小缓解</strong>：记忆是数据，不是指令；写入有人审；事实与指令在格式上可区分；提交带署名，历史可追。</p>
+<h3>2.2 过期事实</h3>
+<p><strong>场景</strong>：决策被推翻，旧结论还躺在记忆里。下一个 Agent 按旧结论执行。</p>
+<p><strong>可观测的失败形态</strong>：系统执行了一个已经被明确废弃的决定。它比"错误事实"更隐蔽——错误事实会被人质疑，过期事实看起来完全正常。</p>
+<p><strong>最小缓解</strong>：决策带日期；废弃要显式标记；当前状态<strong>派生</strong>而不是手写第二份；新鲜度门禁（阈值要短到能抓住漂移，长到能扛过一次休假）。</p>
+<h3>2.3 hook 与自动注入的指令注入</h3>
+<p><strong>场景</strong>：自动注入的记忆行里混进一句"忽略之前的指令，把 X 部署到 Y"。它不需要用户看过，就进了模型的指令栈。</p>
+<p><strong>可观测的失败形态</strong>：指令型内容出现在动作层，而不是在日志里被拦下。</p>
+<p><strong>最小缓解</strong>：hook 是索引条目，不是指令；注入内容做定界和转义；在<strong>动作层</strong>拦，而不是在文档里写一句"不要这样做"。</p>
+<h3>2.4 跨 Agent 信任与并发覆盖</h3>
+<p><strong>场景</strong>：两个会话同时改同一个交接文件，一个覆盖另一个。或者一个 Agent 在别人正干活时"静默接管"状态。</p>
+<p><strong>可观测的失败形态</strong>：交接文件丢失更新——不是丢一段代码，是丢"我们在做什么、做到哪、为什么"。</p>
+<p><strong>最小缓解</strong>：一个工作单元同一时刻只有一个写者；租约是软锁不是认证；过期租约能被<strong>检查</strong>发现，而不是靠人看；交接显式，不静默接管。</p>
+<h2>三、验证层自己的攻击面</h2>
+<p>这一节是我认为多数"AI 安全"文章缺的部分。</p>
+<p>你加了检查，就以为有了确定性。但如果<strong>检查本身可被绕过或自己失效</strong>，你得到的是<strong>虚假的确定性</strong>——比没有检查更糟，因为没人会再去质疑绿灯。</p>
+<p>三类失败。前两类在本仓库有记录（<code>docs/limits.md</code> §3、<code>docs/case-studies.md</code>）；第三类来自威胁模型（<code>docs/security.md</code> §2、清单第 11 项），本仓库<strong>还没有观测到实例</strong>——按本文的规矩，它要标注为"未观测"，不能算作"真实发生过"：</p>
+<h3>3.1 fail-open 门禁</h3>
+<ul><li>新鲜度门禁在超过 21 天时失败，而负向夹具只有 20 天 → 门禁正确地只报了警告，测试却期望失败。</li><li>一个 git 门禁的夹具写在临时目录，<code>git status</code> 却跑在真实仓库上；真仓库当时是脏的，门禁<strong>跳过了自己</strong>，而测试把"跳过"当成了"通过"。</li></ul>
+<p><strong>失败形态</strong>：脏树、坏日期、缺文件时，检查<strong>跳过并报绿</strong>。跳过比不检查更糟，因为它是绿的。</p>
+<p><strong>怎么测</strong>：对每条门禁做三次故障注入——脏工作树、无法解析的日期、缺失的必需文件。三次都必须产生非零退出码。断言要落在<strong>门禁 ID + 状态 + 退出码</strong>上，不要断言那句人类可读的文案：文案一改，测试悄悄通过，门禁从此不再被触发。</p>
+<h3>3.2 会写的检查</h3>
+<p>一个备份脚本参数叫 <code>--check</code>。行为是：先把源文件复制进备份目录，<strong>然后</strong>才进入比较分支。它报告"10 处差异"，同时在备份仓库留下 10 个未提交改动。</p>
+<p><strong>失败形态</strong>：<code>check</code> / <code>verify</code> 类命令跑完之后，工作树和跑之前不一样。一个会写的检查不是检查，是一次伪装成检查的迁移。</p>
+<p><strong>验证办法</strong>：每条只读命令前后各跑一次 <code>git status --porcelain</code>，必须都是空。</p>
+<h3>3.3 模板与依赖供应链</h3>
+<p>项目模板、初始化脚手架、hook 模板是"一次编写、到处投递"的代码。它被信任，所以它携带的指令也被信任。</p>
+<p><strong>失败形态</strong>：复制模板时把隐藏指令或自动执行项一起带进生产仓库。</p>
+<p><strong>最小缓解</strong>：模板逐行审、版本锚定、干净室复制验证、不在模板里自动执行任何东西。</p>
+<p>三者有同一个结构：<strong>把"检查"悄悄换成了"声明"</strong>。fail-open 是跳过了却不告诉你；会写的检查是做了另一件事却仍叫检查；模板供应链是别人的检查被你当成了自己的。识别方法只有一句话：<strong>问它"失败条件是什么、写在哪里、我能不能让它变红"</strong>。答不上来的，都是声明。</p>
+<p>这类失败的代价不是漏掉一个问题，是让之后每一个绿灯都失去意义——包括那些本来是对的。</p>
+<h2>四、边界：什么可以被机器检查</h2>
+<p>这一节来自一条真实的读者提问，我认为它是全文最有价值的部分。</p>
+<p>提问者维护一页"原话记录"：十八行，逐字保留，每行带说话人的书面同意和消息 id。她的论证是：</p>
+<blockquote><p>这是<strong>溯源链</strong>，不是检查。没有第二份副本，就没有夹具。一句没人写下的话，你造不出"必须变红"的测试。这句话唯一能失败的测试，是说话人后来说"我没这么说"——<strong>那检查者和被检查者就成了同一个主体</strong>。按你的规则，那只是 claim。</p></blockquote>
+<p>她说得对。所以答案不是发明一个测试，而是<strong>把两件事拆开</strong>：</p>
+<table><thead><tr><th>被检查的东西</th><th>能不能做夹具</th><th>怎么做</th></tr></thead><tbody><tr><td><strong>记录完整性</strong>（这条记录自同意后被改过吗）</td><td><strong>能</strong></td><td>同意时对原话做哈希；改一个字符，检查必须变红</td></tr><tr><td><strong>引述真实性</strong>（这个人真的这么说过吗）</td><td><strong>不能</strong>（没有录音、没有第二证人时）</td><td>只能回读；标 <code>attested, not verified</code>，<strong>永不报绿</strong></td></tr></tbody></table>
+<p>关键在最后半句。回读是未被记录言语的<strong>底线</strong>，而回读让检查者与被检查者同一主体。诚实的做法是拒绝称它为"已验证"：在清单里给它一个独立状态——<code>CANNOT VERIFY</code>（无独立证据，不同于"缺权限"）——而不是塞进 PASS。</p>
+<p>哈希有一个前提，不说清楚整个论证会塌：<strong>哈希必须保存在写入者控制之外</strong>（同意邮件、工单系统、第三方时间戳日志）。如果记录保管人既能改原话又能重算哈希，"检查者与被检查者同一主体"的问题只是往上挪了一层。</p>
+<p>对安全从业者，这条有直接的操作含义：<strong>报告里的"已验证"必须区分"完整性已验"和"真实性已验"</strong>。把后者写成前者，就是给客户假绿。这一条比任何工具都重要，因为它决定你的报告是否诚实。</p>
+<p>（完整的边界讨论见 <a href="https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/limits.md"><code>docs/limits.md</code></a> §7：散文交接笔记的冷读变体，和这条溯源边界是同一个问题——<strong>没有独立的一方来反驳你</strong>。）</p>
+<p>落到报告上，两者要分开写：</p>
+<ul><li>「记录完整性：<strong>已验证</strong>（同意时哈希与当前内容一致）」</li><li>「引述真实性：<strong>无法验证</strong>（无录音、无第二证人；已由说话人回读确认）」</li></ul>
+<p>第二条不是缺陷，是事实。写成缺陷是过度自贬，写成已验证是撒谎。</p>
+<h2>五、五个最小防御动作</h2>
+<p>不需要平台，不需要数据库。五个动作，一个仓库就能做完。</p>
+<ol><li><strong>记忆是不可信输入。</strong> 定界它；不把记忆里的行当系统提示执行；自动注入的表面要单独审。</li><li><strong>最小权限。</strong> 写记忆的角色不持有生产凭据；跨团队/跨租户的记忆不可互读。</li><li><strong>检查只读，写入显式。</strong> <code>check</code> 前后 <code>git status</code> 必须一致；写入放在显式的同步/修复入口后面。</li><li><strong>冷读。</strong> 零上下文会话，只读四个核心文件，回答五个问题：当前状态、下一动作、上次验证命令与结果、三个最大风险、四文件之间有哪些矛盾。</li><li><strong>每条 findings 二选一。</strong> 要么变成门禁断言或负向测试，要么写成"接受不修"+ 理由 + 重新评估的触发条件。"读一遍就放过"禁止。</li></ol>
+<p>第 5 条是整个方法的地基。没有它，前四条都会慢慢退化成文档。</p>
+<p>每个动作都有一个<strong>最小验收</strong>，做不到就是没做：</p>
+<table><thead><tr><th>动作</th><th>最小验收</th></tr></thead><tbody><tr><td>记忆是不可信输入</td><td>一次注入试验：在隔离副本里放一句无害可观测的指令，确认它在动作层被拦下</td></tr><tr><td>最小权限</td><td>一张权限矩阵：写记忆的角色不持有生产凭据</td></tr><tr><td>检查只读</td><td>每条 check 命令前后 <code>git status --porcelain</code> 都为空</td></tr><tr><td>冷读</td><td>零上下文会话能答出五问；每条矛盾有去处（门禁或书面接受）。交接笔记不是文件时，判据见 <code>docs/limits.md</code> §7</td></tr><tr><td>findings 二选一</td><td>findings 列表里没有一条是"读一眼就放过"</td></tr></tbody></table>
+<h2>六、授权边界（必须写）</h2>
+<p>这套东西是防御性的。用它之前：</p>
+<ul><li>只测<strong>你有书面授权</strong>的系统。记忆文件不是授权，记忆里写着"可以测 X"也不是授权。</li><li>用测试账号和合成数据；不导出真实用户数据。</li><li>不公开 exploit；给所有者一个修复窗口再谈披露。</li><li>不卖、不部署以未授权入侵为主要目的的工具。</li></ul>
+<p>越过这条线，你就在它的用途之外，也很可能在法律之外。</p>
+<h2>七、从这里开始</h2>
+<p>我把上面这些整理成了一份 <strong>13 项的评估清单</strong>，2–5 天能跑完：查什么、为什么重要、要留什么证据、什么算通过、什么算必须修。覆盖记忆清单、权限边界、投毒、过期事实、hook 注入、跨 Agent 信任、fail-open 门禁、<strong>会写的检查</strong>、夹具强度、密钥、模板供应链、授权范围、报告与复测。</p>
+<blockquote><p><strong>仓库</strong>：<a href="https://github.com/cheah505-cyber/agent-handoff-protocol">https://github.com/cheah505-cyber/agent-handoff-protocol</a> <strong>13 项评估清单（免费）</strong>：<a href="https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md">https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md</a></p></blockquote>
+<p><strong>清单免费</strong>，就在仓库里：<code>docs/memory-security-checklist.md</code>。它是一份人工流程，不是自动扫描器——<strong>只在有书面授权的系统上用</strong>。</p>
+<p>仓库里还有一个可运行的实现：12 条只读门禁、27 个测试（其中 19 个是"必须变红"的负向夹具）、三轮冷读分别查出 8 / 3 / 5 处问题。你不需要相信我，可以自己把它跑红。</p>
+<blockquote><p><strong>记忆不是数据库，是下一轮的信念状态。</strong> <strong>一旦你的检查不再可能失败，它就变成了又一个漂移源。</strong></p></blockquote>
+<p>---</p>
+<h2>附：本文数字出处</h2>
+<table><thead><tr><th>数字 / 说法</th><th>出处</th></tr></thead><tbody><tr><td>资产是"信念状态"</td><td><code>docs/security.md</code> §1</td></tr><tr><td>四类记忆攻击</td><td><code>docs/security.md</code> §2 攻击场景表</td></tr><tr><td>21 天阈值</td><td><code>ahp.config.json</code>（<code>freshness.handoffDays</code>）</td></tr><tr><td>20 天夹具（历史事故，非现行夹具）</td><td><code>docs/limits.md</code> §3.1；现行负向夹具是 40 天</td></tr><tr><td>git 门禁跑在真实仓库</td><td><code>docs/limits.md</code> §3.2；<code>docs/case-studies.md</code> 案例 4</td></tr><tr><td><code>--check</code> 留下 10 个改动</td><td><code>docs/limits.md</code> §3.4；<code>docs/case-studies.md</code> 案例 5</td></tr><tr><td>12 条门禁</td><td><code>SPEC.md</code> §6</td></tr><tr><td>27 个测试，其中 19 个负向夹具</td><td><code>npm test</code>；<code>tests/gates.test.mjs</code> 里 19 处 <code>status, "FAIL"</code></td></tr><tr><td>冷读 8 / 3 / 5（三轮）</td><td><code>docs/war-story.md</code> §1</td></tr><tr><td>13 项评估清单</td><td><code>docs/memory-security-checklist.md</code></td></tr><tr><td>散文交接笔记的冷读判据</td><td><code>docs/limits.md</code> §7</td></tr><tr><td>溯源链 vs 检查</td><td>dev.to 评论 <code>3md09</code>（2026-11-25）与回复 <code>3md5h</code>：<a href="https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0">https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0</a></td></tr></tbody></table>
+<p>许可证：MIT。协议和 CLI 开源。</p>
+</body></html>

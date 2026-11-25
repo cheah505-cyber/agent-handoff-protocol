@@ -13,7 +13,7 @@ touched_paths: "docs/agent-memory-attack-surface.md;docs/reviews/2026-11-25-deep
 current_file: "none"
 next_action_file: "docs/agent-memory-attack-surface.md"
 next_action_anchor: "# 七、从这里开始"
-next_action: "Publish `docs/agent-memory-attack-surface.md` in one security channel (先知 / FreeBuf / 安全客) — the article is review-ready; the user picks the order. Optionally write the English version for LinkedIn. Then the 90-day roadmap: one awesome list / newsletter, and one free or low-price assessment for a testimonial."
+next_action: "Publish the security article by hand — `publish/agent-memory-attack-surface.meta.md` has the title, summaries, tags and per-site steps; order 先知 → FreeBuf → 安全客 (安全客 requires first publication, so last). The article is review-ready; the publish package is prepared. Optionally write the English version for LinkedIn. Then the 90-day roadmap: one awesome list / newsletter, and one free or low-price assessment for a testimonial."
 acceptance: "The security article is published in at least one security channel and its URL is recorded in §6; `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
@@ -35,6 +35,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · `AHP-GATE-002`: `SECRETS` now scans `docs/**/*.md` recursively (case-insensitive, dotfiles included); `publish/` and `tasks/` are documented as **not** scanned.
 - 2026-11-25 · Third dev.to comment (`3dae`, salparvez: "a punch list where every box is checked and the door still doesn't close"; their team wants the cold-read test for ML Systems handoff notes) — replied `3mdf0` with the two extra questions and the "a guessed step is a failed handoff" criterion.
 - 2026-11-25 · Errata applied to the published copies: dev.to (`edited_at` 10:56:52Z), 掘金 (same article `7711934164547141659`, five edits, one tag only), CSDN — the CSDN edit created a **second** article (`171375400` → `171375930`) and the old one was deleted.
+- 2026-11-26 · Security article publish package prepared: `publish/agent-memory-attack-surface.md` + `.html` + `.meta.md` (title, summaries, category/tag suggestions, per-site steps, publish order 先知 → FreeBuf → 安全客 — 安全客 requires first publication, so it goes last). All three channels need the user's own logged-in browser: 先知 307s to 阿里云 login, FreeBuf returns 405 to this environment's WAF, 安全客 is not logged in.
 - 2026-11-25 · `AHP-CONTENT-002`: wrote `docs/agent-memory-attack-surface.md` (3315 Chinese characters, seven sections) for the security audience. First review by `deepseek/deepseek-flash`: verdict `fix-first`, ten findings. A diff-scoped re-review then found two of them still partial (a false assumption count in the sentence F8 was meant to fix, and a 19-vs-20 split left half-done — the stale 20 had already reached the 知乎 publish copies). Both are fixed; notes in `docs/reviews/2026-11-25-deepseek-flash.md` and `docs/reviews/2026-11-25-deepseek-flash-recheck.md`.
 - 2026-11-25 · Review triage closed two regressions and two false claims: the `docs`-is-a-file crash in `buildContext`, and the "三类真实发生过的失败" claim that cited files without that class. The war story's 22/15 numbers are now labelled a v0.1.0 snapshot (the published copies stay as they were).
 ## 2. Exact pause point
@@ -48,7 +49,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
-1. Publish `docs/agent-memory-attack-surface.md` in one security channel: 先知 / FreeBuf / 安全客 — **the user picks the order; the article is review-ready** (two review rounds triaged). Keep the defensive framing; no exploit steps.
+1. Publish the security article **by hand** using `publish/agent-memory-attack-surface.meta.md` (one file: metadata, per-site steps, publish order). The article itself is review-ready (two review rounds triaged) and the publish package is prepared; only the login + submit is left, and it needs the user's own browser. Order: 先知 → FreeBuf → 安全客 (安全客 requires first publication).
 2. Decide whether to write the English version for LinkedIn — the article's §4 (integrity is testable, truth of an unrecorded quote is not) is the most portable part.
 3. 知乎: the user handles it from `publish/war-story.zhihu.md`; do not automate past its security check.
 4. Then start the 90-day roadmap (`docs/open-source-report.md` §11): submit to one or two awesome lists / newsletters, and line up one free or low-price assessment for a testimonial.
@@ -65,6 +66,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · `npm test` → 27/27 (19 negative fixtures); `node bin/ahp.mjs check` → 12 PASS / 0 FAIL on a clean tree; `node bin/ahp.mjs sync --check` → in sync.
 - 2026-11-25 · `SECRETS` on the real repo: PASS. Negative fixtures added for: a token under `docs/`, in a dotfile, in an uppercase `.MD`, and a modern `sk-proj-` key; plus a guard for `docs` being a regular file.
 - 2026-11-25 · Published copies verified after the errata: dev.to body carries "At v0.1.0 the suite was 22 tests … It is 27 tests (19 negative fixtures) now"; 掘金 page shows all five edits and still one tag (`AI编程`), same article id; CSDN `171375930` shows all five edits with tags `开源/人工智能/软件工程`, `已发布(1)`, `回收站(0)`.
+- 2026-11-26 · Publish package: `publish/agent-memory-attack-surface.md` (3306 Chinese characters, 8 headings, 3 tables, all links absolute) + `.html` (no leftover Markdown syntax) + `.meta.md`.
 - 2026-11-25 · `docs/agent-memory-attack-surface.md` → 3315 Chinese characters (target 3000–4200); links resolve; the appendix has one checkable source per row (13 rows), including the cold-read rounds and the test count.
 - 2026-11-25 · Reviewer baseline (`deepseek-flash`, read-only): `npm test` 23/23 at review time, `check` 1 FAIL (GIT_STATE, dirty tree), `sync --check` in sync; it replayed the pre-change commit in a temp copy to confirm the new test really turns red.
 - 2026-11-25 · Published articles still verified: 掘金 (one tag, `AI编程`), CSDN 7678 chars / 4 tables / 2 code blocks, dev.to 16.8 KB / 4 tables / 2 code blocks.
