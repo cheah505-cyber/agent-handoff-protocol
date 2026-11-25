@@ -20,7 +20,7 @@
 | 知乎 | ⛔ 交给用户 | 中文 | 草稿与登录态均已丢失；内容随时可从 `publish/war-story.zhihu.md` 重建。用户自行处理 |
 | V2EX | ⛔ 不可发 | 中文 | 注册需邀请码；无码 |
 | SegmentFault | ⛔ 放弃 | 中文 | 新号（声望 0）无发文章权限；已换 CSDN |
-| CSDN | ✅ 已发布（审核中） | 中文 | https://blog.csdn.net/WillCheah/article/details/171375400 |
+| CSDN | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171375930 |
 | 博客园 | ⛔ 放弃 | 中文 | 未开通博客，开通需个人信息 + 审核；已换 CSDN |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
 
@@ -109,6 +109,9 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 ## 6. 平台机制备忘（踩过的坑）
 
 - **掘金**：编辑器真实路由是 `/editor/drafts/new?v=2`，`/creator/post` 会弹回首页。
+- **掘金**：改**已发布**文章要打开它的**关联草稿** id（`article_info.draft_id`），不是文章 id；用文章 id 打开 `/editor/drafts/<article_id>` 会新建一个空草稿。
+- **CSDN**：改已发布文章走「导入 Markdown」会**新建一篇**（文章 id 变了），旧稿必须删；发布后一定要核对 id，否则留下两篇同文。
+- **CSDN**：标签靠下拉建议项，点推荐列表里的 `<li>` 不会进状态（和 dev.to 一样）；没进状态就会触发 CSDN 自动打标签（本次自动打成了 `arcgis`）。
 - **知乎**：编辑器是 Draft.js。`execCommand("insertHTML")` 会让 DOM 与 Draft 内部状态脱节，**发布后正文只留下最后一段**；必须用 `paste` 事件带 `clipboardData`（`text/html`）才能正确写入块结构。
 - **知乎**：发布接口会对自动化环境返回 `code 2015`，这一步只能人工完成。
 - **dev.to**：标签是 autocomplete，必须点下拉建议项；改 description 用 `PUT /api/articles/:id`，body 包成 `{article:{...}}` 并带 `x-csrf-token`。
@@ -127,8 +130,8 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 | 平台 | 状态 |
 |---|---|
 | dev.to | ✅ 已改（2026-11-25，`edited_at` 10:56:52Z）——加了 v0.1.0 快照限定 + 现为 27/19 |
-| 掘金 | ⛔ 待改（编辑会重新进审核，由用户决定时机） |
-| CSDN | ⛔ 待改（仍在审核中，过审后再改，避免重置审核） |
+| 掘金 | ✅ 已改（2026-11-25）——仍是同一篇 `7711934164547141659`，5 处全中，标签仍只有 `AI编程` |
+| CSDN | ✅ 已改（2026-11-25）——**注意**：走"导入 Markdown"改已发布文章会**新建一篇**（旧 `171375400` → 新 `171375930`），旧稿必须删掉；而且当时点的标签没生效，CSDN 自动打了个 `arcgis`，这次改成 `开源/人工智能/软件工程` |
 
 **改法（三处，只加限定词，不重写）**：
 

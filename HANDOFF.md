@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-25T18:49:59+08:00"
+updated_at: "2026-11-25T19:50:00+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "security-article-reviewed"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "The security article is published in at least one security channel 
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "none"
-last_verified_at: "2026-11-25T18:49:59+08:00"
+last_verified_at: "2026-11-25T19:50:00+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -33,10 +33,12 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · `AHP-CONTENT-001`: war story + memory-security checklist (Chinese + English), reviewed by DeepSeek; published to 掘金 and dev.to, plus CSDN (under review). V2EX, 博客园 and SegmentFault were dropped for account-eligibility reasons.
 - 2026-11-25 · Replied to both dev.to comments as `willcheah` (`3md5g` cold-read cadence, `3md5h` provenance-vs-check).
 - 2026-11-25 · `AHP-GATE-002`: `SECRETS` now scans `docs/**/*.md` recursively (case-insensitive, dotfiles included); `publish/` and `tasks/` are documented as **not** scanned.
+- 2026-11-25 · Errata applied to the published copies: dev.to (`edited_at` 10:56:52Z), 掘金 (same article `7711934164547141659`, five edits, one tag only), CSDN — the CSDN edit created a **second** article (`171375400` → `171375930`) and the old one was deleted.
 - 2026-11-25 · `AHP-CONTENT-002`: wrote `docs/agent-memory-attack-surface.md` (3209 Chinese characters, seven sections) for the security audience. Reviewed by `deepseek/deepseek-flash`; verdict `fix-first`, ten findings, all fixed or explicitly accepted; note in `docs/reviews/2026-11-25-deepseek-flash.md`.
 - 2026-11-25 · Review triage closed two regressions and two false claims: the `docs`-is-a-file crash in `buildContext`, and the "三类真实发生过的失败" claim that cited files without that class. The war story's 22/15 numbers are now labelled a v0.1.0 snapshot (the published copies stay as they were).
 ## 2. Exact pause point
 - The security article is written, reviewed, fixed, and ready to publish. Nothing is half-written.
+- All three published copies now carry the v0.1.0 snapshot wording for the test count. CSDN's copy is the only one with a different article id than before (the edit created a new article; the old one is gone).
 - The test suite is 27 (19 negative fixtures); `check` is 12 PASS / 0 FAIL on a clean tree.
 - Two publication facts settled this session: 掘金 allows exactly **one** tag per article (the second tag was never achievable), and 知乎's draft plus session were both lost to its anti-automation check, so 知乎 is handed back to the human.
 - The tree is clean; no owner, session, or lease.
@@ -56,9 +58,12 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - A security article is the most likely place to overclaim. The review's `fix-first` verdict exists because one claim cited files that did not contain it; re-check every "真实发生过" / "已验证" before publishing.
 - Numbers in prose are not gated. The war story and the security article now carry different test counts (22 snapshot vs 27 current) on purpose; do not "align" them by editing the published text.
 - Publishing is external and unverified by any gate. A platform can log a session out silently (知乎 did).
+- **A publish action can silently create a second article.** CSDN did exactly that when an edit went through the markdown importer. After every publish, check the article id and the article count in the management list, not just the success banner.
+- Tags are not applied by clicking a list item in some editors (dev.to, CSDN): the click must land on an autocomplete suggestion. Otherwise the platform silently picks its own tag — CSDN chose `arcgis` for an article about agent memory.
 ## 6. Last verification
 - 2026-11-25 · `npm test` → 27/27 (19 negative fixtures); `node bin/ahp.mjs check` → 12 PASS / 0 FAIL on a clean tree; `node bin/ahp.mjs sync --check` → in sync.
 - 2026-11-25 · `SECRETS` on the real repo: PASS. Negative fixtures added for: a token under `docs/`, in a dotfile, in an uppercase `.MD`, and a modern `sk-proj-` key; plus a guard for `docs` being a regular file.
+- 2026-11-25 · Published copies verified after the errata: dev.to body carries "At v0.1.0 the suite was 22 tests … It is 27 tests (19 negative fixtures) now"; 掘金 page shows all five edits and still one tag (`AI编程`), same article id; CSDN `171375930` shows all five edits with tags `开源/人工智能/软件工程`, `已发布(1)`, `回收站(0)`.
 - 2026-11-25 · `docs/agent-memory-attack-surface.md` → 3209 Chinese characters (target 3000–4200); links resolve; every number traced in the appendix.
 - 2026-11-25 · Reviewer baseline (`deepseek-flash`, read-only): `npm test` 23/23 at review time, `check` 1 FAIL (GIT_STATE, dirty tree), `sync --check` in sync; it replayed the pre-change commit in a temp copy to confirm the new test really turns red.
 - 2026-11-25 · Published articles still verified: 掘金 (one tag, `AI编程`), CSDN 7678 chars / 4 tables / 2 code blocks, dev.to 16.8 KB / 4 tables / 2 code blocks.
