@@ -33,6 +33,20 @@
 | 清单中文版 | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md |
 | 清单英文版 | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.en.md |
 
+## 可直接粘贴/导入的文件（派生自 `docs/war-story.md`）
+
+| 文件 | 用途 |
+|---|---|
+| [`publish/war-story.zhihu.md`](publish/war-story.zhihu.md) | 知乎「导入文档 MD/Doc」用；已去掉开头 H1（标题单独填）、链接改绝对地址、补 CTA |
+| [`publish/war-story.zhihu.html`](publish/war-story.zhihu.html) | 备用：浏览器打开 → Ctrl+A → Ctrl+C → 粘进富文本编辑器 |
+
+这两个文件是**派生快照**，唯一来源仍是 `docs/war-story.md`。生成规则（改正文后要重新做一遍）：
+
+1. 去掉开头的 `# 标题` 行（知乎标题是独立字段）；
+2. `(memory-security-checklist.md)` → 清单的 GitHub 绝对地址；
+3. 在 `**清单免费**` 前插入「仓库 / 清单」两行 CTA；
+4. 再用一个 markdown→HTML 转换器生成 `.html`（转换器是发布时的临时工具，不在本仓库内）。
+
 ---
 
 ## 1. 掘金 ✅

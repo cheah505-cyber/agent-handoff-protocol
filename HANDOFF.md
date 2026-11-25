@@ -59,6 +59,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 ## 4. Next action & acceptance
 1. Open the prepared 知乎 editor (`https://zhuanlan.zhihu.com/write?edit=2108971189200855862`), click 发布 and pass the security check if it appears; then delete the broken draft `https://zhuanlan.zhihu.com/p/2108969541657163196`.
 2. Add the `Agent` and `GitHub` tags to the 掘金 article in 创作者中心 (30 seconds; the publish panel's tag select only accepted one tag programmatically).
+   The 知乎 draft is gone and the 知乎 session was logged out, so the article must be re-created by hand: `publish/war-story.zhihu.md` (import) or `publish/war-story.zhihu.html` (Ctrl+A/Ctrl+C) plus the metadata in `docs/publish-plan.md` §3.
 3. Post to SegmentFault / 博客园 / 即刻 only after logging in there; V2EX needs an invite code first. All four are manual by nature — see `docs/publish-plan.md` §4–§5.
 4. Open `AHP-CONTENT-002` with a task card: the security-circle article (`docs/open-source-report.md` §7.1 文章 2: 《Agent 的记忆是攻击面》), channels 先知 / FreeBuf / 安全客 / LinkedIn. The independent reviewer for that unit is `deepseek/deepseek-flash`.
 3. In that task card, also carry the open item from the review: should the `SECRETS` gate scan `docs/` as well as the core files and `memory/`? It currently does not, so published documents sit outside the backstop.

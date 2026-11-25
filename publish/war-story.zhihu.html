@@ -1,0 +1,107 @@
+<blockquote><p>副标题：当你的检查全绿、你的记忆库很大、你的交接文档很厚的时候，真正骗你的往往不是模型，是<strong>验证层</strong>。</p></blockquote>
+<blockquote><p>这篇文章里的每个数字都能在本仓库找到出处。凡是仓库里没有的，我不写。</p></blockquote>
+<blockquote><p><strong>注</strong>：标题里的「12 处矛盾」来自<strong>另一个学习项目</strong>；AHP 自己的冷读结果是 <strong>8 / 3 / 5</strong> 处。两件事的教训是同一条，所以放在一起讲。</p></blockquote>
+<hr>
+<h3>一、一个全绿的仪表盘</h3>
+<p>先交代我做了什么，免得下面的"打脸"没有分量。</p>
+<p>我做了一个仓库内的 Agent 交接协议，叫 <strong>AHP（Agent Handoff Protocol）</strong>，代号是"机器可检查的交接协议"。它不负责"记住更多"，它负责一件事：<strong>当前状态是否可信，换人之后能不能接上。</strong></p>
+<p>结构很简单，四个文件：</p>
+<table><thead><tr><th>文件</th><th>职责</th></tr></thead><tbody><tr><td><code>AGENTS.md</code></td><td>Agent 入口、边界、交接契约</td></tr><tr><td><code>INDEX.md</code></td><td>文件地图，不放任何动态状态</td></tr><tr><td><code>PROJECT.md</code></td><td>长期决策 + 一个<strong>派生</strong>状态块</td></tr><tr><td><code>HANDOFF.md</code></td><td>当前工作单元、精确暂停点、下一动作、验收</td></tr></tbody></table>
+<p>再加一个状态机：<code>PAUSED → ACTIVE → PAUSED / BLOCKED / COMPLETE / MONITORING</code>。<code>ACTIVE</code> 必须带未来的租约；<code>PAUSED</code> 和 <code>COMPLETE</code> 不许留下 owner、session、租约残留（<code>SPEC.md</code> §3）。</p>
+<p>然后是 <strong>12 条门禁</strong>，<code>node bin/ahp.mjs check</code> 一次跑完。下面是 v0.1.0 发布之后、我接管这个写作单元之前（状态 <code>PAUSED</code>、工作树干净）那一次的输出：</p>
+<pre><code>PASS CORE_FILES       core files present
+PASS HANDOFF_SCHEMA   frontmatter is valid
+PASS HANDOFF_TIME     timestamps are ordered
+PASS LEASE            PAUSED has no residual lease
+PASS VERIFY_COMMAND   verification command recorded
+PASS HANDOFF_BODY     8 sections and next action are present
+PASS HANDOFF_FRESH    sections 4-6 are fresh (0 days)
+PASS INDEX_MAP        INDEX is a map and its links resolve
+PASS PROJECT_SYNC     derived status matches HANDOFF
+PASS MEMORY_LINKS     memory index and links are closed
+PASS SECRETS          no high-confidence secret pattern found
+PASS GIT_STATE        tree clean; timestamp matches the commit
+
+[ahp] 0 FAIL / 0 WARN / 12 PASS / 0 SKIP</code></pre>
+<p>一个数字：fail-open 门禁。每条门禁都必须有一个<strong>必须变红</strong>的负向夹具，否则它只是声明，不是检查。整套东西 22 个测试：其中 15 个是"必须变红"的负向夹具（一条门禁一个），6 个是 CLI 和脚手架测试，1 个是正向的"合法项目应该全绿"。<code>npm test</code> 22/22。</p>
+<p><strong>顺带说一句</strong>：写这个单元的时候仓库状态是 <code>ACTIVE</code>（我在干活），同一条命令的输出会不一样——<code>LEASE</code> 那行变成 <code>lease valid until ...</code>，<code>GIT_STATE</code> 变成一条 WARN（工作树是脏的，所以跳过提交日比对）。同一段代码、同一份配置，输出随状态变化。<strong>门禁必须连着状态一起读</strong>，这也正是我下面要讲的那类问题。</p>
+<p>到这里为止，一切都对。</p>
+<p>然后是那个让我坐直的数字。先说清楚它<strong>属于谁</strong>：这是<strong>另一个学习项目</strong>的冷读结果——它的门禁全绿，零上下文读手在四个核心文件里找出 <strong>12 处矛盾</strong>。而我自己的仓库，冷读结果是 8 / 3 / 5 处（下一节）。</p>
+<p>零上下文读手要做的事只有一件：只给它四个核心文件，让它回答五个问题——当前工作单元和状态是什么、下一动作是什么、上次验证命令和结果是什么、三个最大风险是什么、四个文件之间有哪些矛盾。</p>
+<p>那个学习项目的门禁是 <strong>0 FAIL</strong>。</p>
+<hr>
+<h3>二、门禁看不见的那些矛盾</h3>
+<p>先说被我审过的另一个项目（学习项目，脱敏）：7 个核心文件、3 个记忆文件、13 条门禁，<strong>门禁全绿</strong>，零上下文冷读在四个文件里找出 <strong>12 处矛盾</strong>（<code>docs/case-studies.md</code> 案例 8）：</p>
+<ul><li><code>current_file</code> 写着一个文件，正文 §3 却写"当前没有文件在编辑"；</li><li>验收标准在一个文件里写了 3 条、在另一个文件里写了 4 条；</li><li>同一个项目里有<strong>三套</strong>不同的验证命令；</li><li>摘要文件的"最后更新"表头，比它自己最新的一条记录还早 4 天；</li><li><code>INDEX.md</code> 一处写"地图和状态"，另一处写"只放地图"；</li><li>状态是 <code>ACTIVE</code>，但租约<strong>已经过期 34 分钟</strong>；</li><li>最后验证命令写的是一个<strong>生命周期命令</strong>（<code>ahp pause</code>），不是验证命令。</li></ul>
+<p>生产项目规模更大：70+ 记忆文件、279 条 wiki 链接、211 KB 的 <code>HANDOFF.md</code>、185 KB 的长期摘要、5 处派生镜像。它同样有同款问题——§1 写"已接受并推送"，§2、§5 和 frontmatter 还在说"进行中，有未提交文件"，而工作树是干净的，远程确实有那个提交。门禁全绿，冷读抓到。</p>
+<p><strong>结论一：结构检查是必要的，但不充分。</strong> 八个章节可以和一个矛盾和平共处。我后来把这句话写进了协议本身（<code>docs/limits.md</code> §2："最坏的失败不是红色的门禁，而是一份<strong>全绿但自相矛盾的交接</strong>"）。</p>
+<p>那我自己呢？我给自己的仓库也做冷读，规则和上面一样：零上下文、只读四文件、逐条找矛盾。</p>
+<ul><li><strong>v1：8 处</strong>。git 归属警告过期了；验收条件漏了冷读这一步；<code>PROJECT.md</code> 和 <code>HANDOFF.md</code> 对"测试 → 冷读 → 提交/打 tag → 写文章"的顺序有四种写法；<code>last_verified_command</code> 只记了 <code>ahp check</code>，但实际验证还跑了 <code>npm test</code>；"把文档写完"这种含糊表达，而文档其实已经写完了；漏了一句说明 <code>PROJECT.md</code> 的状态块是<strong>派生的</strong>、不能手改。</li><li><strong>v2：3 处</strong>。发布顺序含糊（还没提交却要求 clean tree）；本地 tag 还是远端 tag 说清了；下一单元在哪里打开说清了。</li><li><strong>v3：5 处</strong>。更细的语义不一致。</li></ul>
+<p>8 处、3 处、5 处，<strong>全部是文档问题</strong>。代码没问题，交接文本有问题。</p>
+<p>这正是 AHP 要抓的失败，也说明冷读不是一次性动作——<strong>它要迭代，每一轮都有产出</strong>。</p>
+<h4>那些矛盾，最后都去了哪</h4>
+<p>冷读的价值不在"发现"，在"发现之后不许它第二次发生"。学习项目那 12 处矛盾，逐条落到了两个地方之一——<strong>一条门禁断言</strong>，或者<strong>一份写明理由的"接受，不修"</strong>。</p>
+<p>先说真正变成了门禁的三条，因为它们的原话和门禁检查的东西几乎一样：</p>
+<table><thead><tr><th>冷读发现的矛盾</th><th>落点</th><th>门禁实际检查什么</th></tr></thead><tbody><tr><td><code>current_file</code> 与正文 §3 互相矛盾</td><td><code>HANDOFF_BODY</code></td><td>§3 说 none 时 <code>current_file</code> 必须为 none</td></tr><tr><td>状态是 <code>ACTIVE</code> 但租约已过期</td><td><code>LEASE</code></td><td><code>ACTIVE</code> 必须有未来的 <code>lease_until</code>；<code>PAUSED</code>/<code>COMPLETE</code> 不许留残留</td></tr><tr><td>最后验证命令写的是生命周期命令（<code>ahp pause</code>）</td><td><code>VERIFY_COMMAND</code></td><td><code>last_verified_command</code> 不能是 start/pause 这类命令</td></tr></tbody></table>
+<p>剩下的<strong>没有</strong>变成门禁，不是因为不重要，是因为<strong>没有一条能可靠地机器检查</strong>：</p>
+<table><thead><tr><th>冷读发现的矛盾</th><th>为什么机器检查不了</th></tr></thead><tbody><tr><td>同一个项目里有三套不同的验证命令</td><td><code>VERIFY_COMMAND</code> 只看<strong>一个字段</strong>合不合法，看不见三处文档各说一套</td></tr><tr><td>验收标准散在两个文件、数量还对不上</td><td><code>HANDOFF_BODY</code> 只要求 §4 有编号动作、<code>next_action</code> 非空，不核对验收条数</td></tr><tr><td>摘要的"最后更新"表头比它最新一条记录还早 4 天</td><td><code>HANDOFF_FRESH</code> 只看 §4–§6 的日期年龄（阈值 21 天），不比对表头与条目</td></tr><tr><td><code>INDEX.md</code> 一处写"地图和状态"、一处写"只放地图"</td><td><code>INDEX_MAP</code> 匹配的是<strong>动态状态行</strong>，"地图和状态"这种措辞它不认识</td></tr></tbody></table>
+<p>这四条被写成书面的接受，而不是硬凑成一条正则门禁。<strong>凑出来的门禁会制造假绿，这是整套东西最讨厌的事。</strong></p>
+<hr>
+<h3>三、更糟的：验证层自己会撒谎</h3>
+<p>上面那些矛盾，好歹还能被冷读抓到。真正让我后怕的是另一类问题：<strong>负向测试告诉我门禁坏了，其实是我的测试坏了。</strong></p>
+<p>这一节四个案例，全部来自 <code>docs/lessons-from-production.md</code> §3 和 <code>docs/case-studies.md</code>。</p>
+<h4>3.1 夹具没到阈值，"红"的测试是假的</h4>
+<p>新鲜度门禁在超过 21 天时失败（阈值来自 <code>ahp.config.json</code> 的 <code>freshness.handoffDays</code>）。我的负向夹具造了一个 <strong>20 天</strong> 的 <code>HANDOFF.md</code>。</p>
+<p>20 天 &lt; 21 天，所以门禁<strong>正确地</strong>只报了个 WARN，没报 FAIL。我的测试期望 FAIL，于是"红"不起来。</p>
+<p>看起来像门禁失灵，其实是夹具不合格。修法两个：把夹具放到明显越过阈值的位置（比如 40 天），或者别去断言那句人类可读的文案。</p>
+<h4>3.2 门禁读的是真仓库，不是夹具</h4>
+<p>这条更阴。夹具写在临时目录里，<code>git status</code> 和 <code>git log</code> 却跑在<strong>真实项目</strong>上。真实仓库当时是脏的，于是门禁把自己跳过了——报告"通过"。</p>
+<p>我的测试报"没红"，而门禁逻辑完全正确。</p>
+<p>修法：测试要建一个<strong>临时 git 仓库</strong>，把 root 显式传进去，每个 git 命令都用那个 root。<strong>隔离不是测试的便利，是测试的一部分。</strong></p>
+<h4>3.3 断言文案，而不是断言门禁</h4>
+<p>门禁输出 <code>21 days</code>，测试找 <code>20 days</code>。测试红了，门禁是好的。</p>
+<p>反过来更危险：文案一改，测试<strong>悄悄通过</strong>，门禁从此不再被真正触发——它变成一个永远不会失败的装饰。</p>
+<p>修法：断言<strong>门禁 ID + 状态</strong>（<code>LEASE</code> / <code>FAIL</code>），数字部分用正则，退出码也一起断言。</p>
+<h4>3.4 一个叫 <code>--check</code> 的命令，居然会写文件</h4>
+<p>这条最离谱，也最该单独拎出来说。</p>
+<p>一个备份脚本，参数叫 <code>--check</code>。它的行为是：先把源文件复制进备份目录，<strong>然后</strong>才进入比较分支，最后把 git 差异报出来。结果：它报告"10 处差异"，同时在备份仓库里留下 10 个未提交改动。</p>
+<p>一个会写的检查不是检查，它是一次伪装成检查的迁移。</p>
+<p>修法：比较先做，写入放在显式的非 check 分支后面；并且<strong>用 <code>git status</code> 在 <code>--check</code> 前后各验一次</strong>。</p>
+<p>AHP 自己的 <code>check</code> 也有同一条纪律：门禁必须只读，<code>sync</code> 才写。所以我加了一条约定——任何"验证"命令跑完，工作树必须和跑之前一样。</p>
+<hr>
+<h3>四、我改了什么</h3>
+<p>五个动作，都是把"发现"变成"不能再犯"。</p>
+<p><strong>1. 单一当前状态源。</strong> 动态状态只住在 <code>HANDOFF.md</code> 里。<code>INDEX.md</code> 只做地图，所以 <code>INDEX_MAP</code> 门禁专门检查它有没有长出状态行。长期决策归 <code>PROJECT.md</code>。同一个事实不允许在三个文件里各有一份。</p>
+<p><strong>2. 派生，而不是复制。</strong> <code>PROJECT.md</code> 顶部那个状态块是 <code>ahp sync</code> 从 <code>HANDOFF.md</code> 生成的，不是手写的。手写就一定会漂移，所以有 <code>ahp sync --check</code> 专门盯着它漂。<strong>能用工具生成的字段，就不要靠纪律维持。</strong></p>
+<p><strong>3. 负向测试就是产品。</strong> 12 条门禁，每条都有必须变红的夹具。一个门禁如果没有能失败的测试，它就只是一句声明。这条规矩的代价是我要多写 22 个测试；回报是每条门禁都还活着。</p>
+<p><strong>4. 隔离 git 夹具。</strong> 见 3.2。</p>
+<p><strong>5. 冷读进协议。</strong> 冷读不是"读一遍 README 总结一下"，而是让一个零上下文的会话回答五个具体问题。<strong>每一条矛盾必须二选一：变成一条门禁断言，或者写成一份"接受，不修"并写清理由。</strong> "读一遍就算了"是禁止的。</p>
+<p>还有一条来自外部审计的铁律，我原样照抄：<strong>每条 findings 要么变成门禁/测试，要么变成一份写明理由和重新评估触发条件的书面接受。</strong> 这一条让"我知道有问题"不会烂在脑子里。</p>
+<hr>
+<h3>五、这次没有解决的（也是我不敢承诺的）</h3>
+<p>写到这里，最容易被理解成"装个 AHP，你的记忆系统就安全了"。不是。写清楚边界，比写清楚卖点重要。</p>
+<ul><li><strong>结构绿 ≠ 语义对。</strong> 门禁能看见文件在不在、字段合不合法、时间戳有没有倒序、租约有没有过期、派生块有没有漂、索引里有没有混进状态、密钥有没有漏。它<strong>看不见</strong> <code>next_action</code> 是不是正确的下一步，看不见两次验证是不是真的跑过，看不见两个文件在叙述层面有没有打架，看不见一条记忆在现实世界里是否还成立，也看不见这个单元是不是被人真的接受了。<strong>最坏的失败不是红灯，是一份全绿但自相矛盾的交接。</strong></li><li><strong>两个模型同意，不是证据。</strong> 我现在的流程是"一个主写 + 一个独立审查"：审查者只读，带 <code>file:line</code> 和证据回结论，主写逐条裁决——修掉、加测试/门禁、或者写明"接受不修"和理由。审查者<strong>不能合并</strong>，测试和代码永远压过模型共识。两个模型都说"没问题"，也可能只是它们犯的是同一个错。</li><li><strong>AHP 不是记忆库。</strong> 它不替代 Mem0 / Letta / Zep，不做向量检索，不做长期记忆抽取。它就是四个文件、一个状态机、一组只读检查、一次冷读。</li><li><strong>AHP 不是权限系统。</strong> 租约是软锁，不是认证。它挡的是手滑和低级并发，不是恶意行为。</li><li><strong>AHP 不是安全保证，更不是攻击工具。</strong> 它不接触任何线上目标，不"自动挖洞"。它只是让交接状态更难骗过下一个人。</li></ul>
+<p>还有一条我特意留在文档里的：<code>docs/limits.md</code> 不是 README 底下的小字免责，它是<strong>协议的一部分</strong>。会让人误以为有保护的东西叫免责声明，是不诚实的。</p>
+<hr>
+<h3>六、如果你想自己查一遍</h3>
+<p>不需要相信我。拿我的仓库当靶子：</p>
+<pre><code class="language-bash">git clone &lt;this-repo&gt; &amp;&amp; cd &lt;this-repo&gt;
+npm test                       # 22 个测试，其中一半是负向夹具
+node bin/ahp.mjs check         # 12 条门禁
+node bin/ahp.mjs init /tmp/demo &amp;&amp; cd /tmp/demo
+# 然后故意把 HANDOFF.md 的 last_verified_command 改成 "ahp pause"
+# 再跑 check，看 VERIFY_COMMAND 变红</code></pre>
+<p>想更狠一点：把 <code>PROJECT.md</code> 里的派生状态块改旧，跑 <code>node bin/ahp.mjs sync --check</code>，它会 FAIL；跑 <code>node bin/ahp.mjs sync</code> 就恢复。</p>
+<p>再进一步，我把这套东西背后的检查整理成了一份<strong>可授权使用的评估清单</strong>：<a href="https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md"><code>docs/memory-security-checklist.md</code></a>。<strong>13 项</strong>，每项都写清楚：查什么、为什么重要、要留什么证据、什么算通过、什么算必须修。覆盖记忆清单与注入面、权限边界与最小特权、记忆投毒、过期事实与状态漂移、hook 与自动注入的指令注入、跨 Agent 信任与并发覆盖、fail-open 门禁、<strong>会写的检查</strong>、负向夹具强度与断言方式、密钥与敏感数据、模板与依赖供应链、授权范围与越界目标、报告与复测。</p>
+<blockquote><p><strong>仓库</strong>：https://github.com/cheah505-cyber/agent-handoff-protocol<br><strong>清单</strong>：https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md</p></blockquote>
+<p><strong>清单免费</strong>，现在就直接在仓库里读。如果你想要连"团队落地清单 + 冷读提问卡"一起的打包版（<strong>计划中，还没做</strong>），留个邮箱我发给你。</p>
+<p>它不是"自动扫描工具"，是一份 2–5 天能跑完的人工评估流程——<strong>只在有书面授权的系统上用</strong>。</p>
+<hr>
+<h3>七、一句话</h3>
+<p>如果这套东西只能留下一句话，我希望是这个：</p>
+<blockquote><p><strong>交接系统不是记忆系统，是"真相维护系统"。</strong><br><strong>一旦它的检查不再可能失败，它就变成了又一个漂移源。</strong></p></blockquote>
+<p>而对你来说，最便宜的起点不是装什么工具，是<strong>下一次交接的时候，让一个没有上下文的人来读你的状态文件</strong>。他读不懂的地方，就是你的系统正在骗你的地方。</p>
+<hr>
+<h3>附：本文数字出处</h3>
+<table><thead><tr><th>数字</th><th>出处</th></tr></thead><tbody><tr><td>12 条门禁、0 FAIL</td><td><code>node bin/ahp.mjs check</code>；门禁列表见 <code>SPEC.md</code> §6</td></tr><tr><td>22 个测试</td><td><code>npm test</code></td></tr><tr><td>冷读 12 处矛盾（学习项目）</td><td><code>docs/case-studies.md</code> 案例 8</td></tr><tr><td>冷读 8 / 3 / 5 处（AHP 自身）</td><td><code>docs/lessons-from-production.md</code> §3.7；<code>HANDOFF.md</code> §1</td></tr><tr><td>生产项目 70+ 文件、279 链接、211 KB、185 KB、5 镜像</td><td><code>docs/lessons-from-production.md</code> 开篇</td></tr><tr><td>21 天阈值 / 40 天夹具</td><td><code>ahp.config.json</code>；<code>docs/limits.md</code> §3.1</td></tr><tr><td>20 天夹具</td><td><code>docs/lessons-from-production.md</code> §3.4；<code>docs/case-studies.md</code> 案例 3</td></tr><tr><td><code>--check</code> 留下 10 个改动</td><td><code>docs/lessons-from-production.md</code> §3.5；<code>docs/case-studies.md</code> 案例 5</td></tr><tr><td>租约过期 34 分钟</td><td><code>docs/case-studies.md</code> 案例 6</td></tr><tr><td>五处派生镜像</td><td><code>docs/lessons-from-production.md</code> §6</td></tr><tr><td>冷读五个问题</td><td><code>docs/limits.md</code> §6；<code>AGENTS.md</code> 交接契约</td></tr></tbody></table>
+<p>许可证：MIT。协议和 CLI 开源。</p>
