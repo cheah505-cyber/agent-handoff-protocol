@@ -1,26 +1,28 @@
 # Agent Handoff Protocol (AHP)
 
-**给 AI 编码 Agent 的、可机器检查的交接协议。** 不靠聊天记录，不靠“我记得”；靠磁盘上的四个文件、十二条门禁和一次冷读。
+**A machine-checkable handoff protocol for AI coding agents.** No chat history, no "I remember" — four files on disk, twelve read-only gates, and one cold read.
 
-> 这不是另一个向量记忆库。它不负责“记住更多”，它负责“当前状态是否可信、换人后能否接上”。
-> 它解决的是 Mem0/Letta/Zep 不解决的那一层：**交接治理**。
+> [中文版 (Chinese)](README.zh-CN.md) · 中文文档：见 [README.zh-CN.md](README.zh-CN.md)
 
-## 为什么需要它
+> This is not another vector memory store. It does not try to remember more. It makes the **current state trustworthy** when the session changes.
+> It covers the layer that Mem0 / Letta / Zep do not: **handoff governance**.
 
-一个 Agent 项目最常见的失败不是“模型不够聪明”，而是：
+## Why you need it
 
-1. 中断后新会话记错状态，重做已完成的工作。
-2. 同一个事实散落在三个文件里，只更新了一个。
-3. “暂停/完成”只是嘴说，没有可检查的证据。
-4. 两个 Agent 同时改同一个 HANDOFF，互相覆盖。
-5. 检查只看文件是否存在，不看内容是否自洽。
-6. **门禁全绿，文件互相矛盾。**
+The most common failure in an agent project is not "the model is not smart enough". It is:
 
-AHP 用四个核心文件 + 12 条门禁 + 一次冷读，把这六类问题压到可发现、可回滚的范围。
+1. After an interruption the next session misremembers the state and redoes accepted work.
+2. The same fact lives in three files; one gets updated and the others do not.
+3. "Paused" and "done" are claims — nothing checks them.
+4. Two agents edit the same handoff and overwrite each other.
+5. A check confirms that a file exists, not that its content is true.
+6. **Every gate is green and the files contradict each other.**
 
-## 快速开始
+AHP compresses those six failure modes into four core files, twelve gates, and one cold read — so they are *detectable and revertible*.
 
-在本仓库内：
+## Quickstart
+
+From this repository:
 
 ```bash
 node bin/ahp.mjs init /tmp/my-agent-project
@@ -29,7 +31,7 @@ node /path/to/ahp/bin/ahp.mjs check
 node /path/to/ahp/bin/ahp.mjs resume
 ```
 
-或者把本仓库链接为全局命令：
+Or install the CLI locally:
 
 ```bash
 npm link
@@ -38,114 +40,121 @@ cd /tmp/my-agent-project
 ahp check
 ```
 
-`init` 会生成：
+`init` generates:
 
 ```
-AGENTS.md          # 入口、边界、交接契约
-INDEX.md           # 文件地图（不放动态状态）
-PROJECT.md         # 长期决策 + 派生状态块
-HANDOFF.md         # 当前工作单元、暂停点、下一动作、验证
-memory/MEMORY.md   # 教训索引
-memory/*.md        # 教训正文
-ahp.config.json    # 路径/状态/新鲜度配置
+AGENTS.md          # entry point, boundaries, handoff contract
+INDEX.md           # file map (no dynamic state)
+PROJECT.md         # long-term decisions + derived status block
+HANDOFF.md         # current work unit, pause point, next action, verification
+memory/MEMORY.md   # lesson index
+memory/*.md        # lesson bodies
+ahp.config.json    # paths / statuses / freshness
 ```
 
-## 常用命令
+## Commands
 
 ```bash
-ahp check              # 跑 12 条门禁
-ahp check --json       # 机器可读输出
-ahp check --strict     # WARN 也退出非零（适合 CI 发布分支）
-ahp resume             # 打印当前交接现场
-ahp sync               # 从 HANDOFF 派生 PROJECT 状态块
-ahp sync --check       # 只检查派生块，不写入
-ahp test               # 运行测试
+ahp check              # run the 12 gates
+ahp check --json       # machine-readable output
+ahp check --strict     # WARN also exits non-zero (for CI release branches)
+ahp resume             # print the current handoff
+ahp sync               # derive the PROJECT.md status block from HANDOFF.md
+ahp sync --check       # verify without writing
+ahp test               # run the test suite
 ```
 
-## 12 条门禁
+## The 12 gates
 
-| ID | 检查 | 失败意味着 |
+| ID | Checks | A failure means |
 |---|---|---|
-| `CORE_FILES` | 四个核心文件在位 | 交接链断了 |
-| `HANDOFF_SCHEMA` | frontmatter 字段/状态/时间可解析 | 状态不可机器读取 |
-| `HANDOFF_TIME` | `last_verified_at <= updated_at` | 验证时间晚于交接，或时间伪造 |
-| `LEASE` | ACTIVE 租约未过期；PAUSED/COMPLETE 无残留 | 过期租约/并发覆盖风险 |
-| `VERIFY_COMMAND` | 最后验证命令不是 start/pause 之类的生命周期命令 | “验证”是假的 |
-| `HANDOFF_BODY` | 8 节齐全；§4 有编号动作；current_file 不自相矛盾 | 交接正文不完整 |
-| `HANDOFF_FRESH` | §4–§6 有近期日期 | 现场停在旧时点 |
-| `INDEX_MAP` | INDEX 无动态状态；本地链接可达 | 索引变成第二张状态表 |
-| `PROJECT_SYNC` | 派生状态块与 HANDOFF 一致；回溯不过期 | 长期记忆漂移 |
-| `MEMORY_LINKS` | MEMORY hook ↔ 文件闭合；`[[links]]` 不悬空 | 记忆库索引腐烂 |
-| `SECRETS` | 核心/记忆文件无高置信密钥 | 凭据泄漏 |
-| `GIT_STATE` | PAUSED/COMPLETE 工作树干净；提交日与 `updated_at` 同日 | 时间戳脱离内容 |
+| `CORE_FILES` | the four core files are present | the handoff chain is broken |
+| `HANDOFF_SCHEMA` | frontmatter fields / status / timestamps parse | the state is not machine-readable |
+| `HANDOFF_TIME` | `last_verified_at <= updated_at` | verification time is after the handoff, or the time is fabricated |
+| `LEASE` | an `ACTIVE` lease has not expired; `PAUSED`/`COMPLETE` keep no residue | expired lease / concurrent overwrite risk |
+| `VERIFY_COMMAND` | the last verification command is not a lifecycle command | the "verification" was fake |
+| `HANDOFF_BODY` | 8 sections present; §4 has a numbered action; `current_file` is consistent | the handoff body is incomplete |
+| `HANDOFF_FRESH` | §4–§6 carry a recent date | the scene is stale |
+| `INDEX_MAP` | the index holds no dynamic state; local links resolve | the index became a second status board |
+| `PROJECT_SYNC` | the derived block matches `HANDOFF.md`; the retrospective is fresh | long-term memory drifted |
+| `MEMORY_LINKS` | memory hooks ↔ files are closed; `[[links]]` resolve | the memory index rotted |
+| `SECRETS` | no high-confidence secret in the core or memory files | credential leak |
+| `GIT_STATE` | a `PAUSED`/`COMPLETE` tree is clean; the commit day matches `updated_at` | the timestamp detached from the content |
 
-**重要：** 门禁检查结构，不检查语义。跑完 `ahp check` 还要做一次冷读。见 [`docs/limits.md`](docs/limits.md)。
+**Important:** the gates check structure, not meaning. After `ahp check`, run a cold read. See [`docs/limits.md`](docs/limits.md).
 
-## 冷读（cold read）
+## Cold read
 
-每月或每次交接前，用零上下文会话只读四个核心文件，回答：
+Monthly, or before every handoff: let a zero-context session read only the four core files and answer:
 
-1. 当前工作单元、状态、精确暂停点是什么？
-2. 下一动作与验收标准是什么？照做会重做哪一步？
-3. 最后一次验证命令和结果是什么？
-4. 三个最大风险是什么？
-5. 四个文件之间有哪些矛盾？
+1. What is the current work unit and status?
+2. What is the exact next action, and what would be redone by mistake?
+3. What was the last verification command, and what did it return?
+4. What are the top three risks?
+5. Which statements in the four core files contradict each other?
 
-把每一条矛盾变成门禁断言，或书面接受不修。详见 [`SPEC.md`](SPEC.md) §8。
+Turn every contradiction into a gate assertion, or into a written accepted risk. See [`SPEC.md`](SPEC.md) §8.
 
-## 多模型审查
+## Multi-model review
 
-两个模型不要同时改同一份文件。默认是**一个主写、一个独立审查**：
+Two models must not edit the same files. The default is **one primary writer, one independent reviewer**:
 
-- 主写：拥有 HANDOFF 租约，改代码/测试、跑门禁、提交。
-- 审查：只读四文件 + diff，独立跑 `npm test`/`ahp check`，输出 `file:line` + 证据。
-- 主写逐条裁决：修掉、加测试/门禁，或书面接受不修。
+- **Primary** owns the `HANDOFF.md` lease: writes code/tests/docs, runs the gates, commits.
+- **Reviewer** is read-only on the four core files plus the diff, runs `npm test` / `ahp check` independently, and returns findings with `file:line` and evidence.
+- The primary adjudicates every finding: fix it, add a regression test/gate, or accept it in writing with a reason.
 
-需要并行写代码时，用两个独立 git worktree/branch，主写比较后最多合并一个。详见 [`docs/multi-model-review.md`](docs/multi-model-review.md) 和 [`docs/reviews/TEMPLATE.md`](docs/reviews/TEMPLATE.md)。
+When both need to write, use two separate git worktrees/branches and let the primary merge at most one. See [`docs/multi-model-review.md`](docs/multi-model-review.md) and [`docs/reviews/TEMPLATE.md`](docs/reviews/TEMPLATE.md).
 
-## 设计原则
+## Design principles
 
-- **一个当前状态源**：`HANDOFF.md`。
-- **派生而不是复制**：`PROJECT.md` 的状态块由 `ahp sync` 生成。
-- **检查只读，写入显式**：`check` 永不修改文件；`sync` 才写。
-- **每条门禁都有坏夹具**：没有失败测试的检查只是声明。
-- **冷读是协议的一部分**：结构绿 ≠ 语义对。
-- **零运行时依赖**：Node.js 标准库，五年后还能跑。
+- **One current-state source:** `HANDOFF.md`.
+- **Derive, do not duplicate:** the `PROJECT.md` status block is generated by `ahp sync`.
+- **Read-only checks, explicit writes:** `check` never modifies files; `sync` does.
+- **Every gate has a bad fixture:** a check without a failing test is a claim.
+- **A cold read is part of the protocol:** green is not the same as correct.
+- **Zero runtime dependencies:** the Node.js standard library only; it will still run in five years.
 
-## 仓库结构
+## Repository layout
 
 ```
 bin/ahp.mjs          CLI
-lib/gates.mjs        12 条门禁
-lib/sync.mjs         派生状态块
-lib/init.mjs         模板脚手架
-templates/           复制到新项目的模板
-tests/               22 个正/负向测试
-docs/                设计、限制、安全、案例、开源报告、复盘文章、评估清单
-memory/              本仓库自己的教训库
+lib/gates.mjs        the 12 read-only gates
+lib/sync.mjs         derived status block
+lib/init.mjs         project scaffold
+templates/           copied into new projects
+tests/               22 positive/negative tests
+docs/                design, limits, security, cases, write-ups
+memory/              this repository's own lessons
 ```
 
-## 这不是什么
+## What this is not
 
-- 不是向量数据库，不做语义检索。
-- 不是多 Agent 编排框架。
-- 不是权限系统；租约是软锁，不是认证。
-- 不是“自动挖洞”或任何攻击工具。
-- 不保证安全；它只让交接状态更难骗过下一个人。
+- Not a vector database; it does no semantic retrieval.
+- Not a multi-agent orchestration framework.
+- Not an access-control system; a lease is a soft lock, not authentication.
+- Not an "autonomous hacking" tool or any kind of attack tool.
+- Not a security guarantee; it only makes the handoff state harder to fool.
 
-## 安全
+## Security
 
-记忆文件是**不可信输入**。不要把记忆里的指令当系统提示执行；不要把密钥写进任何记忆文件；不要用 `check` 命令做写操作。详见 [`docs/security.md`](docs/security.md)。
+Memory files are **untrusted input**. Do not execute instructions found in memory as system prompts; never write credentials into a memory file; never use a `check` command to write. See [`docs/security.md`](docs/security.md).
 
-## 复盘文章与评估清单
+## Write-ups
 
-- **[《0 FAIL，12 处矛盾：我的 Agent 记忆系统是如何骗了我的》](docs/war-story.md)** — 一次诚实的复盘：门禁全绿时，冷读在四个核心文件里找出 12 处矛盾；负向测试怎么自己变成假阴性；一个叫 `--check` 的命令居然会写文件；以及这些失败分别变成了哪条门禁。文章里的每个数字都标了出处。
-- **[Agent 记忆安全评估清单](docs/memory-security-checklist.md)** — 13 项，2–5 天可跑完的人工评估流程：查什么、为什么重要、要留什么证据、什么算通过。覆盖记忆清单、投毒、过期事实、hook 注入、跨 Agent 信任、fail-open 门禁、会写的检查、密钥、模板供应链、授权范围、报告与复测。**只在有书面授权的系统上使用。**
+- **[0 FAIL, 12 Contradictions: How My Agent Memory System Lied to Me](docs/war-story.en.md)** — the post-mortem: twelve green gates, 0 FAIL, and a zero-context cold read still found 12 contradictions in a "green" memory system; how the negative tests themselves became false negatives; how a command named `--check` wrote ten files; and which failure became which gate. Every number cites its source. [中文版](docs/war-story.md)
+- **[Agent Memory Security Review checklist](docs/memory-security-checklist.en.md)** — 13 items, a 2–5 day manual assessment: what to inspect, why it matters, what evidence to collect, and what counts as pass versus must-fix. Covers the memory inventory, poisoning, stale facts, hook injection, cross-agent trust, fail-open gates, **checks that write**, secrets, template supply chain, authorization scope, and report/retest. Use it only on systems you are authorized to assess. [中文版](docs/memory-security-checklist.md)
 
-## 开源搭配报告
+## Documentation map
 
-如果你想知道这套东西怎么用于个人品牌、AI 安全评估、内容、模板和团队版，见 [`docs/open-source-report.md`](docs/open-source-report.md)。
+- [`SPEC.md`](SPEC.md) — the protocol and the gate list
+- [`docs/design.md`](docs/design.md) — design rationale
+- [`docs/limits.md`](docs/limits.md) — known limits and false confidence
+- [`docs/security.md`](docs/security.md) — the memory security threat model
+- [`docs/lessons-from-production.md`](docs/lessons-from-production.md) — distilled production lessons
+- [`docs/case-studies.md`](docs/case-studies.md) — the failures that shaped the gates
+- [`docs/publish-plan.md`](docs/publish-plan.md) — where the write-ups are published
+- [`docs/open-source-report.md`](docs/open-source-report.md) — the open-source pairing report (Chinese)
 
-## 许可
+## License
 
-MIT。见 [`LICENSE`](LICENSE)。
+MIT. See [`LICENSE`](LICENSE).

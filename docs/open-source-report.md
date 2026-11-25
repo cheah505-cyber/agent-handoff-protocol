@@ -134,7 +134,7 @@ MIT。协议和 CLI 开源；如果要商业化，商业化的是团队工作流
 ### 4.3 仓库结构
 
 ```
-README.md / README.en.md
+README.md (EN) / README.zh-CN.md
 SPEC.md
 AGENTS.md / INDEX.md / PROJECT.md / HANDOFF.md
 bin/ahp.mjs

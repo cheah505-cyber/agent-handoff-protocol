@@ -1,63 +1,72 @@
-# 发布计划：war story（`docs/war-story.md`）
+# 发布计划：war story（`docs/war-story.md` / `docs/war-story.en.md`）
 
-> 单一来源：正文只有一份，就是 `docs/war-story.md`。这里只放**每个平台的元数据**，不要复制正文。
-> 状态：2026-11-25 起，AI 工程圈优先（掘金 / V2EX / dev.to）；安全圈那一篇是 `AHP-CONTENT-002`。
+> 单一来源：正文只有两份——中文 `docs/war-story.md`、英文 `docs/war-story.en.md`。这里只放**每个平台的元数据**，不要复制正文。
+> 状态：2026-11-25 起。掘金已发布；dev.to 待发（英文版）；V2EX 待用户手动发（Cloudflare 拦截）。
+
+## 语言策略（2026-11-25 定）
+
+| 平台 | 受众 | 语言 | 理由 |
+|---|---|---|---|
+| GitHub | 国际 | **英文优先** | `README.md` 是英文；中文版降级为 `README.zh-CN.md`。仓库标题、topics、描述全英文 |
+| dev.to | 国际 | **英文** | dev.to 是英文社区，中文帖几乎没有流量 |
+| 掘金 | 中文技术圈 | **中文** | 中文原生社区，英文帖没有曝光 |
+| V2EX | 中文技术圈 | **中文** | 同上。V2EX 也可用英文，但中文版效果明显更好 |
+
+规则：**平台按受众选语言，仓库按国际受众做英文优先。** 英文版不是"顺手翻译"，它是 dev.to 和 GitHub 的落地页。
 
 ## 素材（全部已公开）
 
 | 用途 | 链接 |
 |---|---|
 | 仓库（主 CTA） | https://github.com/cheah505-cyber/agent-handoff-protocol |
-| 文章原文（Markdown） | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/war-story.md |
-| 记忆安全评估清单（次 CTA） | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md |
+| 文章中文版 | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/war-story.md |
+| 文章英文版 | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/war-story.en.md |
+| 清单中文版 | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md |
+| 清单英文版 | https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.en.md |
 
 ---
 
-## 1. 掘金 juejin.cn
+## 1. 掘金 juejin.cn — ✅ 已发布
 
 | 字段 | 值 |
 |---|---|
-| 编辑器 | https://juejin.cn/creator/post |
+| 文章 | https://juejin.cn/post/7711934164547141659 |
+| 编辑器 | https://juejin.cn/editor/drafts/new?v=2（旧路由 `/creator/post` 会弹回首页） |
 | 标题 | `0 FAIL，12 处矛盾：我的 Agent 记忆系统是如何骗了我的` |
-| 分类 | 人工智能（备选：开发工具） |
-| 标签 | `AI Agent`、`开发工具`、`GitHub`、`Claude Code` |
+| 分类 | 人工智能 |
+| 标签 | `AI编程`（**待补** `Agent`、`GitHub`） |
 | 摘要 | `我的门禁 12 条全绿、0 FAIL，但零上下文冷读在四个核心文件里找出 12 处矛盾——骗我的不是模型，是验证层。附一份 13 项的 Agent 记忆安全评估清单。` |
-| 可见性 | 所有人可见（默认） |
-| 封面 | 可选；暂用平台自动生成的首图 |
-| 正文 | `docs/war-story.md` 全文（三行引用块全部保留：标题下的"12 处的归属"说明、"每个数字都能找到出处"、"结构绿 ≠ 语义对"） |
+| 可见性 | 所有人可见；原创；审核状态正常 |
 
-**CTA（放在正文末尾第一段之后，不要单开一段像广告）**：
+**待补（30 秒人工）**：在创作者中心给文章加 `Agent`、`GitHub` 两个标签。发布面板的下拉选项目前只选中了一个，Vue 的多选模型不吃程序化点击。
 
-> 仓库：https://github.com/cheah505-cyber/agent-handoff-protocol
-> 清单：https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/memory-security-checklist.md
-
-## 2. V2EX www.v2ex.com
+## 2. V2EX www.v2ex.com — ⛔ 需要人工发
 
 | 字段 | 值 |
 |---|---|
 | 编辑器 | https://www.v2ex.com/new |
 | 节点 | 分享（https://www.v2ex.com/go/share） |
 | 标题 | `[原创] 0 FAIL，12 处矛盾：我的 Agent 记忆系统是如何骗了我的` |
-| 正文 | `docs/war-story.md` 全文；V2EX 的 Markdown 渲染器对表格支持一般，**发之前把两张表改成列表**（"矛盾 → 门禁"表、"本文数字出处"表） |
-| 标签 | 无（V2EX 不支持标签，用节点代替） |
-| 附言 | 无 |
+| 正文 | `docs/war-story.md` 全文；**V2EX 的 Markdown 渲染器对表格支持一般，发之前把两张表改成列表**（"矛盾 → 门禁"表、"本文数字出处"表） |
+| CTA | 仓库 + 清单（清单的绝对链接在正文里已就位） |
 
-V2EX 入口有 Cloudflare 人机验证，第一次访问需要手动过一下。
+**为什么发不了**：V2EX 全站挂了 Cloudflare 人机验证，而 OpenCode 桌面端内置的浏览器是 **Electron**，被 Cloudflare 判为自动化环境（同一出口 IP 用 `curl` 访问 `/`、`/signin`、`/go/share` 都是 200，完全没有验证；换到浏览器里就无限循环验证）。**人机验证本来就该由人过，所以这条只能你在普通浏览器（Firefox/Chrome）里发。**
 
-## 3. dev.to
+正文和标题都在上面，仓库链接齐全；你贴进去改两个表格就能发。
+
+## 3. dev.to — 📝 待发（英文版）
 
 | 字段 | 值 |
 |---|---|
 | 编辑器 | https://dev.to/new |
+| 正文 | `docs/war-story.en.md` 全文（英文） |
 | 标题 | `0 FAIL, 12 Contradictions: How My Agent Memory System Lied to Me` |
 | 标签（最多 4 个） | `ai`、`agents`、`llm`、`devtools` |
 | Description（≤100 字符） | `12 gates, 0 FAIL — and a cold read still found 12 contradictions. My verifier lied; here is what fixed it.` |
 | Canonical URL | https://github.com/cheah505-cyber/agent-handoff-protocol |
-| Series | 留空 |
-| Published | `true`（先发再改比草稿省事，错了也能改） |
-| 正文 | `docs/war-story.md` 全文。**中文正文**，英文版是后续单元；dev.to 面向英文读者，中文版先上，流量按低预期算 |
+| Published | `true` |
 
-登录入口：https://dev.to/enter（可用 GitHub 登录，但**浏览器里没有 GitHub 会话**，需要先在浏览器里登录 GitHub 或用邮箱）。
+dev.to 的标签输入是 autocomplete：**必须点下拉建议项**，`fill` + Enter 加不进去。
 
 ---
 

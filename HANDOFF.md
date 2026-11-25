@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-25T15:50:27+08:00"
+updated_at: "2026-11-25T16:38:40+08:00"
 work_unit_id: "AHP-CONTENT-001"
 phase: "content-v0.1-shipped"
 owner: "none"
@@ -9,16 +9,16 @@ session_id: "none"
 active_branch: "master"
 started_at: "2026-11-25T14:00:30+08:00"
 lease_until: "none"
-touched_paths: "docs/war-story.md;docs/memory-security-checklist.md;docs/reviews/2026-11-25-deepseek.md;docs/multi-model-review.md;README.md;README.en.md;INDEX.md;HANDOFF.md;PROJECT.md"
+touched_paths: "docs/war-story.md;docs/war-story.en.md;docs/memory-security-checklist.md;docs/memory-security-checklist.en.md;docs/reviews/2026-11-25-deepseek.md;docs/multi-model-review.md;docs/publish-plan.md;README.md;README.zh-CN.md;INDEX.md;HANDOFF.md;PROJECT.md;package.json"
 current_file: "none"
 next_action_file: "docs/war-story.md"
 next_action_anchor: "# 六、如果你想自己查一遍"
-next_action: "Publish `docs/war-story.md` to the AI-engineering channels (掘金/V2EX/dev.to) with `docs/memory-security-checklist.md` as the free CTA; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`)."
-acceptance: "The article is published in at least one AI-engineering channel with the checklist as its CTA; `tasks/AHP-CONTENT-002.md` exists and names `deepseek/deepseek-flash` as the reviewer; `npm test` 22/22; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
+next_action: "Publish `docs/war-story.en.md` to dev.to (English); add the `Agent` and `GitHub` tags to the 掘金 article in 创作者中心; post the Chinese article to V2EX from a normal browser; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`)."
+acceptance: "The 掘金 article https://juejin.cn/post/7711934164547141659 carries the `Agent` and `GitHub` tags; the English article is live on dev.to with the repo as its CTA; the Chinese article is posted to V2EX (node 分享); `tasks/AHP-CONTENT-002.md` exists and names `deepseek/deepseek-flash` as the reviewer; `npm test` 22/22; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "none"
-last_verified_at: "2026-11-25T15:50:27+08:00"
+last_verified_at: "2026-11-25T16:38:40+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -41,10 +41,13 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · Switched the independent reviewer model to `deepseek/deepseek-flash` for every future review (`docs/multi-model-review.md` §1, `PROJECT.md`). The `AHP-CONTENT-001` note keeps the model it actually used.
 - 2026-11-25 · Created the public GitHub repo `cheah505-cyber/agent-handoff-protocol`, added it as `origin`, and pushed `master` plus the `v0.1.0` tag.
 - 2026-11-25 · Wrote `docs/publish-plan.md`: per-platform metadata (掘金 / V2EX / dev.to) for the war story; one body, no duplicated copy.
+- 2026-11-25 · Published the Chinese war story to 掘金: https://juejin.cn/post/7711934164547141659 (category 人工智能, tag AI编程, 原创, 所有人可见, audit status normal).
+- 2026-11-25 · Wrote the English track for the international audience: `docs/war-story.en.md`, `docs/memory-security-checklist.en.md`; swapped `README.md` to English and moved the Chinese quickstart to `README.zh-CN.md`.
+- 2026-11-25 · Diagnosed the V2EX blocker: the whole site sits behind a Cloudflare challenge in the OpenCode desktop app (Electron), while the same egress IP gets HTTP 200 from `curl`. V2EX therefore needs a normal browser.
 ## 2. Exact pause point
 - The two deliverables are written, reviewed, and fixed; the review note and its dispositions are in `docs/reviews/2026-11-25-deepseek.md`.
 - The repository is **public and pushed**: `origin/master` = `99ff9b5`, `v0.1.0` on the remote still points at the v0.1 release commit `2847eb5`. GitHub push protection did not object to the synthetic `ghp_…` fixture in the `SECRETS` negative test.
-- Everything repo-side in the task card is done. What is **not** done is external: publishing the article, and opening the next unit.
+- Everything repo-side in the task card is done, plus the 掘金 publication. What is **not** done: the dev.to post (English), the two missing 掘金 tags, the V2EX post (blocked on a human), and the next unit.
 - Publication is **prepared but not executed**. The in-app browser has no session on 掘金 / dev.to / V2EX, so a human has to log in on the open tabs before anything can be posted. The three tabs are left open.
 - The tree is clean; no owner, session, or lease.
 ## 3. Current working set
@@ -52,8 +55,10 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
-1. Publish `docs/war-story.md` (title `0 FAIL，12 处矛盾`) to the AI-engineering channels — 掘金 / V2EX / dev.to — with `docs/memory-security-checklist.md` as the free CTA. Metadata for each platform is in `docs/publish-plan.md`. **Prerequisite: the human logs in on the open tabs** (掘金 needs a phone code or the app scan; dev.to accepts GitHub or email; V2EX has a Cloudflare check). Keep the real failures and numbers; no "autonomous hacking" framing.
-2. Open `AHP-CONTENT-002` with a task card: the security-circle article (`docs/open-source-report.md` §7.1 文章 2: 《Agent 的记忆是攻击面》), channels 先知 / FreeBuf / 安全客 / LinkedIn. The independent reviewer for that unit is `deepseek/deepseek-flash`.
+1. Publish `docs/war-story.en.md` to dev.to (English track). Metadata in `docs/publish-plan.md` §3. dev.to's tag box is an autocomplete — the suggestion must be **clicked**; `fill` + Enter does not add a tag.
+2. Add the `Agent` and `GitHub` tags to the 掘金 article in 创作者中心 (30 seconds; the publish panel's tag select only accepted one tag programmatically).
+3. Post the Chinese article to V2EX from a normal browser (node 分享). The in-app browser cannot pass Cloudflare: it is Electron, and the challenge loops without ever issuing `cf_clearance`.
+4. Open `AHP-CONTENT-002` with a task card: the security-circle article (`docs/open-source-report.md` §7.1 文章 2: 《Agent 的记忆是攻击面》), channels 先知 / FreeBuf / 安全客 / LinkedIn. The independent reviewer for that unit is `deepseek/deepseek-flash`.
 3. In that task card, also carry the open item from the review: should the `SECRETS` gate scan `docs/` as well as the core files and `memory/`? It currently does not, so published documents sit outside the backstop.
 4. Record the first external signal (star, issue, comment, or a question about the checklist) in `PROJECT.md`.
 **Acceptance:** the article is published in at least one AI-engineering channel with the checklist as its CTA; `tasks/AHP-CONTENT-002.md` exists and names `deepseek/deepseek-flash` as the reviewer; `npm test` 22/22; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.
@@ -64,7 +69,9 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Numbers in prose are not gated. The review found the article saying "12 项" when the checklist has 13 — no gate can see that. Re-check document numbers against the artifacts before publishing.
 - The `SECRETS` gate does not scan `docs/`. Both new documents were manually checked for secrets and customer facts; the gap is recorded, not closed.
 - Publishing is external and unverified by any gate. A published URL is evidence only after it is actually checked.
+- Language is split by audience, not by preference: `README.md` is English, `README.zh-CN.md` is Chinese; dev.to gets `docs/war-story.en.md`, 掘金 and V2EX get `docs/war-story.md`. Keep the two tracks from drifting apart.
 ## 6. Last verification
+- 2026-11-25 · 掘金 publication verified in the browser: title, body with 4 tables and code blocks, 摘要 (83 chars), category 人工智能, tag AI编程, absolute CTA links through the juejin link redirector, no review banner.
 - 2026-11-25 · Publish prep: `docs/publish-plan.md` written and linked from `INDEX.md`; `npm test` → 22/22; `ahp check` → 0 FAIL on a clean tree; three publisher tabs opened in the browser, all showing a logged-out state.
 - 2026-11-25 · After the push, on a clean tree: `npm test` → 22/22; `node bin/ahp.mjs check` → 0 FAIL / 12 PASS / 0 WARN; `node bin/ahp.mjs sync --check` → in sync.
 - 2026-11-25 · Remote verified with `git ls-remote`: `refs/heads/master` = `99ff9b5` (= local HEAD at push time), `refs/tags/v0.1.0^{}` = `2847eb5` (the v0.1 release commit).

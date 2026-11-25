@@ -8,8 +8,8 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [INDEX.md](INDEX.md) | File map (this file) |
 | [PROJECT.md](PROJECT.md) | Durable decisions, distilled state, retrospective |
 | [HANDOFF.md](HANDOFF.md) | Current work unit; only current-state source |
-| [README.md](README.md) | Chinese quickstart |
-| [README.en.md](README.en.md) | English quickstart |
+| [README.md](README.md) | English quickstart (primary) |
+| [README.zh-CN.md](README.zh-CN.md) | Chinese quickstart |
 | [SPEC.md](SPEC.md) | Protocol specification and gate list |
 | [bin/ahp.mjs](bin/ahp.mjs) | CLI entry |
 | [lib/gates.mjs](lib/gates.mjs) | 12 gate implementations |
@@ -24,8 +24,10 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [docs/lessons-from-production.md](docs/lessons-from-production.md) | Distilled production lessons |
 | [docs/case-studies.md](docs/case-studies.md) | Failure cases that shaped the gates |
 | [docs/open-source-report.md](docs/open-source-report.md) | Open-source pairing report |
-| [docs/war-story.md](docs/war-story.md) | Post-mortem: the green dashboard that lied |
-| [docs/memory-security-checklist.md](docs/memory-security-checklist.md) | Authorized memory-security assessment checklist |
+| [docs/war-story.md](docs/war-story.md) | Post-mortem (Chinese): the green dashboard that lied |
+| [docs/war-story.en.md](docs/war-story.en.md) | Post-mortem (English) |
+| [docs/memory-security-checklist.md](docs/memory-security-checklist.md) | Authorized memory-security assessment checklist (Chinese) |
+| [docs/memory-security-checklist.en.md](docs/memory-security-checklist.en.md) | Authorized memory-security assessment checklist (English) |
 | [docs/publish-plan.md](docs/publish-plan.md) | Per-platform metadata for publishing the war story |
 | [docs/multi-model-review.md](docs/multi-model-review.md) | One-writer/one-reviewer protocol |
 | [docs/reviews/README.md](docs/reviews/README.md) | Review note policy |
