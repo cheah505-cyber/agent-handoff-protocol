@@ -44,7 +44,7 @@ The **four core files** are `AGENTS.md`, `INDEX.md`, `PROJECT.md`, and `HANDOFF.
 In this repository, `ahp` in the docs means `node bin/ahp.mjs`; if the package is installed/linked, the `ahp` shim works too.
 
 ```bash
-npm test                         # 29 tests (20 negative fixtures)
+npm test                         # 27 tests (19 negative fixtures)
 node bin/ahp.mjs check           # 12 gates on this repo
 node bin/ahp.mjs check --json
 node bin/ahp.mjs resume

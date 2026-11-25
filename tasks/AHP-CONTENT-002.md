@@ -24,7 +24,7 @@ Depends on: AHP-CONTENT-001 (war story + checklist published)
 - `docs/limits.md` — 结构绿 ≠ 语义对；五类验证层失败。
 - `docs/lessons-from-production.md` / `docs/case-studies.md` — 真实案例（脱敏）。
 - dev.to 评论线程（2026-11-25）：`3md09` / 回复 `3md5h` —— 溯源链 vs check 的问题。
-- 仓库实际数字：12 条门禁、29 个测试、冷读 8/3/5。
+- 仓库实际数字：12 条门禁、27 个测试、冷读 8/3/5。
 
 不要编数字。仓库里没有的，标成观点或删掉。
 
