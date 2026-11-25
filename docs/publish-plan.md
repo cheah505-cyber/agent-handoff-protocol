@@ -40,6 +40,8 @@
 |---|---|
 | [`publish/war-story.zhihu.md`](publish/war-story.zhihu.md) | 知乎「导入文档 MD/Doc」用；已去掉开头 H1（标题单独填）、链接改绝对地址、补 CTA |
 | [`publish/war-story.zhihu.html`](publish/war-story.zhihu.html) | 备用：浏览器打开 → Ctrl+A → Ctrl+C → 粘进富文本编辑器 |
+| [`publish/war-story.zhihu.flat.md`](publish/war-story.zhihu.flat.md) | **表格拍平成列表**的版本（4 张表 → 列表），给"预览里表格没了"的情况用 |
+| [`publish/war-story.zhihu.flat.html`](publish/war-story.zhihu.flat.html) | 同上的 HTML 版 |
 
 这两个文件是**派生快照**，唯一来源仍是 `docs/war-story.md`。生成规则（改正文后要重新做一遍）：
 
@@ -68,6 +70,8 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 
 **草稿已丢、登录态已失效。** 内容随时可重建，步骤如下（用户自行执行）：
 
+> **关键前提**：知乎编辑器是 Draft.js，**表格可能渲染不出来**（粘贴或导入都可能把表格拍平成文字）。所以给了两个版本：先用**带表格**的 `publish/war-story.zhihu.md`，发布前点「预览」确认表格还在；**如果表格没了，改用** `publish/war-story.zhihu.flat.md`（表格已改写成列表）。
+
 - 编辑地址：`https://zhuanlan.zhihu.com/write?edit=2108971189200855862`
 - 标题、正文（7853 字，13 个小标题、4 张表、4 段代码）已就位
 - **创作声明：包含 AI 辅助创作 作者对内容负责**（AI 内容必须标注，别去掉）
@@ -75,6 +79,7 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 - 语言字段留"未选择"（选填，知乎按内容推断）
 - 点"发布"后如果弹出安全验证，手动过一下即可
 - **另需删除一篇坏稿**：`https://zhuanlan.zhihu.com/p/2108969541657163196`（第一次发布时正文只存下最后一段，删掉）
+- **发布后核对两件事**：正文里能搜到「19 个负向夹具」，并且旧稿 2108969541657163196 已删（知乎一个账号可以有多篇，删错了看不出来）
 
 ## 4. V2EX ⛔
 
