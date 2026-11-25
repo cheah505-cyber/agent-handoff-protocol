@@ -20,7 +20,7 @@
 | 知乎 | ⚠️ 已备好，等人工点发布 | 中文 | 编辑器已填满（7853 字，草稿已存）；发布接口返回 `code 2015 网络环境或行为异常，请进行安全验证` |
 | V2EX | ⛔ 不可发 | 中文 | 注册需邀请码；无码 |
 | SegmentFault | ⛔ 放弃 | 中文 | 新号（声望 0）无发文章权限；已换 CSDN |
-| CSDN | ⛔ 未登录 | 中文 | `passport.csdn.net/login`；登录后走 `editor.csdn.net/md/` |
+| CSDN | ✅ 已发布（审核中） | 中文 | https://blog.csdn.net/WillCheah/article/details/171375400 |
 | 博客园 | ⛔ 放弃 | 中文 | 未开通博客，开通需个人信息 + 审核；已换 CSDN |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
 
@@ -90,12 +90,17 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 |---|---|
 | 登录 | `https://passport.csdn.net/login`（微信扫码 / 手机号验证码） |
 | Markdown 编辑器 | `https://editor.csdn.net/md/` |
+| 文章 | https://blog.csdn.net/WillCheah/article/details/171375400 |
 | 标题 | `0 FAIL，12 处矛盾：我的 Agent 记忆系统是如何骗了我的` |
-| 正文 | 粘 `publish/war-story.zhihu.md`（CSDN 的 md 编辑器是纯文本区，直接粘即可，表格/代码块原生支持） |
+| 正文 | 导入 `publish/war-story.zhihu.md`（编辑器有 `#import-markdown-file-input`；导入会用文件名覆盖标题，**导入后要重填标题**） |
 | 文章类型 | 原创 |
 | 分类专栏 | 新号没有专栏，发布时若要求填写，先建一个（如「AI 工程 / Agent 治理」） |
-| 文章标签 | `人工智能`、`AI Agent`、`开源`、`程序员`（最多 5 个） |
+| 文章标签 | 实际发的是 `开源`、`人工智能`、`软件工程`。自定义标签要博客等级 ≥3，只能从 autocomplete 里选已有标签；`fill` + 点建议项才生效，直接按 Enter 会报「博客等级不满足三级」 |
 | 摘要 | `门禁 12 条全绿、0 FAIL，零上下文冷读仍找出 12 处矛盾——骗我的不是模型，是验证层。附 13 项 Agent 记忆安全评估清单。` |
+
+**踩坑：`saveArticle` 返回 `code 400 博主不存在`** —— 新号必须先访问一次自己的博客页（`https://blog.csdn.net/<UserName>`）把博主档案建出来，否则保存/发布都会被拒。用户名从 cookie `UserName` 读。
+
+`文章备份到 GitCode` 那个勾选默认是关的，发布前确认别打开（会自动建 GitCode 账号）。
 
 **即刻**：本轮不做。
 

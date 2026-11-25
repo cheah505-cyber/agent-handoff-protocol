@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-25T17:14:45+08:00"
+updated_at: "2026-11-25T18:32:36+08:00"
 work_unit_id: "AHP-CONTENT-001"
 phase: "content-v0.1-shipped"
 owner: "none"
@@ -13,12 +13,12 @@ touched_paths: "docs/war-story.md;docs/war-story.en.md;docs/memory-security-chec
 current_file: "none"
 next_action_file: "docs/war-story.md"
 next_action_anchor: "# 六、如果你想自己查一遍"
-next_action: "In the prepared 知乎 editor (https://zhuanlan.zhihu.com/write?edit=2108971189200855862) click 发布 and pass the security check, then delete the broken draft https://zhuanlan.zhihu.com/p/2108969541657163196; add the `Agent` and `GitHub` tags to the 掘金 article; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`)."
-acceptance: "The 知乎 article is live (the prepared draft at https://zhuanlan.zhihu.com/write?edit=2108971189200855862 published, broken draft 2108969541657163196 deleted) and the 掘金 article https://juejin.cn/post/7711934164547141659 carries the `Agent` and `GitHub` tags; the English article stays live on https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0; `tasks/AHP-CONTENT-002.md` exists and names `deepseek/deepseek-flash` as the reviewer; `npm test` 22/22; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
+next_action: "Re-create the 知乎 article from `publish/war-story.zhihu.md` (the old draft is gone; the 知乎 session was logged out) and publish it past the security check, then delete the broken article https://zhuanlan.zhihu.com/p/2108969541657163196; add the `Agent` and `GitHub` tags to the 掘金 article; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`)."
+acceptance: "The 知乎 article is live (re-created from `publish/war-story.zhihu.md`; broken article 2108969541657163196 deleted) and the 掘金 article https://juejin.cn/post/7711934164547141659 carries the `Agent` and `GitHub` tags; the English article stays live on https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0; `tasks/AHP-CONTENT-002.md` exists and names `deepseek/deepseek-flash` as the reviewer; `npm test` 22/22; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "none"
-last_verified_at: "2026-11-25T17:14:45+08:00"
+last_verified_at: "2026-11-25T18:32:36+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -43,13 +43,14 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · Wrote `docs/publish-plan.md`: per-platform metadata (掘金 / V2EX / dev.to) for the war story; one body, no duplicated copy.
 - 2026-11-25 · Published the Chinese war story to 掘金: https://juejin.cn/post/7711934164547141659 (category 人工智能, tag AI编程, 原创, 所有人可见, audit status normal).
 - 2026-11-25 · Wrote the English track for the international audience: `docs/war-story.en.md`, `docs/memory-security-checklist.en.md`; swapped `README.md` to English and moved the Chinese quickstart to `README.zh-CN.md`.
+- 2026-11-25 · Published the Chinese article to CSDN: https://blog.csdn.net/WillCheah/article/details/171375400 (原创, tags 开源/人工智能/软件工程, 审核中). CSDN's `saveArticle` first answered `400 博主不存在`; visiting `https://blog.csdn.net/WillCheah` provisions the blogger record, after which the same publish succeeded.
 - 2026-11-25 · Prepared the 知乎 article in the editor (7853 chars, 13 headings, 4 tables, 4 code blocks, 创作声明 = 包含 AI 辅助创作) but 知乎's publish endpoint answered `code 2015 网络环境或行为异常，请进行安全验证`. Publishing it needs a human click plus a security check. 知乎's Draft.js loses content when written via `execCommand("insertHTML")` — the `paste` event with `clipboardData` is the only reliable path, and it is recorded in `docs/publish-plan.md` §6.
 - 2026-11-25 · Published the English war story to dev.to: https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 (tags devtools/ai/llm/agents, canonical = the repo, description set). The account had no username, so dev.to had used the account id in the URL; set it to `willcheah` and the article URL became a normal one.
 - 2026-11-25 · Diagnosed the V2EX blocker: the whole site sits behind a Cloudflare challenge in the OpenCode desktop app (Electron), while the same egress IP gets HTTP 200 from `curl`. V2EX therefore needs a normal browser.
 ## 2. Exact pause point
 - The two deliverables are written, reviewed, and fixed; the review note and its dispositions are in `docs/reviews/2026-11-25-deepseek.md`.
 - The repository is **public and pushed**: `origin/master` = `99ff9b5`, `v0.1.0` on the remote still points at the v0.1 release commit `2847eb5`. GitHub push protection did not object to the synthetic `ghp_…` fixture in the `SECRETS` negative test.
-- Everything repo-side in the task card is done, and the article is live in two places: 掘金 (Chinese) and dev.to (English). What is **not** done: the 知乎 publish click (blocked by 知乎's anti-automation check), V2EX (no invite code), the other Chinese platforms (login), the two missing 掘金 tags, and the next unit.
+- Everything repo-side in the task card is done, and the article is live in **three** places: 掘金 (Chinese), CSDN (Chinese, under review), dev.to (English). The 知乎 draft is gone and its session was logged out, so 知乎 must be re-created from `publish/war-story.zhihu.md`. What is **not** done: the 知乎 re-create + publish, V2EX (no invite code), the two missing 掘金 tags, and the next unit.
 - Publication is **prepared but not executed**. The in-app browser has no session on 掘金 / dev.to / V2EX, so a human has to log in on the open tabs before anything can be posted. The three tabs are left open.
 - The tree is clean; no owner, session, or lease.
 ## 3. Current working set
@@ -57,7 +58,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
-1. Open the prepared 知乎 editor (`https://zhuanlan.zhihu.com/write?edit=2108971189200855862`), click 发布 and pass the security check if it appears; then delete the broken draft `https://zhuanlan.zhihu.com/p/2108969541657163196`.
+1. Re-create the 知乎 article: 写文章 → 导入 `publish/war-story.zhihu.md` (or paste `publish/war-story.zhihu.html`), 创作声明 = 包含 AI 辅助创作, 话题 = 人工智能 / AI / 程序员, then 发布 (a security check may appear). Then delete the broken article `https://zhuanlan.zhihu.com/p/2108969541657163196`.
 2. Add the `Agent` and `GitHub` tags to the 掘金 article in 创作者中心 (30 seconds; the publish panel's tag select only accepted one tag programmatically).
    The 知乎 draft is gone and the 知乎 session was logged out, so the article must be re-created by hand: `publish/war-story.zhihu.md` (import) or `publish/war-story.zhihu.html` (Ctrl+A/Ctrl+C) plus the metadata in `docs/publish-plan.md` §3.
 3. Post to SegmentFault / 博客园 / 即刻 only after logging in there; V2EX needs an invite code first. All four are manual by nature — see `docs/publish-plan.md` §4–§5.

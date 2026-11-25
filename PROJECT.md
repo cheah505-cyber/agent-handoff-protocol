@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: content-v0.1-shipped
-- Next: In the prepared 知乎 editor (https://zhuanlan.zhihu.com/write?edit=2108971189200855862) click 发布 and pass the security check, then delete the broken draft https://zhuanlan.zhihu.com/p/2108969541657163196; add the `Agent` and `GitHub` tags to the 掘金 article; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
+- Next: Re-create the 知乎 article from `publish/war-story.zhihu.md` (the old draft is gone; the 知乎 session was logged out) and publish it past the security check, then delete the broken article https://zhuanlan.zhihu.com/p/2108969541657163196; add the `Agent` and `GitHub` tags to the 掘金 article; then open `AHP-CONTENT-002` (reviewer: `deepseek/deepseek-flash`).
 <!-- AHP:STATUS:END -->
 
 ## Decisions
