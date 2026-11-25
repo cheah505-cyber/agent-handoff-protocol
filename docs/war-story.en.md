@@ -44,7 +44,9 @@ PASS GIT_STATE        tree clean; timestamp matches the commit
 [ahp] 0 FAIL / 0 WARN / 12 PASS / 0 SKIP
 ```
 
-One number matters more than the others: **fail-open gates are forbidden**. Every gate needs a negative fixture that *must* turn red; a check with no failing fixture is a claim, not a check. The whole suite is 22 tests: 15 negative "must turn red" fixtures (one per gate), 6 CLI/scaffold tests, and 1 positive "a valid project should pass everything". `npm test` → 22/22.
+One number matters more than the others: **fail-open gates are forbidden**. Every gate needs a negative fixture that *must* turn red; a check with no failing fixture is a claim, not a check. The whole suite was 22 tests at v0.1.0: 15 negative "must turn red" fixtures (one per gate), 6 CLI/scaffold tests, and 1 positive "a valid project should pass everything". `npm test` → 22/22.
+
+> **This is the v0.1.0 snapshot.** After this post was written, the `SECRETS` gate grew a `docs/` scan, so the suite is now **27 tests, 20 of them negative fixtures** — the numbers moved, the method did not.
 
 That is where I thought the story ended.
 
@@ -159,7 +161,7 @@ Five moves, each of them turning a discovery into "this cannot happen again".
 
 **2. Derive, do not duplicate.** The status block at the top of `PROJECT.md` is generated from `HANDOFF.md` by `ahp sync`, not written by hand. Hand-written means it will drift, so `ahp sync --check` exists to catch the drift. **Fields a tool can generate should not be maintained by discipline.**
 
-**3. Negative tests are the product.** Twelve gates, each with a fixture that must turn red. The cost is that I had to write 15 negative fixtures; the payoff is that every gate is still alive.
+**3. Negative tests are the product.** Twelve gates, each with a fixture that must turn red. The cost is that I had to write negative fixtures (15 at v0.1.0, 20 now); the payoff is that every gate is still alive.
 
 **4. Isolated git fixtures.** See 3.2.
 
@@ -190,7 +192,7 @@ You do not have to take my word. Use my repo as the target:
 ```bash
 git clone https://github.com/cheah505-cyber/agent-handoff-protocol.git
 cd agent-handoff-protocol
-npm test                       # 22 tests, 15 of them negative fixtures
+npm test                       # 22 tests at v0.1.0; 27 now
 node bin/ahp.mjs check         # 12 gates
 node bin/ahp.mjs init /tmp/demo && cd /tmp/demo
 # now deliberately change HANDOFF.md's last_verified_command to "ahp pause"
@@ -223,7 +225,7 @@ And the cheapest place to start is not a tool. It is this: **the next time you h
 | Number | Source |
 |---|---|
 | 12 gates, 0 FAIL | `node bin/ahp.mjs check`; gate list in `SPEC.md` §6 |
-| 22 tests (15 negative, 6 CLI, 1 positive) | `npm test` |
+| 22 tests at v0.1.0 (15 negative, 6 CLI, 1 positive); 27 now | `npm test` |
 | 12 contradictions in the learning project | `docs/case-studies.md` case 8 |
 | Cold reads 8 / 3 / 5 on AHP itself | `docs/lessons-from-production.md` §3.7; `HANDOFF.md` §1 |
 | Production project: 70+ files, 279 links, 211 KB, 185 KB, 5 mirrors | `docs/lessons-from-production.md`, preamble |

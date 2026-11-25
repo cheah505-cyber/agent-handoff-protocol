@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: gate-hardening-shipped
-- Next: Open `AHP-CONTENT-002`: the security-circle article 《Agent 的记忆是攻击面》 (先知 / FreeBuf / 安全客 / LinkedIn), reviewer `deepseek/deepseek-flash`. Fold the provenance question from the dev.to thread into it as a section.
+- Phase: security-article-reviewed
+- Next: Publish `docs/agent-memory-attack-surface.md` in one security channel (先知 / FreeBuf / 安全客) after the user picks the order; decide whether to also write the English version for LinkedIn; then start the 90-day roadmap (awesome lists, one free assessment).
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -51,6 +51,13 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Did:** Published the Chinese war story to 掘金 (https://juejin.cn/post/7711934164547141659 — category 人工智能, tag AI编程, 原创, 所有人可见, no review banner) and drove the browser through juejin's editor: the real editor route is `/editor/drafts/new?v=2`, not `/creator/post`, which redirects to the home page. Then corrected the language split: wrote `docs/war-story.en.md` and `docs/memory-security-checklist.en.md`, made `README.md` English and moved the Chinese quickstart to `README.zh-CN.md`.
 - **Learned:** Three platform facts cost real time and are worth writing down. (1) 掘金's tag select is a Vue multi-select whose options only commit on a real click — `fill` + Enter sets the search text and adds nothing; the same applies to dev.to's tag autocomplete. (2) The OpenCode desktop app's browser is **Electron**, and Cloudflare scores it as automated: V2EX serves an interstitial on every page, the challenge loops (`cf_chl_rc_ni` climbing, a new Ray ID per reload) and never issues `cf_clearance` — while the **same egress IP** gets HTTP 200 from `curl` on `/`, `/signin` and `/go/share`. So the blocker is the browser environment, not the IP, the network, or the human clicking. (3) A Cloudflare human check is a human check; automating it would defeat its purpose, so that platform stays manual.
 - **Next:** Post the Chinese article to V2EX from a normal browser; add the two missing 掘金 tags in 创作者中心; then open `AHP-CONTENT-002` (reviewer `deepseek/deepseek-flash`).
+
+### 2026-11-25 · Gate hardening + the security article `#result-content-v0.2`
+
+- **Did:** Extended `SECRETS` to scan `docs/**/*.md` (recursive, case-insensitive, dotfiles included) with four new negative fixtures, and wrote `docs/agent-memory-attack-surface.md` (3209 Chinese characters) for the security audience. Reviewed by `deepseek/deepseek-flash`; findings and dispositions in `docs/reviews/2026-11-25-deepseek-flash.md`. Test suite is 27, of which 20 are negative fixtures.
+- **Learned:** The reviewer caught the exact failure the protocol is about — a claim ("三类真实发生过的失败") that cited files which do not contain that class. The template-supply-chain case exists only as a threat-model hypothesis, so it had to be labelled "未观测". It also caught that the already-published war story said 22/15 while the new article said 23/16: the fix was to label the war story as a v0.1.0 snapshot, not to rewrite published history. And it found a real regression in my own change: `docs` as a regular file threw inside `buildContext`, so `check --json` returned `ENOTDIR` text instead of JSON — a case where a new gate path broke the machine-readable contract.
+- **Also learned:** 掘金 allows exactly one tag per article, so the "add Agent/GitHub tags" item was never achievable; recorded as a platform limit rather than an unfinished task. 知乎's draft and session were both lost to its anti-automation check, so that publication is handed back to the human.
+- **Next:** publish the security article in one security channel (先知 / FreeBuf / 安全客), decide on the English version for LinkedIn, then move to the 90-day roadmap (awesome lists / one free assessment).
 
 ### 2026-11-25 · First external signals: two dev.to comments `#result-external-signal`
 

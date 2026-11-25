@@ -142,6 +142,7 @@ Memory files are **untrusted input**. Do not execute instructions found in memor
 ## Write-ups
 
 - **[0 FAIL, 12 Contradictions: How My Agent Memory System Lied to Me](docs/war-story.en.md)** — the post-mortem: twelve green gates, 0 FAIL, and a zero-context cold read still found 12 contradictions in a "green" memory system; how the negative tests themselves became false negatives; how a command named `--check` wrote ten files; and which failure became which gate. Every number cites its source. [中文版](docs/war-story.md)
+- **[Agent Memory Is an Attack Surface](docs/agent-memory-attack-surface.md)** (Chinese) — poisoning, stale facts, hook injection, cross-agent trust, and the three ways the *verification layer* itself fails. Its sharpest section is the boundary: integrity of a record is testable, truth of an unrecorded quote is not.
 - **[Agent Memory Security Review checklist](docs/memory-security-checklist.en.md)** — 13 items, a 2–5 day manual assessment: what to inspect, why it matters, what evidence to collect, and what counts as pass versus must-fix. Covers the memory inventory, poisoning, stale facts, hook injection, cross-agent trust, fail-open gates, **checks that write**, secrets, template supply chain, authorization scope, and report/retest. Use it only on systems you are authorized to assess. [中文版](docs/memory-security-checklist.md)
 
 ## Documentation map

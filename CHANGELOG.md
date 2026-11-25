@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- `SECRETS` now scans `docs/**/*.md` as well as the core files and `memory/`, so published documents are inside the backstop. New negative test (`SECRETS rejects a token in docs`); `SPEC.md`, `docs/limits.md`, and both READMEs updated. 23 tests.
+- `SECRETS` now scans `docs/**/*.md` (case-insensitive, dotfiles included) as well as the core files and `memory/`, so documents under `docs/` are inside the backstop. `publish/` and `tasks/` are **not** scanned (see `docs/limits.md` §1). New negative tests: a token under `docs/`, in a dotfile, in an uppercase `.MD`, and a modern `sk-` key; plus a guard for `docs` being a regular file. `SPEC.md`, `docs/limits.md`, and both READMEs updated. 27 tests.
 
 ## v0.1.0 — 2026-11-25
 

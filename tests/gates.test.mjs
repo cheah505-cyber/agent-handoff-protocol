@@ -198,6 +198,47 @@ test("SECRETS rejects a token in docs", () => {
   }
 });
 
+test("SECRETS rejects a token in a dotfile under docs", () => {
+  const root = makeProject();
+  try {
+    write(root, "docs/.drafts.md", "AKIAABCDEFGHIJKLMNOP\n");
+    assert.equal(gate(report(root), "SECRETS").status, "FAIL");
+  } finally {
+    cleanup(root);
+  }
+});
+
+test("SECRETS rejects a token in an uppercase .MD", () => {
+  const root = makeProject();
+  try {
+    write(root, "docs/NOTE.MD", "AKIAABCDEFGHIJKLMNOP\n");
+    assert.equal(gate(report(root), "SECRETS").status, "FAIL");
+  } finally {
+    cleanup(root);
+  }
+});
+
+test("SECRETS rejects a modern sk- key", () => {
+  const root = makeProject();
+  try {
+    write(root, "docs/note.md", "sk-proj-abcdefghijklmnopqrstuvwxyz123456\n");
+    assert.equal(gate(report(root), "SECRETS").status, "FAIL");
+  } finally {
+    cleanup(root);
+  }
+});
+
+test("SECRETS survives docs being a regular file", () => {
+  const root = makeProject();
+  try {
+    write(root, "docs", "not a directory\n");
+    const result = report(root);
+    assert.equal(gate(result, "SECRETS").status, "PASS");
+  } finally {
+    cleanup(root);
+  }
+});
+
 test("GIT_STATE rejects PAUSED with a dirty tree", () => {
   const root = makeProject({ git: true });
   try {

@@ -142,6 +142,7 @@ memory/              本仓库自己的教训库
 ## 复盘文章与评估清单
 
 - **[《0 FAIL，12 处矛盾：我的 Agent 记忆系统是如何骗了我的》](docs/war-story.md)** — 一次诚实的复盘：门禁全绿时，冷读在四个核心文件里找出 12 处矛盾；负向测试怎么自己变成假阴性；一个叫 `--check` 的命令居然会写文件；以及这些失败分别变成了哪条门禁。文章里的每个数字都标了出处。[English](docs/war-story.en.md)
+- **[《Agent 的记忆是攻击面：投毒、过期事实与假绿门禁》](docs/agent-memory-attack-surface.md)** — 面向安全从业者：四类记忆攻击、三类验证层攻击，以及那条边界——记录完整性可测，未记录言语的真实性不可测。
 - **[Agent 记忆安全评估清单](docs/memory-security-checklist.md)** — 13 项，2–5 天可跑完的人工评估流程：查什么、为什么重要、要留什么证据、什么算通过。覆盖记忆清单、投毒、过期事实、hook 注入、跨 Agent 信任、fail-open 门禁、会写的检查、密钥、模板供应链、授权范围、报告与复测。**只在有书面授权的系统上使用。** [English](docs/memory-security-checklist.en.md)
 
 ## 开源搭配报告

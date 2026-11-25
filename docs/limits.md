@@ -10,7 +10,7 @@ AHP exists because a memory system can be **structurally green and semantically 
 - The index does not contain dynamic state.
 - The memory index and wiki links are closed.
 - The derived status block matches `HANDOFF.md`.
-- A high-confidence secret pattern is absent from the core files, `memory/`, and `docs/` (recursive).
+- A high-confidence secret pattern is absent from the core files, `memory/`, and `docs/` (recursive, case-insensitive, dotfiles included). **Not scanned:** symlinked directories under `docs/`, and the `publish/` and `tasks/` roots. A token pasted there will not be caught.
 - A `PAUSED` tree is clean and the handoff's commit day matches its `updated_at`.
 
 ## 2. What the gates cannot see
@@ -72,6 +72,7 @@ AHP is a handoff protocol, not a project management system.
 - Keep `handoffDays` short enough to catch drift, long enough to survive a vacation. 21 days is a starting point.
 - If a gate produces the same warning for months, either fix the state or remove the gate with a written reason. Do not train people to ignore red.
 - `--strict` turns warnings into a non-zero exit for CI. Use it on release branches, not on every local run.
+- `--strict` escalates `WARN` but **not** `SKIP`. A gate that could not run (for example `GIT_STATE` outside a git repository) still counts as green. If you need fail-closed CI, treat `SKIP` as a failure in your own wrapper — the CLI does not.
 - Commit-day checks are sensitive to squash merges and rebases. If your workflow rewrites dates, relax that gate explicitly and record why.
 
 ## 6. Cold read: the minimum useful version

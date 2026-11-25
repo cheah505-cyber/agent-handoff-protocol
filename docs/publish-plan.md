@@ -17,7 +17,7 @@
 |---|---|---|---|
 | 掘金 | ✅ 已发布 | 中文 | https://juejin.cn/post/7711934164547141659 |
 | dev.to | ✅ 已发布 | 英文 | https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 |
-| 知乎 | ⚠️ 已备好，等人工点发布 | 中文 | 编辑器已填满（7853 字，草稿已存）；发布接口返回 `code 2015 网络环境或行为异常，请进行安全验证` |
+| 知乎 | ⛔ 交给用户 | 中文 | 草稿与登录态均已丢失；内容随时可从 `publish/war-story.zhihu.md` 重建。用户自行处理 |
 | V2EX | ⛔ 不可发 | 中文 | 注册需邀请码；无码 |
 | SegmentFault | ⛔ 放弃 | 中文 | 新号（声望 0）无发文章权限；已换 CSDN |
 | CSDN | ✅ 已发布（审核中） | 中文 | https://blog.csdn.net/WillCheah/article/details/171375400 |
@@ -54,7 +54,7 @@
 
 https://juejin.cn/post/7711934164547141659
 
-- 分类：人工智能；标签：`AI编程`（**待补** `Agent`、`GitHub`，发布面板的多选只吃手动点击）
+- 分类：人工智能；标签：`AI编程`。**掘金一篇文章最多一个标签**，所以 `Agent`、`GitHub` 补不上——这是平台上限，不是没做完。
 - 摘要、原创、所有人可见、审核正常
 
 ## 2. dev.to ✅
@@ -64,9 +64,9 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 - 标签 `devtools` `ai` `llm` `agents`；description 98 字符；canonical 指向仓库
 - 账号用户名已设为 `willcheah`（原为空，dev.to 会用账号 id 当 URL 前缀）
 
-## 3. 知乎 ⚠️
+## 3. 知乎 ⛔（交给用户）
 
-**编辑器里已经全部填好，只差人工点"发布"。**
+**草稿已丢、登录态已失效。** 内容随时可重建，步骤如下（用户自行执行）：
 
 - 编辑地址：`https://zhuanlan.zhihu.com/write?edit=2108971189200855862`
 - 标题、正文（7853 字，13 个小标题、4 张表、4 段代码）已就位
