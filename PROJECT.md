@@ -34,6 +34,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - Should v0.2 add a **superseded-by check** — every still-open claim older than the freshness window must point at a successor or carry a retirement marker (proposed by `mickyarun` on dev.to, comment `3mg2o`, reply `3mh1d`)? It is cheap to compute and catches two live versions of one decision, but it would move the `12 gates / 27 tests` counts that published posts quote, so it waits for a minor release.
 
 ## Retrospective
+> Entries are append-only and written on their date. File names, counts, channel states and tenses are as of that entry; present state is in `HANDOFF.md`.
 
 ### 2026-11-25 · Build, cold reads, and v0.1 release `#result-v0.1`
 
