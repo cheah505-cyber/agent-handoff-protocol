@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: security-article-submitted
-- Next: After 先知 or 安全客 publishes the security article (both are 待审核): if 先知 passes first, correct its live text — the CANNOT VERIFY sentence and the two appendix citations in §5 — then publish CSDN as 转载 with a first-published line (`docs/publish-plan.md` §7.4). If 安全客 passes first, 先知 may reject the duplicate. In parallel: one English community (HN or r/netsec) from §7.2, and the user's 知乎 publication from `publish/war-story.zhihu.md`.
+- Phase: awaiting-channel-review
+- Next: On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (§4 item 0), the Help Net Security follow-up on 2026-12-10, and answering PR insodimension/awesome-agent-protocols#36. 知乎 is the user's.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -96,3 +96,11 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Learned:** the audit found a bug the test suite could not: with `updated_at: "not-a-date"`, the deferred commit-day message printed `matches today` in the same run where `HANDOFF_SCHEMA` rejected the date — a message asserting a comparison it never made. Fixed by emitting the detail only when the value parses. That is the third instance of the same lesson: the verifier's own output is part of the verifier, and nothing was checking it.
 - **Learned (scope):** two items are N/A for a local CLI (no roles, no target list), and one is a genuine FAIL: prose cannot distinguish a fact from an instruction, and AHP performs no actions, so nothing intercepts at the action layer. Both are now named in `docs/limits.md` §2 instead of being implied by the article that recommends the checklist.
 - **Next:** the accepted finding with a trigger is `HANDOFF.md` size (16 KB, §1 alone 7.1 KB); trim to `PROJECT.md` when it passes ~20 KB.
+
+### 2026-11-26 · Distribution: six live places, two pending, and the work that is not publishing `#result-distribution`
+
+- **Did:** Six live publications (掘金, CSDN, dev.to ×2, LinkedIn, r/LLMDevs) with an English version written, reviewed by `deepseek-flash`, corrected against that review, and republished in place. Two Chinese channels submitted (先知, 安全客). A pitch sent to Help Net Security, an awesome-list PR opened, GitHub Discussions enabled, and a v0.1.0 release published for a tag that had none.
+- **Learned (platforms):** r/netsec's rule 9 bans AI-generated posts — read the sidebar before composing, not after; Hacker News has account creation closed; Reddit's JSON API returns 403 here while the page works. The pattern is that every channel's gate is different, and the cost of not reading it is a removed post plus a spam record.
+- **Learned (tooling):** `raw.githubusercontent.com` lags a push, so publishing from raw can write the *old* body back and still return success. Poll a sentinel string from the new revision first. Same class as the CI story: the confirmation looked like success.
+- **Learned (numbers):** adding fixtures moves counts that published prose quotes. That is why the GIT_STATE hardening landed as a diagnostic plus a contract step, not as a new FAIL gate: the second option would have forced a third errata round on three platforms for no additional protection.
+- **Next:** the two pending reviews decide the order (先知-first makes 安全客 a 转载); CSDN follows as 转载; HNS follow-up 2026-12-10.
