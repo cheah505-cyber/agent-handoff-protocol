@@ -135,7 +135,7 @@ https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lie
 |---|---|
 | 登录 | `https://passport.csdn.net/login`（微信扫码 / 手机号验证码） |
 | Markdown 编辑器 | `https://editor.csdn.net/md/` |
-| 文章 | https://blog.csdn.net/WillCheah/article/details/171375400 |
+| 文章 | https://blog.csdn.net/WillCheah/article/details/171375930 （`171375400` 是导入时被新建的旧稿，已删） |
 | 标题 | `0 FAIL，12 处矛盾：我的 Agent 记忆系统是如何骗了我的` |
 | 正文 | 导入 `publish/war-story.zhihu.md`（编辑器有 `#import-markdown-file-input`；导入会用文件名覆盖标题，**导入后要重填标题**） |
 | 文章类型 | 原创 |
@@ -197,7 +197,7 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 | `publish/agent-memory-attack-surface.html` | 备用（富文本粘贴），裸 URL 已转成可点链接 |
 | `publish/agent-memory-attack-surface.meta.md` | 标题/摘要/分类/标签 + 逐站步骤 + 发布顺序 |
 
-**发布顺序：先知 → FreeBuf → 安全客。** 安全客《投稿须知》要求首发且发布后不得再往第三方平台投稿同一篇，所以它必须放最后。只发一个的话选先知（受众最对口）。
+**渠道现状（2026-11-26）：** 先知与安全客均已提交（`待审核`）；FreeBuf 放弃（405，用户浏览器同样被拦）。**谁先过审谁定首发**——安全客《投稿须知》要求在其平台首发，所以若先知先上线，安全客那份要补 `本文首发于先知社区 <链接>`。CSDN 备好未发（即时发布，会抢走首发），等任一上线后按转载发，见 §7.4。
 
 各站实测（2026-11-26）：
 

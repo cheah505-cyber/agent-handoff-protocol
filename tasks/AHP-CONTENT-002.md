@@ -54,7 +54,7 @@ Depends on: AHP-CONTENT-001 (war story + checklist published)
 - [ ] `docs/agent-memory-attack-surface.md` 存在，并从 `README.md` / `INDEX.md` 链接。
 - [ ] 每个数字可追溯到仓库文件或命令输出。
 - [ ] 无密钥、客户数据、生产细节。
-- [ ] `npm test` 23/23；`node bin/ahp.mjs check` 0 FAIL；`node bin/ahp.mjs sync --check` pass。
+- [ ] `npm test` 27/27；`node bin/ahp.mjs check` 0 FAIL；`node bin/ahp.mjs sync --check` pass。
 - [ ] DeepSeek (`deepseek/deepseek-flash`) 审查结论已逐条裁决，记录进 `docs/reviews/`。
 - [ ] 零上下文冷读能从四文件说出下一动作。
 
@@ -69,6 +69,6 @@ Depends on: AHP-CONTENT-001 (war story + checklist published)
 
 ## Open questions for the user
 
-- 发布渠道顺序：先知 / FreeBuf / 安全客 / LinkedIn？
+- ~~发布渠道顺序：先知 / FreeBuf / 安全客 / LinkedIn？~~ 已定并执行：先知 + 安全客（均在审）、dev.to + LinkedIn + r/LLMDevs（已发）、CSDN（等首发）、FreeBuf（放弃）。
 - 是否同时出英文版（LinkedIn 需要）？
 - 评论区策略：只答技术问题，不接单——是否延续 war story 那篇的规则？
