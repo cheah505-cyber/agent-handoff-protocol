@@ -1,5 +1,7 @@
 # Agent Handoff Protocol (AHP)
 
+[![check](https://github.com/cheah505-cyber/agent-handoff-protocol/actions/workflows/check.yml/badge.svg)](https://github.com/cheah505-cyber/agent-handoff-protocol/actions/workflows/check.yml)
+
 > [English version](README.md) · 英文文档：见 [README.md](README.md)
 
 **给 AI 编码 Agent 的、可机器检查的交接协议。** 不靠聊天记录，不靠“我记得”；靠磁盘上的四个文件、十二条门禁和一次冷读。

@@ -2,6 +2,8 @@
 
 **A machine-checkable handoff protocol for AI coding agents.** No chat history, no "I remember" — four files on disk, twelve read-only gates, and one cold read.
 
+[![check](https://github.com/cheah505-cyber/agent-handoff-protocol/actions/workflows/check.yml/badge.svg)](https://github.com/cheah505-cyber/agent-handoff-protocol/actions/workflows/check.yml)
+
 > [中文版 (Chinese)](README.zh-CN.md) · 中文文档：见 [README.zh-CN.md](README.zh-CN.md)
 
 > This is not another vector memory store. It does not try to remember more. It makes the **current state trustworthy** when the session changes.
