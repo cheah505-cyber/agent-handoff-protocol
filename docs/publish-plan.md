@@ -177,7 +177,7 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 |---|---|---|---|---|
 | dev.to | 无审核，已有账号 `willcheah` | 开发者 / AI 工具 | 低 | **首选**，当天可发；标签 `security` `ai` `agents` |
 | LinkedIn | 无审核，走你自己的网络 | 企业安全 / 决策者 | 低 | 同日发；可精简到 800 词 + 仓库链接 |
-| Hacker News | 无审核，靠投票，方差极大 | 全球技术社区 | 中 | 陈述式标题，**不写 Show HN**（这是文章不是产品）；只发一次 |
+| Hacker News | 无审核，靠投票，方差极大 | 全球技术社区 | 中 | 陈述式标题，**不写 Show HN**；只发一次。2026-11-26：**注册关闭**（`Sorry, account creation disabled`），无老账号则不可用 |
 | r/netsec | ⛔ **规则 9：No AI-generated posts** | 安全从业者，最对口 | — | 本篇由 AI 起草、人工审阅，按字面不合规；**不投**。另见 `§7.2.2` |
 | Medium / Hashnode / Substack | 无审核，无自然流量 | 你的订阅者 | 低 | 只做镜像，canonical 指回 dev.to |
 | Help Net Security / Dark Reading / CSO / InfoQ | 需 pitch，编辑决定 | 行业信誉 | 高 | 只挑一家 pitch；被接受才写定制版 |
@@ -200,6 +200,18 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 9. **No AI-generated posts.**
 
 第 9 条直接排除这篇：正文由 AI 起草、人工审阅与修订。投递即违规，且与项目「每条声明可追溯」的原则冲突——藏起来发比不发更糟。提交包已作废（标题、链接、flair 曾备好，不再使用）。
+
+### 7.2.3 r/LLMDevs（规则已核，提交待验证码）
+
+规则（`reddit.com/r/LLMDevs` sidebar，2026-11-26）：1 尊重、2 披露提问/调研目的、3 准确、4 与 LLM/NLP 相关、5 **非商业性自我推广**（分享而非营利）、6 禁低质/spam、7 **必须给来源**、8 无 NSFW、9 守 Reddit 规则、10 禁伪装广告。**没有 AI 内容禁令**，且这篇有仓库出处、MIT、免费清单，符合 5 与 7。
+
+| 项 | 值 |
+|---|---|
+| 版块 | `r/LLMDevs`（Link post） |
+| 标题 | `Agent memory as an attack surface: poisoned facts, stale decisions, and checks that fail open` |
+| 链接 | https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7 |
+
+状态：表单已填（`sr=LLMDevs`，标题 93 字符，URL 69 字符），卡在 old.reddit 的 reCAPTCHA（520×78，需人工过）。通过后点 `submit`，再核对是否被自动过滤（新号常见）。
 
 ### 7.2.2 替代：Hacker News
 
