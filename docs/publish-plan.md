@@ -11,6 +11,40 @@
 | dev.to | 国际 | 英文 |
 | 掘金 / 知乎 / V2EX / SegmentFault / 博客园 / 即刻 | 中文 | 中文 |
 
+## 已发布清单（全部链接）
+
+| # | 渠道 | 语言 | 内容 | 链接 | 日期 |
+|---|---|---|---|---|---|
+| 1 | 掘金 | 中文 | war story | https://juejin.cn/post/7711934164547141659 | 2026-11-25 |
+| 2 | CSDN | 中文 | war story | https://blog.csdn.net/WillCheah/article/details/171375930 | 2026-11-25 |
+| 3 | dev.to | 英文 | war story | https://dev.to/willcheah/0-fail-12-contradictions-how-my-agent-memory-system-lied-to-me-on0 | 2026-11-25 |
+| 4 | dev.to | 英文 | 安全文章 | https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7 | 2026-11-26 |
+| 5 | LinkedIn | 英文 | 安全文章（动态） | 个人动态页可见，平台不暴露稳定 post URL | 2026-11-26 |
+| 6 | r/LLMDevs | 英文 | 安全文章（Link post, flair Resource） | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ | 2026-11-26 |
+
+**待审**：先知（安全文章，`待审核`）· 安全客（安全文章，`待审核`）。
+**已备好未发**：CSDN 安全文章（等上面任一过审，按转载 + 首发声明，见 §7.4）。
+**放弃**：V2EX（邀请码）· SegmentFault（无发帖权限）· 博客园（需审核）· FreeBuf（405）· r/netsec（规则 9 禁 AI 生成内容）· Hacker News（注册关闭）。
+
+## 留言维护
+
+**自动**：每日 09:00（Asia/Shanghai）跑一次 `comment-watch: dev.to articles`（automation `aut_2154709aa001HLZDuUgzmxt9EG`）。它抓两篇文章的全部评论，和上次见过的 id 比对，只在有新评论时把 id / 作者 / 摘要发回主会话。首次运行只建基线，不打扰。
+
+**手动**（自动哨兵覆盖不到，需浏览器登录态）：
+
+```bash
+# dev.to 当前评论（随时可查）
+curl -s "https://dev.to/api/comments?a_id=5114702" | jq length   # war story
+curl -s "https://dev.to/api/comments?a_id=5119922" | jq length   # 安全文章
+```
+
+- Reddit：`old.reddit.com/r/LLMDevs/comments/1y5ncu9/`（Reddit 的 JSON 接口对本环境返回 403，只能开页面看）
+- 掘金：`juejin.cn/post/7711934164547141659` 底部评论区
+- CSDN：`blog.csdn.net/WillCheah/article/details/171375930` 底部
+- LinkedIn：页面通知角标（有评论会进通知）
+
+**回复纪律**：只回技术问题；承认错误要具体；不得使用已被复审推翻的说法（门禁那次是"诊断 + 提交后检查再推送"，不是"新增 FAIL 门禁"）；不接单、不报价。
+
 ## 状态总表
 
 | 平台 | 状态 | 语言 | 链接 / 阻塞原因 |
