@@ -59,7 +59,8 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 1. **Watch both reviews** — 先知 `xz.aliyun.com/account/articles` and 安全客 `anquanke.com/contribute/manager`, both 待审核. If 先知 passes first, correct its live copy on the one contradiction (`在清单里给它一个独立状态…不同于缺权限`) plus the two appendix citations (see §5), then decide whether the 安全客 copy needs a `本文首发于先知社区 <链接>` line. If 安全客 passes first, 先知 may reject the duplicate — withdraw there or accept it.
 2. **English track**: dev.to and LinkedIn are live. Next is one community (HN or r/netsec, not both), then at most one editorial pitch — `docs/publish-plan.md` §7.2.
 3. 知乎: the user handles it from `publish/war-story.zhihu.md`; do not automate past its security check.
-4. Then start the 90-day roadmap (`docs/open-source-report.md` §11): submit to one or two awesome lists / newsletters, and line up one free or low-price assessment for a testimonial.
+4. **CSDN** is prepared but held on purpose: it publishes instantly, so it would take the 首发 claim from 先知 and 安全客. After either goes live, publish `publish/agent-memory-attack-surface.md` there as 转载 with a `本文首发于 <平台>：<链接>` line — steps and quirks in `docs/publish-plan.md` §7.4 (the importer uses the filename as the title).
+5. Then start the 90-day roadmap (`docs/open-source-report.md` §11): submit to one or two awesome lists / newsletters, and line up one free or low-price assessment for a testimonial.
 **Acceptance:** the security article is published in at least one security channel and its URL is recorded in §6; `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.
 ## 5. Open risks
 - AHP has its own git repository. Verify `git rev-parse --show-toplevel` before committing; never commit AHP content to the parent workspace repo.

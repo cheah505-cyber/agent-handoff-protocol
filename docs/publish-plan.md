@@ -215,6 +215,21 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 >
 > #AISecurity #AgenticAI #AppSec #LLM
 
+### 7.4 CSDN（等一个渠道过审后再发）
+
+正文：`publish/agent-memory-attack-surface.md`（修正后版本）。**CSDN 是即时发布、无人工审核**，所以它会抢在先知/安全客之前成为首发——这正是暂缓的原因。
+
+**触发条件**：先知或安全客任一上线后，CSDN 按**转载**发布，正文末尾加一行 `本文首发于 <平台>：<链接>`。
+
+操作要点（2026-11-26 实测）：
+
+- 编辑器 `https://editor.csdn.net/md/` 已登录（`UserName=WillCheah`）；`#import-markdown-file-input` 存在，标题输入框存在。
+- **导入用文件名当标题**：把 File 的 `name` 设成 `Agent 的记忆是攻击面：投毒、过期事实与假绿门禁.md`，标题就自动正确；否则导入后手动重填（导入会覆盖标题）。
+- 标签和摘要在点「发布文章」之后的弹窗里；标签必须点 autocomplete 建议项，直接回车报「博客等级不满足三级」。
+- 摘要用 `publish/agent-memory-attack-surface.meta.md` 里的短摘要（≤100 字）。
+- 「文章备份到 GitCode」保持关闭。
+- 发布后核对：文章 id 是新的、管理列表里只有这一篇（不是两篇）、正文搜「假绿门禁」确认没被截断。
+
 ## 8. 红线
 
 - 不出现客户名、生产 URL、内部数据、本机路径。
