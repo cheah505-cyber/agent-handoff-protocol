@@ -24,6 +24,13 @@ AHP 用四个核心文件 + 12 条门禁 + 一次冷读，把这六类问题压�
 
 ## 快速开始
 
+在空目录里三行跑通——不用安装、不用构建：
+```bash
+git clone --depth 1 https://github.com/cheah505-cyber/agent-handoff-protocol ahp
+node ahp/bin/ahp.mjs init demo
+cd demo && node ../ahp/bin/ahp.mjs check
+```
+
 在本仓库内：
 
 ```bash
@@ -128,6 +135,17 @@ tests/               22 个正/负向测试
 docs/                设计、限制、安全、案例、开源报告、复盘文章、评估清单
 memory/              本仓库自己的教训库
 ```
+
+## 相邻项目
+
+这个方向不是空的，差别值得说清：
+
+- [CHAP](https://github.com/BrightbeamAI/chap)：面向人机团队的协作协议，兼容 MCP/A2A。
+- [agent-orchestra](https://github.com/3338902669-ops/agent-orchestra)：多智能体工作的治理协议；没有门禁，智能体不能宣告成功。
+- [claude-codex-handoff](https://github.com/OpenMOSS/claude-codex-handoff)：两个智能体之间用追加式消息流、租约和会话游标交接。
+- [grove](https://github.com/alxshelepenok/grove)：面向编码智能体的机器强制工作流协议。
+
+AHP 更窄：没有常驻服务、没有消息总线、没有调度器。它就是一次会话交给下一次的状态，外加一个**连自己怎么骗自己都有负向测试**的验证器（`docs/limits.md`）。
 
 ## 这不是什么
 

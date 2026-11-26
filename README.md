@@ -24,6 +24,13 @@ AHP compresses those six failure modes into four core files, twelve gates, and o
 
 ## Quickstart
 
+From a clean directory, three lines — no install, no build step:
+```bash
+git clone --depth 1 https://github.com/cheah505-cyber/agent-handoff-protocol ahp
+node ahp/bin/ahp.mjs init demo
+cd demo && node ../ahp/bin/ahp.mjs check
+```
+
 From this repository:
 
 ```bash
@@ -128,6 +135,17 @@ tests/               22 positive/negative tests
 docs/                design, limits, security, cases, write-ups
 memory/              this repository's own lessons
 ```
+
+## Adjacent projects
+
+The category is not empty, and the differences matter:
+
+- [CHAP](https://github.com/BrightbeamAI/chap) — a coordination protocol for human–agent teams, MCP/A2A-compatible.
+- [agent-orchestra](https://github.com/3338902669-ops/agent-orchestra) — governed coordination for multi-agent work; an agent cannot declare success without a gate.
+- [claude-codex-handoff](https://github.com/OpenMOSS/claude-codex-handoff) — append-only message streams with leases and per-session cursors between two agents.
+- [grove](https://github.com/alxshelepenok/grove) — a machine-enforced workflow protocol for coding agents.
+
+AHP is narrower: no service, no message bus, no scheduler. It is the state one agent hands to the next, plus a verifier whose own failure modes have negative tests (`docs/limits.md`).
 
 ## What this is not
 
