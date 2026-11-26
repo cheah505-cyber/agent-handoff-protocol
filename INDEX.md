@@ -20,6 +20,7 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [tests/cli.test.mjs](tests/cli.test.mjs) | CLI tests |
 | [docs/design.md](docs/design.md) | Design rationale |
 | [docs/limits.md](docs/limits.md) | Known limits, false confidence, and the cold read for prose handoffs |
+| [docs/v0.2-candidates.md](docs/v0.2-candidates.md) | Reader-proposed checks, spike results, and the four-condition admission rule |
 | [docs/security.md](docs/security.md) | Memory security threat model |
 | [docs/lessons-from-production.md](docs/lessons-from-production.md) | Distilled production lessons |
 | [docs/case-studies.md](docs/case-studies.md) | Failure cases that shaped the gates |
