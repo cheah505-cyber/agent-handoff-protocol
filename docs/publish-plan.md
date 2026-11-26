@@ -38,6 +38,9 @@ curl -s "https://dev.to/api/comments?a_id=5114702" | jq length   # war story
 curl -s "https://dev.to/api/comments?a_id=5119922" | jq length   # 安全文章
 curl -s "https://dev.to/api/comments?a_id=5124228" | jq length   # 10 分钟演示
 ```
+> `jq length` 只数**根评论**，嵌套回复会漏。要数全部节点：
+> `curl -s "https://dev.to/api/comments?a_id=<id>" | jq '[.. | .id_code? // empty] | length'`
+> 2026-11-26 就是这样漏掉了 salparvez 的一条二级回复（`3mh7k`）。
 
 2. **Reddit** — `old.reddit.com/r/LLMDevs/comments/1y5ncu9/`（JSON 接口对本环境 403，只能开页面）。
 3. **掘金** — `juejin.cn/post/7711934164547141659` 底部评论区（当前 0）。
