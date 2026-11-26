@@ -1,7 +1,7 @@
 {
-  "name": "agent-handoff-protocol",
-  "version": "0.1.0",
-  "description": "A machine-checkable handoff protocol for AI coding agents.",
+  "name": "agent-handoff-cli",
+  "version": "0.1.1",
+  "description": "The state one AI coding session hands to the next: four Markdown files, 12 read-only gates, and negative tests for the verifier itself.",
   "type": "module",
   "bin": {
     "ahp": "./bin/ahp.mjs"
@@ -21,7 +21,10 @@
     "handoff",
     "memory",
     "governance",
-    "developer-tools"
+    "developer-tools",
+    "handoff-protocol",
+    "agent-memory",
+    "context-engineering"
   ],
   "license": "MIT",
   "files": [
@@ -33,5 +36,13 @@
     "README.zh-CN.md",
     "SPEC.md",
     "LICENSE"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheah505-cyber/agent-handoff-protocol.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cheah505-cyber/agent-handoff-protocol/issues"
+  },
+  "homepage": "https://github.com/cheah505-cyber/agent-handoff-protocol#readme"
 }

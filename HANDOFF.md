@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-26T11:35:00+08:00"
+updated_at: "2026-11-26T11:55:00+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "awaiting-channel-review"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "The security article is published in at least one Chinese security 
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "user: report the 先知 / 安全客 review outcome, decide the Chinese wait on 2026-11-27, and publish 知乎; upstream: awesome-list PR insodimension/awesome-agent-protocols#36"
-last_verified_at: "2026-11-26T11:35:00+08:00"
+last_verified_at: "2026-11-26T11:55:00+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -57,7 +57,8 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - **Two Chinese channels are submitted and pending review** — 先知 (`待审核`; its body is one revision behind, see §5) and 安全客 (`待审核`, corrected body). Whichever publishes first owns 首发; 安全客's rules require it there, so a 先知-first outcome makes the 安全客 copy a 转载 with a first-published line. **The wait has a decision date: 2026-11-27.** On that day the user either keeps waiting or withdraws both and publishes CSDN without a 首发 claim; the article is not left pending open-endedly.
 - **CSDN is prepared and deliberately unpublished**: it publishes instantly and would steal 首发 from both. After either channel goes live, publish `publish/agent-memory-attack-surface.md` there as 转载 with a first-published line (`docs/publish-plan.md` §7.4; the importer uses the filename as the title).
 - **English is live in three places**: dev.to (war story + security article), LinkedIn, r/LLMDevs (`Resource` flair, author comment). r/netsec is out on rule 9 (`No AI-generated posts`); Hacker News has registration closed.
-- **One external thread is open and waiting on other people**: awesome-list PR `insodimension/awesome-agent-protocols#36`. The editorial track is closed — Help Net Security rejected the AI-flagged pitch without review, and the same draft will not be sent to Dark Reading.
+- **One external thread is open and waiting on other people**: awesome-list PR `insodimension/awesome-agent-protocols#36`.
+- **npm is staged, not published**: the package is `agent-handoff-cli` 0.1.1 (the unscoped `agent-handoff-protocol` belongs to another project), `npm pack` is clean at 38 files, and only `npm login` + `npm publish` remain — both need the user's account. Until then the README keeps the git-clone path and must not advertise `npx`. The editorial track is closed — Help Net Security rejected the AI-flagged pitch without review, and the same draft will not be sent to Dark Reading.
 - 知乎 is the user's: publish from `publish/war-story.zhihu.md` (`.flat.md` if tables break), then delete the broken draft `2108969541657163196`.
 - Suite 27 / 19 negative fixtures; `check` is 12 PASS / 0 FAIL; comment checking is manual and is item 0 in §4.
 
@@ -72,6 +73,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 2b. **2026-11-27 — decide the wait.** If neither channel has reported by then, the user picks one: (a) withdraw both submissions and publish `publish/agent-memory-attack-surface.md` on CSDN now, dropping the 首发 claim and saying plainly that it was submitted elsewhere without a decision; or (b) keep waiting and keep the acceptance column saying it is not met. Record the choice in this section the same day. Do not let a third week pass without one.
 3. **Do not pitch this text again.** Help Net Security refused to review it because the email was flagged as AI-generated; the same draft at Dark Reading would meet the same rule, and rewording it to pass a detector would break the project's own honesty rule. If an editorial channel is tried later, the user writes that pitch personally and states the AI involvement.
 4. **PRs #36 and #151**: answer the maintainer's review if any; do not re-open or re-push if either is closed. #36 is `insodimension/awesome-agent-protocols`; #151 is `yzfly/awesome-context-engineering`.
+4b. **After the user runs `npm login` and `npm publish`** for `agent-handoff-cli@0.1.1`: verify `npx agent-handoff-cli init` from a clean directory, then add that line above the git-clone block in both READMEs, tag `v0.1.1`, and publish the matching GitHub release. Do not tag before the registry accepts the package.
 5. **Assessment requests**: when one arrives in Discussion #1, run the 13-item checklist read-only, fill `publish/assessment-report-template.md`, and send it before asking for the testimonial sentence. The offer is live but no request has arrived, so the testimonial item is started, not done.
 6. **Then** the rest of the 90-day roadmap (`docs/open-source-report.md` §11): one newsletter or list beyond the two PRs.
 **Acceptance:** the security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.

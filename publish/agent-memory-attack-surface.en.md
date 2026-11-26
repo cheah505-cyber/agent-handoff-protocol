@@ -161,6 +161,8 @@ I have put all of it into a **13-item assessment checklist** that takes 2–5 da
 
 There is also a runnable implementation: 12 read-only gates, 27 tests (19 of them negative fixtures that must turn red), and three cold reads that found 8, 3 and 5 problems respectively. You do not have to believe me; make it turn red yourself.
 
+If you would rather have someone run it with you: I review how one coding agent hands state to the next and send back one page with up to five findings, each tied to a file and line. Free for the first three repositories, with the limits stated up front — [the assessment offer](https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/publish/assessment-offer.md).
+
 > **Memory is not a database; it is the next round's belief state.**
 > **Once your check can no longer fail, it is just another source of drift.**
 
