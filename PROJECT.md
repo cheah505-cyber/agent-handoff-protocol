@@ -29,7 +29,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Open questions
 
 - Should `MONITORING` require explicit provider/target fields in v0.2?
-- Is the commit-day gate too strict for squash-merge workflows?
+- ~~Is the commit-day gate too strict for squash-merge workflows?~~ **Resolved 2026-11-26 by measurement:** it is strict by design. A squash-merged handoff fails until re-stamped at the merge day — one amend — and that is correct, because the merged handoff describes the merged state. Evidence and remedy in `docs/limits.md` §5.
 - Which gate is most likely to create alarm fatigue after 30 days?
 
 ## Retrospective

@@ -75,7 +75,7 @@ AHP is a handoff protocol, not a project management system.
 - If a gate produces the same warning for months, either fix the state or remove the gate with a written reason. Do not train people to ignore red.
 - `--strict` turns warnings into a non-zero exit for CI. Use it on release branches, not on every local run.
 - `--strict` escalates `WARN` but **not** `SKIP`. A gate that could not run (for example `GIT_STATE` outside a git repository) still counts as green. If you need fail-closed CI, treat `SKIP` as a failure in your own wrapper — the CLI does not.
-- Commit-day checks are sensitive to squash merges and rebases. If your workflow rewrites dates, relax that gate explicitly and record why.
+- Commit-day checks are sensitive to squash merges and rebases. Measured on 2026-11-26: a handoff authored `2026-11-24` and squash-merged on `2026-11-26` fails with `updated_at=2026-11-24 does not match its commit day=2026-11-26`. The remedy is one amend — re-stamp `updated_at` to the merge day — and it passes. That is also semantically right: the merged handoff now describes the merged state. In a squash merge the re-stamp is not a timestamp-only commit, because the commit carries the branch's content. Keep the gate; relaxing it would reintroduce the failure it exists for (a stamp that moved without the work, or work that moved without the stamp).
 
 ## 6. Cold read: the minimum useful version
 
