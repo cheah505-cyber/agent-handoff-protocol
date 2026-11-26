@@ -28,20 +28,21 @@
 
 ## 留言维护
 
-**自动**：每日 09:00（Asia/Shanghai）跑一次 `comment-watch: dev.to articles`（automation `aut_2154709aa001HLZDuUgzmxt9EG`）。它抓两篇文章的全部评论，和上次见过的 id 比对，只在有新评论时把 id / 作者 / 摘要发回主会话。首次运行只建基线，不打扰。
+**每天开工先跑一遍（全手动，不设自动任务）：**
 
-**手动**（自动哨兵覆盖不到，需浏览器登录态）：
+1. **dev.to × 2** — 数字涨了再去看内容，只回没回过的：
 
 ```bash
-# dev.to 当前评论（随时可查）
 curl -s "https://dev.to/api/comments?a_id=5114702" | jq length   # war story
 curl -s "https://dev.to/api/comments?a_id=5119922" | jq length   # 安全文章
 ```
 
-- Reddit：`old.reddit.com/r/LLMDevs/comments/1y5ncu9/`（Reddit 的 JSON 接口对本环境返回 403，只能开页面看）
-- 掘金：`juejin.cn/post/7711934164547141659` 底部评论区
-- CSDN：`blog.csdn.net/WillCheah/article/details/171375930` 底部
-- LinkedIn：页面通知角标（有评论会进通知）
+2. **Reddit** — `old.reddit.com/r/LLMDevs/comments/1y5ncu9/`（JSON 接口对本环境 403，只能开页面）。
+3. **掘金** — `juejin.cn/post/7711934164547141659` 底部评论区（当前 0）。
+4. **CSDN** — `blog.csdn.net/WillCheah/article/details/171375930` 底部（当前 0 评论 / 289 阅读），顺带看阅读增长。
+5. **LinkedIn** — 通知角标，有评论会进通知。
+6. **两个待审渠道** — 先知 `xz.aliyun.com/account/articles`、安全客 `anquanke.com/contribute/manager`。任一过审立刻连锁：改先知正文（HANDOFF §5）→ CSDN 按转载发（§7.4）→ 记录 URL。
+7. **收尾** — 回复后把回复 id 与要点记进 `PROJECT.md` 的 `#result-external-signal`，再提交。
 
 **回复纪律**：只回技术问题；承认错误要具体；不得使用已被复审推翻的说法（门禁那次是"诊断 + 提交后检查再推送"，不是"新增 FAIL 门禁"）；不接单、不报价。
 

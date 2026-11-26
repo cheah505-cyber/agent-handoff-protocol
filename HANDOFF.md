@@ -57,6 +57,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Running processes: none.
 - Blocked by: none.
 ## 4. Next action & acceptance
+0. **Daily, before other work**: run the sweep in `docs/publish-plan.md` → 留言维护 (dev.to counts, Reddit, 掘金, CSDN, LinkedIn, and both pending reviews). Reply by hand; no automation. Then continue below.
 1. **Watch both reviews** — 先知 `xz.aliyun.com/account/articles` and 安全客 `anquanke.com/contribute/manager`, both 待审核. If 先知 passes first, correct its live copy on the one contradiction (`在清单里给它一个独立状态…不同于缺权限`) plus the two appendix citations (see §5), then decide whether the 安全客 copy needs a `本文首发于先知社区 <链接>` line. If 安全客 passes first, 先知 may reject the duplicate — withdraw there or accept it.
 2. **English track**: dev.to and LinkedIn are live. Next is one community (HN or r/netsec, not both), then at most one editorial pitch — `docs/publish-plan.md` §7.2.
 3. 知乎: the user handles it from `publish/war-story.zhihu.md`; do not automate past its security check.
@@ -73,7 +74,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - **A publish action can silently create a second article.** CSDN did exactly that when an edit went through the markdown importer. After every publish, check the article id and the article count in the management list, not just the success banner.
 - Tags are not applied by clicking a list item in some editors (dev.to, CSDN): the click must land on an autocomplete suggestion. Otherwise the platform silently picks its own tag — CSDN chose `arcgis` for an article about agent memory.
 ## 6. Last verification
-- 2026-11-26 · Comment state: dev.to war story 5 comments (all answered), dev.to security 0, r/LLMDevs 1 (our author comment, no replies), 掘金 0, CSDN 289 reads / 0 comments, LinkedIn 0 notifications. `docs/publish-plan.md` now carries the consolidated published list and a comment-watch section; automation `aut_2154709aa001HLZDuUgzmxt9EG` runs the dev.to check daily at 09:00 Asia/Shanghai.
+- 2026-11-26 · Comment state: dev.to war story 5 comments (all answered), dev.to security 0, r/LLMDevs 1 (our author comment, no replies), 掘金 0, CSDN 289 reads / 0 comments, LinkedIn 0 notifications. `docs/publish-plan.md` now carries the consolidated published list and a comment-watch section; comment checking is manual and listed as item 0 in §4.
 - 2026-11-26 · r/LLMDevs post `1y5ncu9` is live, not removed, flaired `Resource`, 1 point, author comment present. dev.to `5119922` still live; LinkedIn post on the profile's activity page.
 - 2026-11-26 · LinkedIn: the composer took 1072 characters and the post is on the profile's recent activity. 安全客: `POST /data/v1/contribute` fired and `/contribute/manager` lists the article as 待审核 at 2026-11-26 08:12:48. 先知: still 待审核.
 - 2026-11-26 · dev.to `5119922` edited in place after the review: body 14773 chars, page re-read shows 3 tables / 8 h2 and the corrected sentences (`no independent evidence rather than no permission`, `absent a recording or second witness`, `8, 3 and 5 problems respectively`, `Authorization boundary (must be written)`, CTA at the end). 安全客 draft re-saved with the corrected body (6010 chars, preview renders 3 tables / 8 h2).
