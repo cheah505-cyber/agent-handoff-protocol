@@ -2,14 +2,13 @@
 
 Agent-memory demos usually show what the agent remembers. This one shows the other half: whether the state it hands to the next session is **consistent** — and what happens when two files disagree.
 
-You need Node.js 20+ and git. No API key, no model call, no install step.
+You need Node.js 20+ and npm 7+. No API key, no model call, no install step.
 
-## 1. Three lines
+## 1. Two lines
 
 ```bash
-git clone --depth 1 https://github.com/cheah505-cyber/agent-handoff-protocol ahp
-node ahp/bin/ahp.mjs init demo
-cd demo && node ../ahp/bin/ahp.mjs check
+npx agent-handoff-cli init demo
+cd demo && npx agent-handoff-cli check
 ```
 
 `init` prints the path it wrote to and the next step. `check` then prints:

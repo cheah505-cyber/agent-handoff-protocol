@@ -24,7 +24,12 @@ AHP compresses those six failure modes into four core files, twelve gates, and o
 
 ## Quickstart
 
-From a clean directory, three lines — no install, no build step:
+Two lines, from a clean directory — no install, no build step:
+```bash
+npx agent-handoff-cli init demo
+cd demo && npx agent-handoff-cli check
+```
+Or from source (pins the repository instead of the npm release):
 ```bash
 git clone --depth 1 https://github.com/cheah505-cyber/agent-handoff-protocol ahp
 node ahp/bin/ahp.mjs init demo

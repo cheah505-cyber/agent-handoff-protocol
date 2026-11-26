@@ -24,7 +24,12 @@ AHP 用四个核心文件 + 12 条门禁 + 一次冷读，把这六类问题压�
 
 ## 快速开始
 
-在空目录里三行跑通——不用安装、不用构建：
+在空目录里两行跑通——不用安装、不用构建：
+```bash
+npx agent-handoff-cli init demo
+cd demo && npx agent-handoff-cli check
+```
+或者从源码跑（跟着仓库而不是 npm 发布版）：
 ```bash
 git clone --depth 1 https://github.com/cheah505-cyber/agent-handoff-protocol ahp
 node ahp/bin/ahp.mjs init demo
