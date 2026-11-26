@@ -185,6 +185,28 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 
 **顺序**：dev.to（当天）→ LinkedIn（当天）→ 隔 2–3 天发**一个**社区（HN 或 r/netsec 二选一）→ 只对 Help Net Security 做一次 pitch。第一波反馈决定要不要加投，别同时铺开。
 
+### 7.2.1 r/netsec 提交包（2026-11-26 备好，待登录）
+
+Reddit 未登录时 `/submit` 直接跳登录页，无法代发。以下四项可直接粘贴：
+
+| 项 | 值 |
+|---|---|
+| 版块 | `r/netsec` |
+| 形式 | **Link post**（不要贴全文，r/netsec 更接受链到原站） |
+| 标题 | `Agent memory as an attack surface: poisoned facts, stale decisions, and checks that fail open` |
+| 链接 | https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7 |
+| Flair | `Research`（没有就选最接近的技术类；**不要**选 News/Discussion） |
+
+第一条评论（作者披露，r/netsec 要求透明）：
+
+> Author here. This is defensive work: four memory attack classes, three ways a verification layer fails open, and the one boundary where no fixture can exist (record integrity is testable, quote truth is not). No exploit steps, no real targets. The repo has the 13-item assessment checklist and the harness that produced the numbers: https://github.com/cheah505-cyber/agent-handoff-protocol
+
+注意事项：
+
+- 标题保持中性陈述，**不要**加 "my" / "how I" / 感叹号——r/netsec 会按标题判 spam。
+- 新号或低 karma 的 link post 常被自动过滤；若被移除，先看 modmail 原因，别重复提交。
+- 只发这一次；HN 与 r/netsec 不要同日双发（`§7.2` 的顺序）。
+
 **风险**：HN 与 r/netsec 对自我推广敏感。文章已具备给足细节的条件（四类失败形态、可查出处、13 项清单），标题里不要出现产品名，正文不要以 CTA 开头。
 
 ### 7.3 英语版状态（2026-11-26）
