@@ -1,5 +1,7 @@
 # Pitch: Help Net Security (guest piece)
 
+> **Outcome 2026-11-26: rejected without review.** The reply said the email "was flagged as AI-generated" and would not be read by an editor. This is a policy on provenance, not on the topic. Do not resend this draft, and do not send it to Dark Reading as-is; keep `hns-outline.md` for a piece the user writes personally.
+
 > Paste-ready. Fill the three `<...>` slots. Do **not** commit your email address here; the repo is public and `publish/` is not scanned by the `SECRETS` gate.
 > **Send to:** `press@helpnetsecurity.com` — verified 2026-11-26 on `helpnetsecurity.com/contact` ("Send all news pitches to press@helpnetsecurity.com, this is the main point of contact for all types of content and news. … we're always looking for new authors.")
 

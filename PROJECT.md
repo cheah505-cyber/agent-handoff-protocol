@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: awaiting-channel-review
-- Next: On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (§4 item 0), the Help Net Security follow-up on 2026-12-10, and answering PR insodimension/awesome-agent-protocols#36. 知乎 is the user's.
+- Next: On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -31,6 +31,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - Should `MONITORING` require explicit provider/target fields in v0.2?
 - ~~Is the commit-day gate too strict for squash-merge workflows?~~ **Resolved 2026-11-26 by measurement:** it is strict by design. A squash-merged handoff fails until re-stamped at the merge day — one amend — and that is correct, because the merged handoff describes the merged state. Evidence and remedy in `docs/limits.md` §5.
 - Which gate is most likely to create alarm fatigue after 30 days?
+- Should v0.2 add a **superseded-by check** — every still-open claim older than the freshness window must point at a successor or carry a retirement marker (proposed by `mickyarun` on dev.to, comment `3mg2o`, reply `3mh1d`)? It is cheap to compute and catches two live versions of one decision, but it would move the `12 gates / 27 tests` counts that published posts quote, so it waits for a minor release.
 
 ## Retrospective
 
@@ -103,4 +104,6 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Learned (platforms):** r/netsec's rule 9 bans AI-generated posts — read the sidebar before composing, not after; Hacker News has account creation closed; Reddit's JSON API returns 403 here while the page works. The pattern is that every channel's gate is different, and the cost of not reading it is a removed post plus a spam record.
 - **Learned (tooling):** `raw.githubusercontent.com` lags a push, so publishing from raw can write the *old* body back and still return success. Poll a sentinel string from the new revision first. Same class as the CI story: the confirmation looked like success.
 - **Learned (numbers):** adding fixtures moves counts that published prose quotes. That is why the GIT_STATE hardening landed as a diagnostic plus a contract step, not as a new FAIL gate: the second option would have forced a third errata round on three platforms for no additional protection.
-- **Next:** the two pending reviews decide the order (先知-first makes 安全客 a 转载); CSDN follows as 转载; HNS follow-up 2026-12-10.
+- **Learned (provenance gate):** Help Net Security declined the pitch without reading it — the reply said the email "was flagged as AI-generated". The pitch had disclosed AI drafting and human revision, so the refusal is about how the text was produced, not about the topic. r/netsec's rule 9 and this reply are the same gate at two layers; the consequence is that this track is closed for AI-drafted outreach, and rewording to pass a detector would contradict the article's own claim that every statement must be traceable. `publish/hns-outline.md` stays as an outline for a piece the user writes personally.
+- **Learned (readers extend the protocol):** two new comments were substantive enough to change the repository. `mickyarun` supplied the missing mechanism for the stale-fact class: derivation only corrects state when the superseding write names what it supersedes, so the check to build is a count of open claims with no successor or retirement marker; it is recorded as a v0.2 candidate in `docs/limits.md` §2, and his point that a freshness threshold outside version control is an unlogged decision is now a rule in §5 (ours lives in `ahp.config.json`, so `git log -p` counts every move). `halfcycle` asked how the cold reads ran — the answer is in `3mh1c` and in `docs/limits.md` §6.
+- **Next:** the two pending reviews decide the order (先知-first makes 安全客 a 转载); CSDN follows as 转载; the editorial track is closed; the remaining roadmap item is one newsletter or list beyond PR #36 and one free/low-price assessment for a testimonial.

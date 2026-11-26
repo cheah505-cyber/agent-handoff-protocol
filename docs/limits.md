@@ -19,6 +19,7 @@ AHP exists because a memory system can be **structurally green and semantically 
 - Whether the stated verification actually ran.
 - Whether two files contradict each other in prose.
 - Whether a memory fact is still true in the world.
+- Whether a superseded fact **names what it replaced**. The status block is derived, so that copy cannot drift, but decisions are prose: a resolved one is struck through in place by whoever resolves it. No pointer means the old and the new fact are both live, both dated, both plausible — and that reads as freshness working. **Candidate gate for v0.2, not in v0.1.0:** count still-open claims older than the freshness window that have neither a successor nor a retirement marker; the set should be small and every member explainable. Proposed by a reader after the English article: https://dev.to/mickyarun/your-agent-is-licensed-to-read-the-email-it-is-not-licensed-to-pay-the-account-number-inside-it-3ajm
 - Whether a line is a **fact or an instruction**: both are prose, and nothing in the format marks the difference. A reader that treats one as the other is behaving correctly by the format.
 - Whether a target named in memory is still **authorized**. Authorization is an external fact, not a line on disk; the gates cannot re-check a scope or a validity window.
 - Whether a `COMPLETE` unit was accepted by a human.
@@ -73,6 +74,7 @@ AHP is a handoff protocol, not a project management system.
 
 - Keep `handoffDays` short enough to catch drift, long enough to survive a vacation. 21 days is a starting point.
 - If a gate produces the same warning for months, either fix the state or remove the gate with a written reason. Do not train people to ignore red.
+- The thresholds live in `ahp.config.json` **inside the repository**, so widening one is a diff, and `git log -p ahp.config.json` is the count of how many times the gate has already moved. A threshold outside version control is an unlogged decision.
 - `--strict` turns warnings into a non-zero exit for CI. Use it on release branches, not on every local run.
 - `--strict` escalates `WARN` but **not** `SKIP`. A gate that could not run (for example `GIT_STATE` outside a git repository) still counts as green. If you need fail-closed CI, treat `SKIP` as a failure in your own wrapper — the CLI does not.
 - Commit-day checks are sensitive to squash merges and rebases. Measured on 2026-11-26: a handoff authored `2026-11-24` and squash-merged on `2026-11-26` fails with `updated_at=2026-11-24 does not match its commit day=2026-11-26`. The remedy is one amend — re-stamp `updated_at` to the merge day — and it passes. That is also semantically right: the merged handoff now describes the merged state. In a squash merge the re-stamp is not a timestamp-only commit, because the commit carries the branch's content. Keep the gate; relaxing it would reintroduce the failure it exists for (a stamp that moved without the work, or work that moved without the stamp).

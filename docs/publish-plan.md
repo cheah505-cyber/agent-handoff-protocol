@@ -239,7 +239,9 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 
 ### 7.2.4 Help Net Security（已发 2026-11-26，等回复；草稿 `publish/hns-pitch.md`，提纲 `publish/hns-outline.md`）
 
-编辑部渠道里只挑这一家。草稿约 190 词，含：一句话定位、为什么现在、四个攻击类 + 三种验证层失效 + 一条无法建夹具的边界、独占承诺、篇幅与时程、**AI 辅助起草的披露**。需要填三项：姓名、身份/公司、邮箱（邮箱不要提交进本仓库）。地址已核对：`press@helpnetsecurity.com`。**2026-11-26 已发出**（主题 "Pitch: agent memory is an attack surface — a defensive write-up"）。**跟进日 2026-12-10**：没回复就转 Dark Reading（同一封改两行）；若编辑要 outline，直接用 `publish/hns-outline.md`。
+编辑部渠道里只挑这一家。草稿约 190 词，含：一句话定位、为什么现在、四个攻击类 + 三种验证层失效 + 一条无法建夹具的边界、独占承诺、篇幅与时程、**AI 辅助起草的披露**。需要填三项：姓名、身份/公司、邮箱（邮箱不要提交进本仓库）。地址已核对：`press@helpnetsecurity.com`。**2026-11-26 已发出**（主题 "Pitch: agent memory is an attack surface — a defensive write-up"）。
+
+**2026-11-26 结果：未审即拒。** 回信原文：`Because this email was flagged as AI-generated, it won't be reviewed by an editor.` 这不是选题被否决，而是编辑部对 AI 生成稿件的政策——同一份稿改投 Dark Reading 会撞同一条规则。**不再投这份 pitch，也不在 2026-12-10 催问；`publish/hns-outline.md` 留作以后自己写稿的提纲。** 如仍要走编辑渠道，只能由用户本人用自己的话另写一封，并如实说明 AI 参与程度：不隐藏、不为绕过检测改词。
 
 ### 7.2.3 r/LLMDevs（规则已核，提交待验证码）
 
