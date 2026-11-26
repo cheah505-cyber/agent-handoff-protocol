@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-26T19:51:42+08:00"
+updated_at: "2026-11-26T19:56:06+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "awaiting-channel-review"
 owner: "none"
@@ -13,12 +13,12 @@ touched_paths: "docs/agent-memory-attack-surface.md;docs/agent-memory-attack-sur
 current_file: "none"
 next_action_file: "docs/publish-plan.md"
 next_action_anchor: "### 7.4 CSDN（等一个渠道过审后再发）"
-next_action: "On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36 and PR yzfly/awesome-context-engineering#151, and watching Discussion #1 for assessment requests. **2026-11-27: the user decides the Chinese wait** — if neither channel has reported, choose between withdrawing both and publishing CSDN now (no 首发 claim) or waiting further; do not let the wait continue without that decision. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's."
+next_action: "On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36 and PR yzfly/awesome-context-engineering#151, and watching Discussion #1 for assessment requests. **2026-11-27: the user decides the Chinese wait** — if neither channel has reported, choose between withdrawing both and publishing CSDN now (no 首发 claim) or waiting further; do not let the wait continue without that decision. **After that decision, on the same day: write the Chinese demo** (translate `docs/demo.md`) for 掘金 or CSDN; it is new content, so it does not touch the security article's 首发. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's."
 acceptance: "The security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met: 先知 and 安全客 are both 待审核); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master`, `v0.1.0` and `v0.1.1` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "user: report the 先知 / 安全客 review outcome, decide the Chinese wait on 2026-11-27, and publish 知乎; upstream: awesome-list PR insodimension/awesome-agent-protocols#36"
-last_verified_at: "2026-11-26T19:51:42+08:00"
+last_verified_at: "2026-11-26T19:56:06+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -74,6 +74,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 1. **When 先知 passes** (the user will report it): correct its live copy first — the `CANNOT VERIFY` sentence and the two appendix citations listed in §5 — then publish CSDN as 转载 with `本文首发于先知社区 <链接>`. Record both URLs in §6.
 2. **When 安全客 passes**: it is already the corrected body; publish CSDN as 转载 with `本文首发于安全客 <链接>`. If 先知 later rejects the duplicate, accept it — do not resubmit the same text twice.
 2b. **2026-11-27 — decide the wait.** If neither channel has reported by then, the user picks one: (a) withdraw both submissions and publish `publish/agent-memory-attack-surface.md` on CSDN now, dropping the 首发 claim and saying plainly that it was submitted elsewhere without a decision; or (b) keep waiting and keep the acceptance column saying it is not met. Record the choice in this section the same day. Do not let a third week pass without one.
+2c. **2026-11-27, after the decision — the Chinese demo.** Translate `docs/demo.md` for 掘金 or CSDN (two-line install, one gate turned red, the fix). It is a new article, so the security article's 首发 is untouched; 掘金 allows one tag, CSDN applies tags only from the autocomplete.
 3. **Do not pitch this text again.** Help Net Security refused to review it because the email was flagged as AI-generated; the same draft at Dark Reading would meet the same rule, and rewording it to pass a detector would break the project's own honesty rule. If an editorial channel is tried later, the user writes that pitch personally and states the AI involvement.
 4. **PRs #36 and #151**: answer the maintainer's review if any; do not re-open or re-push if either is closed. #36 is `insodimension/awesome-agent-protocols`; #151 is `yzfly/awesome-context-engineering`.
 4b. **Future npm releases**: bump `package.json`, `npm publish`, verify `npx agent-handoff-cli init` in a clean directory, then tag `vX.Y.Z` on the commit the registry built from and publish the release. The v0.1.1 tag is on `17780c9`; local tags must match the tarball's tree, not the later README commits.
