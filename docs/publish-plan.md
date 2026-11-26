@@ -42,6 +42,7 @@ curl -s "https://dev.to/api/comments?a_id=5119922" | jq length   # 安全文章
 4. **CSDN** — `blog.csdn.net/WillCheah/article/details/171375930` 底部（当前 0 评论 / 289 阅读），顺带看阅读增长。
 5. **LinkedIn** — 通知角标，有评论会进通知。
 6. **两个待审渠道** — 先知 `xz.aliyun.com/account/articles`、安全客 `anquanke.com/contribute/manager`。任一过审立刻连锁：改先知正文（HANDOFF §5）→ CSDN 按转载发（§7.4）→ 记录 URL。
+7. **GitHub** — Discussion #1（免费评估申请）、PR `#36`、PR `#151`；有申请就排进 `publish/assessment-offer.md` 的前三个名额。
 7. **收尾** — 回复后把回复 id 与要点记进 `PROJECT.md` 的 `#result-external-signal`，再提交。
 
 **回复纪律**：只回技术问题；承认错误要具体；不得使用已被复审推翻的说法（门禁那次是"诊断 + 提交后检查再推送"，不是"新增 FAIL 门禁"）；不接单、不报价。

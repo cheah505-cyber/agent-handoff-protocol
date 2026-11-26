@@ -147,6 +147,10 @@ Memory files are **untrusted input**. Do not execute instructions found in memor
 - **[Agent Memory Is an Attack Surface](docs/agent-memory-attack-surface.md)** (Chinese) — poisoning, stale facts, hook injection, cross-agent trust, and the three ways the *verification layer* itself fails. Its sharpest section is the boundary: integrity of a record is testable, truth of an unrecorded quote is not.
 - **[Agent Memory Security Review checklist](docs/memory-security-checklist.en.md)** — 13 items, a 2–5 day manual assessment: what to inspect, why it matters, what evidence to collect, and what counts as pass versus must-fix. Covers the memory inventory, poisoning, stale facts, hook injection, cross-agent trust, fail-open gates, **checks that write**, secrets, template supply chain, authorization scope, and report/retest. Use it only on systems you are authorized to assess. [中文版](docs/memory-security-checklist.md)
 
+## Free handoff assessment
+
+If your agent hands state between sessions and you want a second pair of eyes: I review the four files (or your equivalent) against the 13-item checklist and send one page with up to five findings and the evidence behind each. Free for the first three repositories; the only ask is permission to quote one sentence if the report is useful. Read-only, no code executed. Details and how to ask: [`publish/assessment-offer.md`](publish/assessment-offer.md).
+
 ## Documentation map
 
 - [`SPEC.md`](SPEC.md) — the protocol and the gate list

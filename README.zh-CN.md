@@ -147,6 +147,10 @@ memory/              本仓库自己的教训库
 - **[《Agent 的记忆是攻击面：投毒、过期事实与假绿门禁》](docs/agent-memory-attack-surface.md)** — 面向安全从业者：四类记忆攻击、三类验证层攻击，以及那条边界——记录完整性可测，未记录言语的真实性不可测。
 - **[Agent 记忆安全评估清单](docs/memory-security-checklist.md)** — 13 项，2–5 天可跑完的人工评估流程：查什么、为什么重要、要留什么证据、什么算通过。覆盖记忆清单、投毒、过期事实、hook 注入、跨 Agent 信任、fail-open 门禁、会写的检查、密钥、模板供应链、授权范围、报告与复测。**只在有书面授权的系统上使用。** [English](docs/memory-security-checklist.en.md)
 
+## 免费交接评估
+
+如果你的智能体在会话之间交接状态，想要第二双眼睛：我按 13 项清单看那四个文件（或你的等价物），回一页纸，最多五条发现，每条带证据。前三个仓库免费；唯一的交换是允许我在报告有用时引用一句话。全程只读，不执行代码。细节与申请方式：[`publish/assessment-offer.md`](publish/assessment-offer.md)。
+
 ## 开源搭配报告
 
 如果你想知道这套东西怎么用于个人品牌、AI 安全评估、内容、模板和团队版，见 [`docs/open-source-report.md`](docs/open-source-report.md)。
