@@ -195,7 +195,7 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 | 摘要 | `A poisoned memory line breaks no type system and trips no lint; it just makes the next agent do the wrong thing. Four memory attacks, three ways the verifier fails open, and the boundary where no fixture can exist.` |
 | 标签 | `security` `ai` `agents` `devtools` |
 | canonical | `https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/agent-memory-attack-surface.en.md` |
-| dev.to | ✅ 已发布 https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7（article id `5119922`；页面核对 3 表 / 8 个 h2 / 7 个 h3 / 2279 词） |
+| dev.to | ✅ 已发布并按复审修正 https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7（id `5119922`；正文 14773 字符；页面核对 3 表 / 8 个 h2 / 2303 词；description 已换成「Code review can't see the Markdown…」版） |
 | LinkedIn | ⏳ 未登录（跳登录页）；文案已备，用户粘贴即可 |
 
 **发布方式（可复用）**：dev.to 内部接口 `POST /api/articles`，body `{article:{title, body_markdown, tags, canonical_url, description, published}}`，带 `x-csrf-token`（取自页面 `meta[name=csrf-token]`）+ `credentials:"include"`，返回 201 与 id；再 `PUT /api/articles/<id>` 传 `{article:{published:true}}` 发布。正文 14.5 KB，直接从 raw.githubusercontent 取，免去粘贴。
