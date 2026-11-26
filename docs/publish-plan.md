@@ -1,7 +1,7 @@
 # 发布计划：war story（中文 + 英文两份正文）
 
 > 正文只有两份：`docs/war-story.md`（中文）、`docs/war-story.en.md`（英文）。这里只放**每个平台的元数据与状态**，不复制正文。
-> 最后更新：2026-11-25
+> 最后更新：2026-11-26
 
 ## 语言策略
 
@@ -21,6 +21,7 @@
 | 4 | dev.to | 英文 | 安全文章 | https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7 | 2026-11-26 |
 | 5 | LinkedIn | 英文 | 安全文章（动态） | 个人动态页可见，平台不暴露稳定 post URL | 2026-11-26 |
 | 6 | r/LLMDevs | 英文 | 安全文章（Link post, flair Resource） | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ | 2026-11-26 |
+| 7 | dev.to | 英文 | 10 分钟演示 | https://dev.to/willcheah/a-10-minute-demo-break-an-ai-agents-handoff-on-purpose-33i3 | 2026-11-26 |
 
 **待审**：先知（安全文章，`待审核`）· 安全客（安全文章，`待审核`）。
 **已备好未发**：CSDN 安全文章（等上面任一过审，按转载 + 首发声明，见 §7.4）。
@@ -30,11 +31,12 @@
 
 **每天开工先跑一遍（全手动，不设自动任务）：**
 
-1. **dev.to × 2** — 数字涨了再去看内容，只回没回过的：
+1. **dev.to × 3** — 数字涨了再去看内容，只回没回过的：
 
 ```bash
 curl -s "https://dev.to/api/comments?a_id=5114702" | jq length   # war story
 curl -s "https://dev.to/api/comments?a_id=5119922" | jq length   # 安全文章
+curl -s "https://dev.to/api/comments?a_id=5124228" | jq length   # 10 分钟演示
 ```
 
 2. **Reddit** — `old.reddit.com/r/LLMDevs/comments/1y5ncu9/`（JSON 接口对本环境 403，只能开页面）。
