@@ -99,6 +99,15 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Learned (scope):** two items are N/A for a local CLI (no roles, no target list), and one is a genuine FAIL: prose cannot distinguish a fact from an instruction, and AHP performs no actions, so nothing intercepts at the action layer. Both are now named in `docs/limits.md` §2 instead of being implied by the article that recommends the checklist.
 - **Next:** the accepted finding with a trigger is `HANDOFF.md` size (16 KB, §1 alone 7.1 KB); trim to `PROJECT.md` when it passes ~20 KB.
 
+### 2026-11-26 · Drift check against the original plan `#result-drift-check`
+
+- **Did:** Measured the project against `docs/open-source-report.md` §4.4 (a 30-hour box, 4 of them for distribution) and §11 (week 3–4 acceptance).
+- **Product: no drift.** The same 12 gate IDs exist at `v0.1.0` and at HEAD; no dependency was added (still zero); the code delta since the tag is 90 insertions across four files — the verifier's deferred message and `SECRETS` scanning `docs/` — both inside the original thesis. No v0.2 feature shipped, and the version is still 0.1.0.
+- **Plan: the effort drifted.** 67 commits in two days, 134 doc/publish file-touches against 19 code touches. The plan gave distribution 4 hours out of 30.
+- **Metric: the bar is not met.** Week 3–4 acceptance was 20 stars, 3 real issues or comments, 1 external use. Actual on 2026-11-26: 1 star, 0 forks, 0 issues, 0 external use; 125 clones are mostly CI checkouts (35 unique), and the page had 2 views. The twelve dev.to comments are real engagement, not usage.
+- **Conclusion:** the product is on its original line; the *budget* is not. On evidence the sprint's kill criterion ("no real user, issue or repost") is met, though whether 30 hours have elapsed is the user's call, not the repository's. The 90-day criterion still has time and is not invoked. Recommendation, not yet a decision: stop active distribution, keep the repository as a portfolio artifact, and spend more time only if an inbound signal arrives (a review outcome, a PR reply, an assessment request).
+- **Next:** the user decides on 2026-11-27; no further distribution work is scheduled before then.
+
 ### 2026-11-26 · Second list PR and the assessment offer `#result-distribution`
 
 - **Did:** Opened PR `yzfly/awesome-context-engineering#151` — one entry in *Context Engineering in 2026: Harnesses, Skills & Protocols*, in both READMEs, after `rulelab` — and put the free assessment live: `publish/assessment-offer.md` (EN + 中文), `publish/assessment-report-template.md`, a section in both READMEs, and Discussion #1.
