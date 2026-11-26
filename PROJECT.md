@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: security-article-reviewed
-- Next: Publish the security article by hand — `publish/agent-memory-attack-surface.meta.md` has the title, summaries, tags and per-site steps; order 先知 → FreeBuf → 安全客 (安全客 requires first publication, so last). The article is review-ready; the publish package is prepared. Optionally write the English version for LinkedIn. Then the 90-day roadmap: one awesome list / newsletter, and one free or low-price assessment for a testimonial.
+- Phase: security-article-submitted
+- Next: After 先知 or 安全客 publishes the security article (both are 待审核): if 先知 passes first, correct its live text — the CANNOT VERIFY sentence and the two appendix citations in §5 — then publish CSDN as 转载 with a first-published line (`docs/publish-plan.md` §7.4). If 安全客 passes first, 先知 may reject the duplicate. In parallel: one English community (HN or r/netsec) from §7.2, and the user's 知乎 publication from `publish/war-story.zhihu.md`.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
