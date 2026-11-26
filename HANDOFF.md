@@ -14,7 +14,7 @@ current_file: "none"
 next_action_file: "docs/publish-plan.md"
 next_action_anchor: "### 7.4 CSDN（等一个渠道过审后再发）"
 next_action: "On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36 and PR yzfly/awesome-context-engineering#151, and watching Discussion #1 for assessment requests. **2026-11-27: the user decides the Chinese wait** — if neither channel has reported, choose between withdrawing both and publishing CSDN now (no 首发 claim) or waiting further; do not let the wait continue without that decision. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's."
-acceptance: "The security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met: 先知 and 安全客 are both 待审核); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
+acceptance: "The security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met: 先知 and 安全客 are both 待审核); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master`, `v0.1.0` and `v0.1.1` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "user: report the 先知 / 安全客 review outcome, decide the Chinese wait on 2026-11-27, and publish 知乎; upstream: awesome-list PR insodimension/awesome-agent-protocols#36"
@@ -79,7 +79,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 4b. **Future npm releases**: bump `package.json`, `npm publish`, verify `npx agent-handoff-cli init` in a clean directory, then tag `vX.Y.Z` on the commit the registry built from and publish the release. The v0.1.1 tag is on `17780c9`; local tags must match the tarball's tree, not the later README commits.
 5. **Assessment requests**: when one arrives in Discussion #1, run the 13-item checklist read-only, fill `publish/assessment-report-template.md`, and send it before asking for the testimonial sentence. The offer is live but no request has arrived, so the testimonial item is started, not done.
 6. **Then** the rest of the 90-day roadmap (`docs/open-source-report.md` §11): one newsletter or list beyond the two PRs.
-**Acceptance:** the security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`.
+**Acceptance:** the security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master`, `v0.1.0` and `v0.1.1` stay on `origin`.
 
 ## 5. Open risks
 - AHP has its own git repository. Verify `git rev-parse --show-toplevel` before committing; never commit AHP content to the parent workspace repo.
