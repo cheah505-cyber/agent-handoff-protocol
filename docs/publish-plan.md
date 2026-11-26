@@ -26,6 +26,7 @@
 | 先知（安全文章） | 🟡 待审核 | 中文 | 已提交；正文是修正前版本（HANDOFF §5 记了一句话 + 两处附录引用要改） |
 | 安全客（安全文章） | 🟡 待审核 | 中文 | 已提交 2026-11-26 08:12:48（`/contribute/manager` 可见）；修正后正文、3 表 8 标题、标签、分类、封面、手机号与联系方式齐全 |
 | LinkedIn（英文） | ✅ 已发布 | 英文 | 个人动态页可见（LinkedIn 不暴露稳定 post URL）；文案见 §7.3 |
+| r/LLMDevs（英文） | ✅ 已发布 | 英文 | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ （flair `Resource`，附作者披露评论） |
 | FreeBuf | ⛔ 放弃 | 中文 | 用户自己的浏览器也返回 405，WAF 拦截；不去绕 |
 
 ## 素材（全部已公开）
@@ -211,7 +212,7 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 | 标题 | `Agent memory as an attack surface: poisoned facts, stale decisions, and checks that fail open` |
 | 链接 | https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7 |
 
-状态：表单已填（`sr=LLMDevs`，标题 93 字符，URL 69 字符），卡在 old.reddit 的 reCAPTCHA（520×78，需人工过）。通过后点 `submit`，再核对是否被自动过滤（新号常见）。
+状态：✅ **已发布** https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ （2026-11-26；flair `Resource`；未被移除；作者披露评论已挂）。
 
 ### 7.2.2 替代：Hacker News
 
