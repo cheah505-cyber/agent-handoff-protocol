@@ -1,7 +1,7 @@
 # Pitch: Help Net Security (guest piece)
 
 > Paste-ready. Fill the three `<...>` slots. Do **not** commit your email address here; the repo is public and `publish/` is not scanned by the `SECRETS` gate.
-> Send to the guest-post address on `helpnetsecurity.com/contact` (they publish a submission address there; check it before sending — it changed once).
+> **Send to:** `press@helpnetsecurity.com` — verified 2026-11-26 on `helpnetsecurity.com/contact` ("Send all news pitches to press@helpnetsecurity.com, this is the main point of contact for all types of content and news. … we're always looking for new authors.")
 
 **Subject:** Pitch: agent memory is an attack surface — a defensive write-up
 
