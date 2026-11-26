@@ -31,6 +31,7 @@ This file is a map, not a status board. Dynamic state belongs in `HANDOFF.md`.
 | [docs/agent-memory-attack-surface.md](docs/agent-memory-attack-surface.md) | Security article: agent memory as an attack surface (Chinese) |
 | [docs/agent-memory-attack-surface.en.md](docs/agent-memory-attack-surface.en.md) | Security article: agent memory as an attack surface (English) |
 | [tasks/AHP-CONTENT-002.md](tasks/AHP-CONTENT-002.md) | Task card: security-circle article |
+| [docs/self-assessment.md](docs/self-assessment.md) | AHP audited against its own 13-item checklist |
 | [docs/publish-plan.md](docs/publish-plan.md) | Per-platform metadata for publishing the war story |
 | [docs/multi-model-review.md](docs/multi-model-review.md) | One-writer/one-reviewer protocol |
 | [docs/reviews/README.md](docs/reviews/README.md) | Review note policy |

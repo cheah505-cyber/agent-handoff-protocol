@@ -19,6 +19,8 @@ AHP exists because a memory system can be **structurally green and semantically 
 - Whether the stated verification actually ran.
 - Whether two files contradict each other in prose.
 - Whether a memory fact is still true in the world.
+- Whether a line is a **fact or an instruction**: both are prose, and nothing in the format marks the difference. A reader that treats one as the other is behaving correctly by the format.
+- Whether a target named in memory is still **authorized**. Authorization is an external fact, not a line on disk; the gates cannot re-check a scope or a validity window.
 - Whether a `COMPLETE` unit was accepted by a human.
 - Whether the agent followed the boundaries.
 
