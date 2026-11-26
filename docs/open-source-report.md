@@ -157,7 +157,7 @@ LICENSE
 | 8h | CLI、测试、CI、init 脚手架、负向夹具 |
 | 8h | README、SPEC、design/limits/security、案例 |
 | 4h | war story 文章初稿 |
-| 4h | 分发（掘金/V2EX/先知/FreeBuf/dev.to）+ 修反馈 |
+| 4h | 分发（掘金 / 先知 / 安全客 / dev.to / LinkedIn / r/LLMDevs）+ 修反馈 |
 
 **Kill criteria：** 30 小时到点没有真实用户/issue/转载，或明显耽误网安阶段 1 → 停，保留 repo 作 portfolio。
 
@@ -281,7 +281,9 @@ LICENSE
 4. 防御：不可信输入、最小权限、只读检查、冷读、审计。
 5. 评估清单（2b 的 lead magnet）。
 
-渠道：先知、FreeBuf、安全客、LinkedIn。
+渠道：先知、安全客、LinkedIn、dev.to、r/LLMDevs。
+
+> **2026-11-26 实测修正：** FreeBuf 对自动化和用户浏览器都返回 405（放弃）；V2EX 需邀请码；r/netsec 规则 9 禁 AI 生成内容；Hacker News 注册关闭。实际已发渠道见 `docs/publish-plan.md` 顶部「已发布清单」。
 
 ### 7.2 节奏
 
