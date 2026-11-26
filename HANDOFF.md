@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-26T10:20:00+08:00"
+updated_at: "2026-11-26T10:35:00+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "awaiting-channel-review"
 owner: "none"
@@ -13,12 +13,12 @@ touched_paths: "docs/agent-memory-attack-surface.md;docs/agent-memory-attack-sur
 current_file: "none"
 next_action_file: "docs/publish-plan.md"
 next_action_anchor: "### 7.4 CSDN（等一个渠道过审后再发）"
-next_action: "On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's."
+next_action: "On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36. **2026-11-27: the user decides the Chinese wait** — if neither channel has reported, choose between withdrawing both and publishing CSDN now (no 首发 claim) or waiting further; do not let the wait continue without that decision. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's."
 acceptance: "The security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met: 先知 and 安全客 are both 待审核); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master` and `v0.1.0` stay on `origin`."
 blocked_by: "none"
 running_processes: "none"
-external_responsibilities: "user: report the 先知 / 安全客 review outcome and the 知乎 publication; upstream: awesome-list PR insodimension/awesome-agent-protocols#36"
-last_verified_at: "2026-11-26T10:20:00+08:00"
+external_responsibilities: "user: report the 先知 / 安全客 review outcome, decide the Chinese wait on 2026-11-27, and publish 知乎; upstream: awesome-list PR insodimension/awesome-agent-protocols#36"
+last_verified_at: "2026-11-26T10:35:00+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -51,7 +51,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - 2026-11-25 · Review triage closed two regressions and two false claims: the `docs`-is-a-file crash in `buildContext`, and the "三类真实发生过的失败" claim that cited files without that class. The war story's 22/15 numbers are now labelled a v0.1.0 snapshot (the published copies stay as they were).
 ## 2. Exact pause point
 - Nothing is half-written. The Chinese security article, its English version, the checklist, the self-assessment, and every publish package are final; the tree is clean and CI is green.
-- **Two Chinese channels are submitted and pending review** — 先知 (`待审核`; its body is one revision behind, see §5) and 安全客 (`待审核`, corrected body). Whichever publishes first owns 首发; 安全客's rules require it there, so a 先知-first outcome makes the 安全客 copy a 转载 with a first-published line.
+- **Two Chinese channels are submitted and pending review** — 先知 (`待审核`; its body is one revision behind, see §5) and 安全客 (`待审核`, corrected body). Whichever publishes first owns 首发; 安全客's rules require it there, so a 先知-first outcome makes the 安全客 copy a 转载 with a first-published line. **The wait has a decision date: 2026-11-27.** On that day the user either keeps waiting or withdraws both and publishes CSDN without a 首发 claim; the article is not left pending open-endedly.
 - **CSDN is prepared and deliberately unpublished**: it publishes instantly and would steal 首发 from both. After either channel goes live, publish `publish/agent-memory-attack-surface.md` there as 转载 with a first-published line (`docs/publish-plan.md` §7.4; the importer uses the filename as the title).
 - **English is live in three places**: dev.to (war story + security article), LinkedIn, r/LLMDevs (`Resource` flair, author comment). r/netsec is out on rule 9 (`No AI-generated posts`); Hacker News has registration closed.
 - **One external thread is open and waiting on other people**: awesome-list PR `insodimension/awesome-agent-protocols#36`. The editorial track is closed — Help Net Security rejected the AI-flagged pitch without review, and the same draft will not be sent to Dark Reading.
@@ -66,6 +66,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 0. **Daily, before other work**: the manual sweep in `docs/publish-plan.md` → 留言维护 (dev.to counts, Reddit, 掘金, CSDN, LinkedIn, and both pending reviews). Reply by hand; no automation.
 1. **When 先知 passes** (the user will report it): correct its live copy first — the `CANNOT VERIFY` sentence and the two appendix citations listed in §5 — then publish CSDN as 转载 with `本文首发于先知社区 <链接>`. Record both URLs in §6.
 2. **When 安全客 passes**: it is already the corrected body; publish CSDN as 转载 with `本文首发于安全客 <链接>`. If 先知 later rejects the duplicate, accept it — do not resubmit the same text twice.
+2b. **2026-11-27 — decide the wait.** If neither channel has reported by then, the user picks one: (a) withdraw both submissions and publish `publish/agent-memory-attack-surface.md` on CSDN now, dropping the 首发 claim and saying plainly that it was submitted elsewhere without a decision; or (b) keep waiting and keep the acceptance column saying it is not met. Record the choice in this section the same day. Do not let a third week pass without one.
 3. **Do not pitch this text again.** Help Net Security refused to review it because the email was flagged as AI-generated; the same draft at Dark Reading would meet the same rule, and rewording it to pass a detector would break the project's own honesty rule. If an editorial channel is tried later, the user writes that pitch personally and states the AI involvement.
 4. **PR #36**: answer the maintainer's review if any; do not re-open or re-push if it is closed.
 5. **Then** the rest of the 90-day roadmap (`docs/open-source-report.md` §11): one newsletter or list beyond #36, and one free or low-price assessment for a testimonial.
