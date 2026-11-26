@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "PAUSED"
-updated_at: "2026-11-26T22:47:04+08:00"
+updated_at: "2026-11-26T23:18:30+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "awaiting-channel-review"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "The security article is published in at least one Chinese security 
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "user: report the 先知 / 安全客 review outcome, decide the Chinese wait on 2026-11-27, and publish 知乎; upstream: awesome-list PR insodimension/awesome-agent-protocols#36"
-last_verified_at: "2026-11-26T22:47:04+08:00"
+last_verified_at: "2026-11-26T23:18:30+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -79,7 +79,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 2c. **2026-11-27, after the decision — the Chinese demo.** Translate `docs/demo.md` for 掘金 or CSDN (two-line install, one gate turned red, the fix). It is a new article, so the security article's 首发 is untouched; 掘金 allows one tag, CSDN applies tags only from the autocomplete.
 3. **Do not pitch this text again.** Help Net Security refused to review it because the email was flagged as AI-generated; the same draft at Dark Reading would meet the same rule, and rewording it to pass a detector would break the project's own honesty rule. If an editorial channel is tried later, the user writes that pitch personally and states the AI involvement.
 4. **PRs #36 and #151**: answer the maintainer's review if any; do not re-open or re-push if either is closed. #36 is `insodimension/awesome-agent-protocols`; #151 is `yzfly/awesome-context-engineering`.
-4b. **Future npm releases**: bump `package.json`, `npm publish`, verify `npx agent-handoff-cli init` in a clean directory, then tag `vX.Y.Z` on the commit the registry built from and publish the release. The v0.1.1 tag is on `17780c9`; local tags must match the tarball's tree, not the later README commits.
+4b. **Future npm releases**: bump `package.json`, `npm publish`, verify `npx agent-handoff-cli init` in a clean directory, then tag `vX.Y.Z` on the commit the registry built from and publish the release. The v0.1.1 tag is on `17780c9`; local tags must match the tarball's tree, not the later README commits. **Before publishing, diff the claims against the published tarball**: `npm view agent-handoff-cli version` → `npm pack agent-handoff-cli@<version> --pack-destination /tmp` → `tar -xzf /tmp/agent-handoff-cli-*.tgz -C /tmp/pubpkg` → `diff -u README.md /tmp/pubpkg/package/README.md` and `diff <(jq -r .description package.json) <(npm view agent-handoff-cli description)`. Any output means the repository is newer than the page.
 5. **Assessment requests**: when one arrives in Discussion #1, run the 13-item checklist read-only, fill `publish/assessment-report-template.md`, and send it before asking for the testimonial sentence. The offer is live but no request has arrived, so the testimonial item is started, not done.
 6. **Then** the rest of the 90-day roadmap (`docs/open-source-report.md` §11): one newsletter or list beyond the two PRs.
 **Acceptance:** the security article is published in at least one Chinese security channel and its URL is recorded in §6 (not yet met); `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes; `master`, `v0.1.0` and `v0.1.1` stay on `origin`.
@@ -96,6 +96,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - **A publish action can silently create a second article.** CSDN did exactly that when an edit went through the markdown importer. After every publish, check the article id and the article count in the management list, not just the success banner.
 - Two pending channels hold the same article. If both accept, the second one must carry a first-published line; decide the order before publishing anything else, and do not send the piece to a third Chinese platform in the meantime.
 - Tags are not applied by clicking a list item in some editors (dev.to, CSDN): the click must land on an autocomplete suggestion. Otherwise the platform silently picks its own tag — CSDN chose `arcgis` for an article about agent memory.
+- **The npm page is a snapshot, and external pages link to it.** A README claim edited after `v0.1.1` will not appear on npm until the next patch release; a page that cites the npm description then contradicts it. Re-check on the next release using the diff commands in §4 item 4b.
 ## 6. Last verification
 - 2026-11-26 · npm: `npm view agent-handoff-cli version` → 0.1.1 after the staged placeholder cleared; `npx -y agent-handoff-cli init demo` initialized 7 files and `npx -y agent-handoff-cli check` returned 11 PASS / 1 SKIP with exit 0, in a clean directory. The published tarball was built from `17780c9`, which is where `v0.1.1` points.
 - 2026-11-26 · Post-release verification of the tree that carries this entry: `npm pack` → install in a temp project → `npx ahp init` then `npx ahp check` (11 PASS / 1 SKIP, exit 0); `init` on a non-empty directory refuses with exit 1, and only `--force` overwrites; `check --strict` leaves SKIP green; `--json` carries `ok`/`counts`/`results` as SPEC §6.2 says; the 12 gate IDs agree across `lib/gates.mjs`, `SPEC.md` §6 and `README.md`; every gate has at least one FAIL-expecting test; `npm test` 27/27 with 19 `status, "FAIL"` assertions; `v0.1.0` points at a commit whose `package.json` says 0.1.0 and the GitHub release is non-draft. Link scan over 31 documents found 2 broken links in `docs/publish-plan.md`, fixed in `82747c7`. `publish/` and `tasks/`, the roots `SECRETS` does not scan, contain no token or private key.

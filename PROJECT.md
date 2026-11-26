@@ -24,6 +24,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **The reviewer model is `deepseek/deepseek-flash`.** Reviews are advisory; a cheaper reviewer changes how much depth you get, not what counts as evidence. `AHP-CONTENT-001` was reviewed on `deepseek-v4-pro` and its note says so.
 - **No secrets in memory.** The `SECRETS` gate is a backstop, not a permission to store credentials.
 - **Every published claim is traceable.** A number in a document must point at a repo file or a command output; a quoted command output must be labelled with the state it was produced in (the war story quoted a `PAUSED` snapshot that no longer reproduces under `ACTIVE`). Reviewers check this, not the author.
+- **npm renders the publish-time README.** The package page shows the README captured in the tarball, so a claim edited in the repository but not republished leaves npm older than the repo. Any change to a claim in `README.md` or `package.json#description` ships as a patch release or is reverted; before publishing, diff both against the published tarball (`npm view`, `npm pack`, `diff`). Pages that link to the npm page depend on this.
 - **MIT license.** The protocol is a public good; the paid layer, if any, is team workflow and support, not the markdown.
 
 ## Open questions
