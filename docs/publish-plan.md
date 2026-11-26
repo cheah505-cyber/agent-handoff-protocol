@@ -23,8 +23,9 @@
 | CSDN | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171375930 |
 | 博客园 | ⛔ 放弃 | 中文 | 未开通博客，开通需个人信息 + 审核；已换 CSDN |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
-| 先知（安全文章） | 🟡 待审核 | 中文 | 已提交，`xz.aliyun.com/account/articles` 显示「待审核」；过审后决定 安全客 用原创还是转载 |
-| 安全客（安全文章） | 🟡 草稿已填，未提交 | 中文 | 标题/正文（预览 3 表 8 标题）/标签/分类/封面均已就位；缺手机号（必填）与联系方式，且等 先知 结果再定首发 |
+| 先知（安全文章） | 🟡 待审核 | 中文 | 已提交；正文是修正前版本（HANDOFF §5 记了一句话 + 两处附录引用要改） |
+| 安全客（安全文章） | 🟡 待审核 | 中文 | 已提交 2026-11-26 08:12:48（`/contribute/manager` 可见）；修正后正文、3 表 8 标题、标签、分类、封面、手机号与联系方式齐全 |
+| LinkedIn（英文） | ✅ 已发布 | 英文 | 个人动态页可见（LinkedIn 不暴露稳定 post URL）；文案见 §7.3 |
 | FreeBuf | ⛔ 放弃 | 中文 | 用户自己的浏览器也返回 405，WAF 拦截；不去绕 |
 
 ## 素材（全部已公开）
@@ -196,7 +197,7 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 | 标签 | `security` `ai` `agents` `devtools` |
 | canonical | `https://github.com/cheah505-cyber/agent-handoff-protocol/blob/master/docs/agent-memory-attack-surface.en.md` |
 | dev.to | ✅ 已发布并按复审修正 https://dev.to/willcheah/your-agents-memory-is-an-attack-surface-1fi7（id `5119922`；正文 14773 字符；页面核对 3 表 / 8 个 h2 / 2303 词；description 已换成「Code review can't see the Markdown…」版） |
-| LinkedIn | ⏳ 未登录（跳登录页）；文案已备，用户粘贴即可 |
+| LinkedIn | ✅ 已发布（2026-11-26，1072 字符，个人动态页可查） |
 
 **发布方式（可复用）**：dev.to 内部接口 `POST /api/articles`，body `{article:{title, body_markdown, tags, canonical_url, description, published}}`，带 `x-csrf-token`（取自页面 `meta[name=csrf-token]`）+ `credentials:"include"`，返回 201 与 id；再 `PUT /api/articles/<id>` 传 `{article:{published:true}}` 发布。正文 14.5 KB，直接从 raw.githubusercontent 取，免去粘贴。
 
