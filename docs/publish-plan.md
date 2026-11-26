@@ -80,9 +80,9 @@ curl -s "https://dev.to/api/comments?a_id=5119922" | jq length   # 安全文章
 | 文件 | 用途 |
 |---|---|
 | [`publish/war-story.zhihu.md`](../publish/war-story.zhihu.md) | 知乎「导入文档 MD/Doc」用；已去掉开头 H1（标题单独填）、链接改绝对地址、补 CTA |
-| [`publish/war-story.zhihu.html`](publish/war-story.zhihu.html) | 备用：浏览器打开 → Ctrl+A → Ctrl+C → 粘进富文本编辑器 |
+| [`publish/war-story.zhihu.html`](../publish/war-story.zhihu.html) | 备用：浏览器打开 → Ctrl+A → Ctrl+C → 粘进富文本编辑器 |
 | [`publish/war-story.zhihu.flat.md`](../publish/war-story.zhihu.flat.md) | **表格拍平成列表**的版本（4 张表 → 列表），给"预览里表格没了"的情况用 |
-| [`publish/war-story.zhihu.flat.html`](publish/war-story.zhihu.flat.html) | 同上的 HTML 版 |
+| [`publish/war-story.zhihu.flat.html`](../publish/war-story.zhihu.flat.html) | 同上的 HTML 版 |
 
 这两个文件是**派生快照**，唯一来源仍是 `docs/war-story.md`。生成规则（改正文后要重新做一遍）：
 
