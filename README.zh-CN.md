@@ -31,6 +31,8 @@ node ahp/bin/ahp.mjs init demo
 cd demo && node ../ahp/bin/ahp.mjs check
 ```
 
+想先看它失败一次？[`docs/demo.md`](docs/demo.md) 是一份 10 分钟演示记录：故意弄坏一条门禁、跑检查、再修好。
+
 在本仓库内：
 
 ```bash
@@ -131,8 +133,8 @@ lib/gates.mjs        12 条门禁
 lib/sync.mjs         派生状态块
 lib/init.mjs         模板脚手架
 templates/           复制到新项目的模板
-tests/               22 个正/负向测试
-docs/                设计、限制、安全、案例、开源报告、复盘文章、评估清单
+tests/               27 个测试，其中 19 个负向夹具
+docs/                设计、限制、安全、案例、开源报告、复盘文章、评估清单、演示记录
 memory/              本仓库自己的教训库
 ```
 

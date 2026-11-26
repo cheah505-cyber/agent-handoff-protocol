@@ -31,6 +31,8 @@ node ahp/bin/ahp.mjs init demo
 cd demo && node ../ahp/bin/ahp.mjs check
 ```
 
+Prefer to see a gate fail first? [`docs/demo.md`](docs/demo.md) is a 10-minute transcript that breaks one on purpose, runs the check, and fixes it.
+
 From this repository:
 
 ```bash
@@ -131,8 +133,8 @@ lib/gates.mjs        the 12 read-only gates
 lib/sync.mjs         derived status block
 lib/init.mjs         project scaffold
 templates/           copied into new projects
-tests/               22 positive/negative tests
-docs/                design, limits, security, cases, write-ups
+tests/               27 tests, 19 of them negative fixtures
+docs/                design, limits, security, cases, write-ups, demo
 memory/              this repository's own lessons
 ```
 
@@ -177,6 +179,7 @@ If your agent hands state between sessions and you want a second pair of eyes: I
 - [`docs/security.md`](docs/security.md) — the memory security threat model
 - [`docs/lessons-from-production.md`](docs/lessons-from-production.md) — distilled production lessons
 - [`docs/case-studies.md`](docs/case-studies.md) — the failures that shaped the gates
+- [`docs/demo.md`](docs/demo.md) — the 10-minute demo: break a gate, fix it
 - [`docs/publish-plan.md`](docs/publish-plan.md) — where the write-ups are published
 - [`docs/open-source-report.md`](docs/open-source-report.md) — the open-source pairing report (Chinese)
 
