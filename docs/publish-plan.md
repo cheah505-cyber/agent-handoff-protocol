@@ -22,6 +22,7 @@
 | 5 | LinkedIn | 英文 | 安全文章（动态） | 个人动态页可见，平台不暴露稳定 post URL | 2026-11-26 |
 | 6 | r/LLMDevs | 英文 | 安全文章（Link post, flair Resource） | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ | 2026-11-26 |
 | 7 | dev.to | 英文 | 10 分钟演示 | https://dev.to/willcheah/a-10-minute-demo-break-an-ai-agents-handoff-on-purpose-33i3 | 2026-11-26 |
+| 8 | CSDN | 中文 | 安全文章 | https://blog.csdn.net/WillCheah/article/details/171523055 | 2026-11-28 |
 
 **待审**：先知（安全文章，`待审核`）· 安全客（安全文章，`待审核`）。
 **已备好未发**：CSDN 安全文章（等上面任一过审，按转载 + 首发声明，见 §7.4）。
@@ -31,6 +32,7 @@
 
 **每天开工先跑一遍（全手动，不设自动任务）：**
 
+0b. **CSDN 安全文章** — https://blog.csdn.net/WillCheah/article/details/171523055 底部评论区；掘金的 `7712783067996291112` 过审后再看。
 1. **dev.to × 3** — 数字涨了再去看内容，只回没回过的：
 
 ```bash
@@ -64,8 +66,10 @@ curl -s "https://dev.to/api/comments?a_id=5124228" | jq length   # 10 分钟演�
 | CSDN | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171375930 |
 | 博客园 | ⛔ 放弃 | 中文 | 未开通博客，开通需个人信息 + 审核；已换 CSDN |
 | 即刻 | ⛔ 未登录 | 中文 | 需 App 扫码 |
-| 先知（安全文章） | 🟡 待审核 | 中文 | 已提交；正文是修正前版本（HANDOFF §5 记了一句话 + 两处附录引用要改） |
-| 安全客（安全文章） | 🟡 待审核 | 中文 | 已提交 2026-11-26 08:12:48（`/contribute/manager` 可见）；修正后正文、3 表 8 标题、标签、分类、封面、手机号与联系方式齐全 |
+| 先知（安全文章） | ❌ 未过审 | 中文 | 用户已删除投稿，不再发 |
+| 安全客（安全文章） | 🟡 待审核 | 中文 | 已提交 2026-11-26 08:12:48；CSDN 已先发，若过审只能按转载处理或撤稿 |
+| CSDN（安全文章） | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171523055 （2026-11-28，标签 `网络安全`，2 篇总数、无重复） |
+| 掘金（安全文章） | 🟡 审核中 | 中文 | id `7712783067996291112`，`status 0`；发布页显示成功但 API 仍是审核中 |
 | LinkedIn（英文） | ✅ 已发布 | 英文 | 个人动态页可见（LinkedIn 不暴露稳定 post URL）；文案见 §7.3 |
 | r/LLMDevs（英文） | ✅ 已发布 | 英文 | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ （flair `Resource`，附作者披露评论） |
 | FreeBuf | ⛔ 放弃 | 中文 | 用户自己的浏览器也返回 405，WAF 拦截；不去绕 |
@@ -203,7 +207,7 @@ war story 发布时（v0.1.0）是 22 个测试 / 15 个负向夹具，**当时�
 | `publish/agent-memory-attack-surface.html` | 备用（富文本粘贴），裸 URL 已转成可点链接 |
 | `publish/agent-memory-attack-surface.meta.md` | 标题/摘要/分类/标签 + 逐站步骤 + 发布顺序 |
 
-**渠道现状（2026-11-26）：** 先知与安全客均已提交（`待审核`）；FreeBuf 放弃（405，用户浏览器同样被拦）。**谁先过审谁定首发**——安全客《投稿须知》要求在其平台首发，所以若先知先上线，安全客那份要补 `本文首发于先知社区 <链接>`。CSDN 备好未发（即时发布，会抢走首发），等任一上线后按转载发，见 §7.4。
+**渠道现状（2026-11-28）：** 先知**未过审**，用户已删除投稿；安全客仍 `待审核`；CSDN **已发布**（https://blog.csdn.net/WillCheah/article/details/171523055），没有写首发行；掘金已提交但 `status 0`（审核中，id `7712783067996291112`）。CSDN 先发是用户 2026-11-28 的决定：不再等首发。
 
 各站实测（2026-11-26）：
 
@@ -303,11 +307,11 @@ HN 没有 AI 内容禁令，技术受众与这篇的口味一致。提交要求�
 >
 > #AISecurity #AgenticAI #AppSec #LLM
 
-### 7.4 CSDN（等一个渠道过审后再发）
+### 7.4 CSDN（已于 2026-11-28 发布）
 
-正文：`publish/agent-memory-attack-surface.md`（修正后版本）。**CSDN 是即时发布、无人工审核**，所以它会抢在先知/安全客之前成为首发——这正是暂缓的原因。
+正文：`publish/agent-memory-attack-surface.md`（修正后版本）。**已于 2026-11-28 发布**：https://blog.csdn.net/WillCheah/article/details/171523055 （先知未过审、安全客未回，用户决定不再等首发）。
 
-**触发条件**：先知或安全客任一上线后，CSDN 按**转载**发布，正文末尾加一行 `本文首发于 <平台>：<链接>`。
+**实测结果**：导入用文件名当标题成功；自定义标签在博客等级 <3 时被拒（`博客等级不满足三级，无法创建自定义标签`），只能选推荐标签，本篇用 `网络安全`；摘要 74 字；原创 / 全部可见；管理列表 `全部(2) / 已发布(2)`，没有产生第二篇；正文没有加 `本文首发于` 行。
 
 操作要点（2026-11-26 实测）：
 

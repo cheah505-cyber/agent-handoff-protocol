@@ -100,6 +100,14 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Learned (scope):** two items are N/A for a local CLI (no roles, no target list), and one is a genuine FAIL: prose cannot distinguish a fact from an instruction, and AHP performs no actions, so nothing intercepts at the action layer. Both are now named in `docs/limits.md` §2 instead of being implied by the article that recommends the checklist.
 - **Next:** the accepted finding with a trigger is `HANDOFF.md` size (16 KB, §1 alone 7.1 KB); trim to `PROJECT.md` when it passes ~20 KB.
 
+### 2026-11-28 · The waiting ended: CSDN live, 掘金 in review `#result-published-cn`
+
+- **Did:** 先知 rejected the submission; the user deleted it rather than resubmit. 安全客 is still `待审核`. The user chose not to wait any longer, so the Chinese article went to CSDN (https://blog.csdn.net/WillCheah/article/details/171523055) and 掘金 (id `7712783067996291112`). dev.to already carried the English version and the demo, so nothing new went there.
+- **Learned (publish success is not visibility):** 掘金 showed "发布成功" and then a search returned 暂无内容; the content API says `verify_status: 0` (审核中) with 0 views. The war story went live immediately, so this is a new-article review, not a broken publish. CSDN is the live copy; do not wait on a platform's success screen to tell anyone the article is out.
+- **Learned (CSDN limits):** custom tags are refused below blog level 3 (`博客等级不满足三级，无法创建自定义标签`), so the article carries one recommended tag (`网络安全`), not the six the meta file suggests. The markdown file input still works and uses the filename as the title; the management list shows 全部(2) / 已发布(2), so the import did not create a second article.
+- **Learned (首发的代价):** waiting for a security channel cost two days and ended with a general channel anyway. The article is live without a 首发 line; if 安全客 passes, it can only be a 转载 or a withdrawal. The honest lesson is that a 首发 rule is a scheduling constraint, and a two-day wait for an unpaid channel is a bad trade when the piece has no other blocker.
+- **Next:** the Chinese demo (translate `docs/demo.md`) as `AHP-CONTENT-003`; 安全客's outcome; 掘金's review.
+
 ### 2026-11-26 · Drift check against the original plan `#result-drift-check`
 
 - **Did:** Measured the project against `docs/open-source-report.md` §4.4 (a 30-hour box, 4 of them for distribution) and §11 (week 3–4 acceptance).
