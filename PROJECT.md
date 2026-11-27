@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: cn-demo-published
-- Next: No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The daily sweep and the external reviews are the only open threads: 安全客 (if it passes, 转载 or withdraw), 掘金's security article (status 0), PR #36/#151, and Discussion #1. The next planned unit is the roadmap's one newsletter or list beyond the two PRs.
+- Next: No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The next dated checkpoint is 2026-12-05: review reads, comments, issues and assessment requests before starting anything new. Until then only the daily sweep and external replies. 安全客 (if it passes, 转载 or withdraw), 掘金's security article (status 0), PR #36/#151 and Discussion #1 remain external.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -105,7 +105,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Did:** Wrote `publish/demo.zh.md`, re-ran every command against `agent-handoff-cli@0.1.1`, and published it to 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The unit `AHP-CONTENT-003` is COMPLETE; both pages carry the intro, the `制造一处矛盾` failure and the assessment CTA.
 - **Learned (platform minima):** 掘金 refuses a summary below 50 characters with a toast that is easy to miss — the first 42-character attempt returned to the editor and looked like a dead button. 66 characters worked. A silent return is not a neutral state; check the toast.
 - **Learned (CSDN confirmation):** publishing now requires a WeChat QR scan. Without it the modal stays open; the draft autosaves, so nothing is lost. This is a human gate, not a bug, and it is why the article cannot be published unattended.
-- **Learned (import duplicate):** the first CSDN import (with the H1) left a draft; the second import published. The management page is `全部(3) / 已发布(3) / 草稿箱(1)`, so an article-count check must separate drafts from published copies. The leftover draft is the same article and must not be published.
+- **Learned (import duplicate):** the first CSDN import (with the H1) left a draft; the second import published. The management page was `全部(3) / 已发布(3) / 草稿箱(1)`, so an article-count check must separate drafts from published copies. The leftover draft was deleted on 2026-11-28 (`草稿箱(0)`).
 - **Next:** no new unit; the daily sweep and the external reviews (安全客, 掘金 security) are the open threads.
 
 ### 2026-11-28 · The waiting ended: CSDN live, 掘金 in review `#result-published-cn`
