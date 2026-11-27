@@ -22,6 +22,6 @@
 - [x] 空目录跑通两行安装 + `check`（11 PASS / 1 SKIP）
 - [x] 改坏 `current_file` → `HANDOFF_BODY` 变红；改回变绿
 - [x] `ACTIVE` 无租约 → `LEASE` 变红
-- [ ] 用户读一遍正文
-- [ ] 发掘金 / CSDN
-- [ ] URL 记入 HANDOFF §6，单元转 COMPLETE
+- [x] 用户读一遍正文
+- [x] 发掘金（https://juejin.cn/post/7712966444408995874）/ CSDN（https://blog.csdn.net/WillCheah/article/details/171526305）
+- [x] URL 记入 HANDOFF §6，单元转 COMPLETE

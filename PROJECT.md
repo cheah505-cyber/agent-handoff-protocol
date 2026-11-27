@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: cn-demo-draft
-- Next: After the user has read publish/demo.zh.md: publish it to 掘金 (one tag, enters review) and CSDN (instant, recommended tags only), record both URLs in §6, then mark AHP-CONTENT-003 COMPLETE. The commands and outputs in the draft were re-run against agent-handoff-cli@0.1.1 and match. Do not touch the security article's channels. 安全客/掘金 reviews, PR #36/#151 and 知乎 remain external.
+- Phase: cn-demo-published
+- Next: No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The daily sweep and the external reviews are the only open threads: 安全客 (if it passes, 转载 or withdraw), 掘金's security article (status 0), PR #36/#151, and Discussion #1. The next planned unit is the roadmap's one newsletter or list beyond the two PRs.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -99,6 +99,14 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Learned:** the audit found a bug the test suite could not: with `updated_at: "not-a-date"`, the deferred commit-day message printed `matches today` in the same run where `HANDOFF_SCHEMA` rejected the date — a message asserting a comparison it never made. Fixed by emitting the detail only when the value parses. That is the third instance of the same lesson: the verifier's own output is part of the verifier, and nothing was checking it.
 - **Learned (scope):** two items are N/A for a local CLI (no roles, no target list), and one is a genuine FAIL: prose cannot distinguish a fact from an instruction, and AHP performs no actions, so nothing intercepts at the action layer. Both are now named in `docs/limits.md` §2 instead of being implied by the article that recommends the checklist.
 - **Next:** the accepted finding with a trigger is `HANDOFF.md` size (16 KB, §1 alone 7.1 KB); trim to `PROJECT.md` when it passes ~20 KB.
+
+### 2026-11-28 · Chinese demo live on 掘金 and CSDN `#result-cn-demo`
+
+- **Did:** Wrote `publish/demo.zh.md`, re-ran every command against `agent-handoff-cli@0.1.1`, and published it to 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The unit `AHP-CONTENT-003` is COMPLETE; both pages carry the intro, the `制造一处矛盾` failure and the assessment CTA.
+- **Learned (platform minima):** 掘金 refuses a summary below 50 characters with a toast that is easy to miss — the first 42-character attempt returned to the editor and looked like a dead button. 66 characters worked. A silent return is not a neutral state; check the toast.
+- **Learned (CSDN confirmation):** publishing now requires a WeChat QR scan. Without it the modal stays open; the draft autosaves, so nothing is lost. This is a human gate, not a bug, and it is why the article cannot be published unattended.
+- **Learned (import duplicate):** the first CSDN import (with the H1) left a draft; the second import published. The management page is `全部(3) / 已发布(3) / 草稿箱(1)`, so an article-count check must separate drafts from published copies. The leftover draft is the same article and must not be published.
+- **Next:** no new unit; the daily sweep and the external reviews (安全客, 掘金 security) are the open threads.
 
 ### 2026-11-28 · The waiting ended: CSDN live, 掘金 in review `#result-published-cn`
 

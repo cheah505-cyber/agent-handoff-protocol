@@ -23,6 +23,8 @@
 | 6 | r/LLMDevs | 英文 | 安全文章（Link post, flair Resource） | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ | 2026-11-26 |
 | 7 | dev.to | 英文 | 10 分钟演示 | https://dev.to/willcheah/a-10-minute-demo-break-an-ai-agents-handoff-on-purpose-33i3 | 2026-11-26 |
 | 8 | CSDN | 中文 | 安全文章 | https://blog.csdn.net/WillCheah/article/details/171523055 | 2026-11-28 |
+| 9 | 掘金 | 中文 | 10 分钟演示 | https://juejin.cn/post/7712966444408995874 | 2026-11-28 |
+| 10 | CSDN | 中文 | 10 分钟演示 | https://blog.csdn.net/WillCheah/article/details/171526305 | 2026-11-28 |
 
 **待审**：先知（安全文章，`待审核`）· 安全客（安全文章，`待审核`）。
 **已备好未发**：CSDN 安全文章（等上面任一过审，按转载 + 首发声明，见 §7.4）。
@@ -33,6 +35,7 @@
 **每天开工先跑一遍（全手动，不设自动任务）：**
 
 0b. **CSDN 安全文章** — https://blog.csdn.net/WillCheah/article/details/171523055 底部评论区；掘金的 `7712783067996291112` 过审后再看。
+0c. **中文演示** — 掘金 https://juejin.cn/post/7712966444408995874 、CSDN https://blog.csdn.net/WillCheah/article/details/171526305 的评论区。
 1. **dev.to × 3** — 数字涨了再去看内容，只回没回过的：
 
 ```bash
@@ -70,6 +73,8 @@ curl -s "https://dev.to/api/comments?a_id=5124228" | jq length   # 10 分钟演�
 | 安全客（安全文章） | 🟡 待审核 | 中文 | 已提交 2026-11-26 08:12:48；CSDN 已先发，若过审只能按转载处理或撤稿 |
 | CSDN（安全文章） | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171523055 （2026-11-28，标签 `网络安全`，2 篇总数、无重复） |
 | 掘金（安全文章） | 🟡 审核中 | 中文 | id `7712783067996291112`，`status 0`；发布页显示成功但 API 仍是审核中 |
+| 掘金（演示） | ✅ 已发布 | 中文 | https://juejin.cn/post/7712966444408995874 （`status 1`，0 阅读） |
+| CSDN（演示） | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171526305 ；`全部(3) / 已发布(3)`，另有同篇旧导入草稿 1 篇 |
 | LinkedIn（英文） | ✅ 已发布 | 英文 | 个人动态页可见（LinkedIn 不暴露稳定 post URL）；文案见 §7.3 |
 | r/LLMDevs（英文） | ✅ 已发布 | 英文 | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ （flair `Resource`，附作者披露评论） |
 | FreeBuf | ⛔ 放弃 | 中文 | 用户自己的浏览器也返回 405，WAF 拦截；不去绕 |
