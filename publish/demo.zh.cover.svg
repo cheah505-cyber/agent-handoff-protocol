@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c1421"/>
+      <stop offset="1" stop-color="#070b12"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#111b29"/>
+      <stop offset="1" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e0505f"/>
+      <stop offset="1" stop-color="#7be3b0"/>
+    </linearGradient>
+    <radialGradient id="mintGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7be3b0" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#7be3b0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/>
+    <path d="M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/>
+  </g>
+
+  <text x="120" y="122" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="74" font-weight="700" fill="#eaf2f8">10 分钟演示</text>
+  <text x="122" y="182" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="36" fill="#8fb3cc">故意制造一次交接矛盾，再修好它</text>
+  <text x="124" y="226" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="18" letter-spacing="3" fill="#35d6e8">AHP · AGENT HANDOFF PROTOCOL</text>
+
+  <!-- terminal: the failure -->
+  <rect x="120" y="300" width="760" height="380" rx="16" fill="url(#panel)" stroke="#26374d" stroke-width="2"/>
+  <rect x="120" y="300" width="760" height="48" rx="16" fill="#16202f"/>
+  <rect x="120" y="332" width="760" height="16" fill="#16202f"/>
+  <circle cx="152" cy="324" r="6" fill="#e0505f" opacity="0.9"/>
+  <circle cx="174" cy="324" r="6" fill="#e8b95c" opacity="0.9"/>
+  <circle cx="196" cy="324" r="6" fill="#7be3b0" opacity="0.9"/>
+  <text x="240" y="330" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#5d7a9b">ahp — demo</text>
+
+  <g font-family="DejaVu Sans Mono, monospace" font-size="24">
+    <text x="156" y="398" fill="#9fb6cc">$ npx agent-handoff-cli check</text>
+    <text x="156" y="446" fill="#e0505f" font-weight="700">FAIL HANDOFF_BODY</text>
+    <text x="156" y="492" fill="#e0505f">current_file=src/auth.ts</text>
+    <text x="156" y="538" fill="#8fb3cc">≠ section 3 ("none")</text>
+    <text x="156" y="600" fill="#e0505f">[ahp] 1 FAIL / 0 WARN / 10 PASS</text>
+    <text x="156" y="640" fill="#5d7a9b">check failed</text>
+  </g>
+
+  <!-- fix arrow -->
+  <g>
+    <path d="M892 490H938" stroke="url(#arrow)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M938 490L918 478M938 490L918 502" stroke="#7be3b0" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <text x="882" y="466" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="22" fill="#8fb3cc">修好</text>
+  </g>
+
+  <!-- card: the passing state -->
+  <ellipse cx="1220" cy="500" rx="240" ry="220" fill="url(#mintGlow)"/>
+  <rect x="960" y="300" width="520" height="380" rx="16" fill="#121b27" stroke="#2c4058" stroke-width="2"/>
+  <rect x="960" y="300" width="520" height="52" rx="16" fill="#16202f"/>
+  <rect x="960" y="336" width="520" height="16" fill="#16202f"/>
+  <text x="990" y="334" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#e8b95c">HANDOFF.md</text>
+  <text x="1400" y="334" font-family="DejaVu Sans Mono, monospace" font-size="18" fill="#7be3b0">PAUSED</text>
+
+  <g stroke="#5d7a9b" stroke-width="7" stroke-linecap="round" opacity="0.5">
+    <path d="M996 392H1420"/>
+    <path d="M996 436H1360"/>
+    <path d="M996 480H1400"/>
+  </g>
+  <path d="M996 524H1370" stroke="#7be3b0" stroke-width="8" stroke-linecap="round" opacity="0.95"/>
+
+  <path d="M1080 594L1136 650L1260 520" fill="none" stroke="#7be3b0" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity="0.15" filter="url(#soft)"/>
+  <path d="M1080 594L1136 650L1260 520" fill="none" stroke="#7be3b0" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1290" y="628" font-family="DejaVu Sans Mono, monospace" font-size="22" fill="#7be3b0">PASS</text>
+
+  <!-- footer -->
+  <path d="M120 788H1480" stroke="#e8b95c" stroke-width="2" opacity="0.18"/>
+  <text x="120" y="832" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="22" fill="#5d7a9b">两行命令 · 一个失败 · 一次修复</text>
+  <text x="1480" y="832" text-anchor="end" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="20" fill="#5d7a9b">MIT · 零依赖 · 12 条门禁</text>
+</svg>
