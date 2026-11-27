@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: published-csdn
-- Next: No work is required for AHP-CONTENT-002. The article is live on CSDN (https://blog.csdn.net/WillCheah/article/details/171523055) and 掘金 is in review (id 7712783067996291112, status 0). If 安全客 passes, do not republish: tell the editor the piece has been on CSDN since 2026-11-28 and ask for a 转载 line or withdraw. The next unit is the Chinese demo: translate docs/demo.md for 掘金/CSDN and open it as AHP-CONTENT-003 with a fresh lease. 知乎 is the user's.
+- Phase: cn-demo-draft
+- Next: After the user has read publish/demo.zh.md: publish it to 掘金 (one tag, enters review) and CSDN (instant, recommended tags only), record both URLs in §6, then mark AHP-CONTENT-003 COMPLETE. The commands and outputs in the draft were re-run against agent-handoff-cli@0.1.1 and match. Do not touch the security article's channels. 安全客/掘金 reviews, PR #36/#151 and 知乎 remain external.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
