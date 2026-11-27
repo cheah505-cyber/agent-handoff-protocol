@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c1421"/>
+      <stop offset="1" stop-color="#070b12"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a2536"/>
+      <stop offset="1" stop-color="#121b27"/>
+    </linearGradient>
+    <radialGradient id="mintGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7be3b0" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#7be3b0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#35d6e8" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#35d6e8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- technical grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/>
+    <path d="M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/>
+  </g>
+
+  <!-- title block -->
+  <text x="110" y="120" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="66" font-weight="700" fill="#eaf2f8">Agent 的记忆是攻击面</text>
+  <text x="112" y="178" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="34" fill="#8fb3cc">投毒、过期事实与假绿门禁</text>
+  <text x="114" y="222" font-family="Noto Sans CJK SC, WenQuanYi Zen Hei, sans-serif" font-size="18" letter-spacing="3" fill="#35d6e8">AHP · AGENT HANDOFF PROTOCOL</text>
+
+  <!-- memory documents -->
+  <g>
+    <rect x="150" y="300" width="250" height="300" rx="14" fill="url(#card)" stroke="#223247" stroke-width="2"/>
+    <rect x="185" y="335" width="255" height="305" rx="14" fill="url(#card)" stroke="#2a3d55" stroke-width="2"/>
+    <rect x="220" y="370" width="265" height="325" rx="14" fill="url(#card)" stroke="#3a5474" stroke-width="2"/>
+
+    <!-- untouched lines -->
+    <g stroke="#5d7a9b" stroke-width="7" stroke-linecap="round" opacity="0.65">
+      <path d="M252 420H430"/>
+      <path d="M252 458H458"/>
+      <path d="M252 496H402"/>
+      <path d="M252 572H446"/>
+      <path d="M252 610H412"/>
+      <path d="M252 648H452"/>
+    </g>
+    <!-- poisoned line -->
+    <path d="M252 534H438" stroke="#7cff6b" stroke-width="8" stroke-linecap="round" opacity="0.95"/>
+    <path d="M438 534C446 544 448 556 442 566" stroke="#7cff6b" stroke-width="4" fill="none" opacity="0.8"/>
+    <circle cx="441" cy="572" r="4.5" fill="#7cff6b" opacity="0.85"/>
+
+    <!-- tamper marker -->
+    <circle cx="462" cy="458" r="24" fill="#e0505f" opacity="0.16"/>
+    <circle cx="462" cy="458" r="13" fill="#e0505f"/>
+    <rect x="459.5" y="450" width="5" height="11" rx="2.5" fill="#0d1420"/>
+    <circle cx="462" cy="466" r="3" fill="#0d1420"/>
+  </g>
+
+  <!-- gate -->
+  <ellipse cx="790" cy="540" rx="260" ry="260" fill="url(#cyanGlow)"/>
+  <circle cx="790" cy="540" r="232" fill="none" stroke="#35d6e8" stroke-width="3" opacity="0.18"/>
+  <circle cx="790" cy="540" r="196" fill="none" stroke="#35d6e8" stroke-width="2" opacity="0.10"/>
+
+  <!-- the check that lies -->
+  <ellipse cx="790" cy="540" rx="210" ry="200" fill="url(#mintGlow)"/>
+  <path d="M700 548L772 622L900 470" fill="none" stroke="#7be3b0" stroke-width="72" stroke-linecap="round" stroke-linejoin="round" opacity="0.12" filter="url(#soft)"/>
+  <path d="M700 548L772 622L900 470" fill="none" stroke="#7be3b0" stroke-width="46" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+  <!-- crack through the check -->
+  <path d="M806 462L786 520L818 552L792 626" fill="none" stroke="#e0505f" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M796 522L762 508M812 556L840 566" fill="none" stroke="#e0505f" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+
+  <!-- stale copy -->
+  <g>
+    <rect x="1080" y="400" width="330" height="280" rx="14" fill="url(#card)" stroke="#3a5474" stroke-width="2"/>
+    <g stroke="#5d7a9b" stroke-width="6" stroke-linecap="round" opacity="0.55">
+      <path d="M1114 452H1330"/>
+      <path d="M1114 490H1370"/>
+      <path d="M1114 566H1320"/>
+      <path d="M1114 604H1352"/>
+      <path d="M1114 642H1288"/>
+    </g>
+    <path d="M1114 528H1370" stroke="#e8b95c" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+    <circle cx="1382" cy="528" r="5" fill="#e8b95c" opacity="0.8"/>
+  </g>
+
+  <!-- contradiction thread -->
+  <path d="M446 534C620 534 640 720 790 720C940 720 960 528 1110 528" fill="none" stroke="#e0505f" stroke-width="3" stroke-dasharray="10 10" opacity="0.55"/>
+  <g transform="translate(790 720)">
+    <circle r="13" fill="#e0505f" opacity="0.15"/>
+    <path d="M-5-5L5 5M5-5L-5 5" stroke="#e0505f" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- accent -->
+  <path d="M110 780H1490" stroke="#e8b95c" stroke-width="2" opacity="0.18"/>
+  <circle cx="220" cy="780" r="5" fill="#e8b95c" opacity="0.8"/>
+  <circle cx="790" cy="780" r="5" fill="#35d6e8" opacity="0.8"/>
+  <circle cx="1245" cy="780" r="5" fill="#e8b95c" opacity="0.8"/>
+</svg>
