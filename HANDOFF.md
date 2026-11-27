@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "COMPLETE"
-updated_at: "2026-11-28T07:02:21+08:00"
+updated_at: "2026-11-28T07:04:09+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "published-csdn"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "Met on 2026-11-28: the article is published in a Chinese channel �
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "user: report the 安全客 review outcome and publish 知乎; upstream: 掘金 review, awesome-list PR #36 and #151"
-last_verified_at: "2026-11-28T07:02:21+08:00"
+last_verified_at: "2026-11-28T07:04:09+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol

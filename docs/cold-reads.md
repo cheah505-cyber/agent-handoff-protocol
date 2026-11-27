@@ -52,6 +52,21 @@ Commit read: `82747c7`. Reader: fresh session, four files only. **4** findings, 
 
 The same read also noted that the four files cannot confirm git state. That is by design; the acceptance line points at `git`, not at the files.
 
+## Prompt to hand the reader
+
+The format is part of the read, not an afterthought. Hand the reader this prompt; its answer is pasted into the ledger.
+
+> You have no prior context. Read only these four files: `AGENTS.md`, `INDEX.md`, `PROJECT.md`, `HANDOFF.md`. Do not read other files, do not use git.
+>
+> Answer with a file and line for every claim:
+> 1. What is the current work unit and status?
+> 2. What is the exact next action, and what would a new session redo by mistake?
+> 3. What was the last verification command, and what did it return?
+> 4. What are the top three risks?
+> 5. Which statements contradict each other? Quote both sides and name `file:line` for each.
+>
+> Return a table: `| # | Contradiction | Evidence (file:line) | Why it matters |`. If you cannot name a line, write `no line` and say why; do not guess.
+
 ## Template for the next read
 
 ```

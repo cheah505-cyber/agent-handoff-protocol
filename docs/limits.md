@@ -92,7 +92,7 @@ A cold read is not "read the README and summarize". Ask a fresh session to answe
 
 Then compare with the live state. A cold read that only recovers the project's topic is too shallow.
 
-Every finding must name a **file and line**. Record the read, and the commit it read, in `docs/cold-reads.md`. That is what lets a later reader use `git blame` to say whether a contradiction was pre-existing or introduced by a fix, instead of guessing from memory.
+Every finding must name a **file and line**. Hand the reader the prompt in `docs/cold-reads.md` — it asks for the line up front, so the ledger is a paste rather than a reconstruction. Record the read, and the commit it read, in the same file. That is what lets a later reader use `git blame` to say whether a contradiction was pre-existing or introduced by a fix, instead of guessing from memory.
 
 The same test applied to a prose handoff note — no files, no fixtures — is in §7.
 
