@@ -5,8 +5,8 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 ## Status
 
 <!-- AHP:STATUS:START -->
-- Phase: awaiting-channel-review
-- Next: On the user's report that 先知 or 安全客 passed: if it was 先知, correct its live text first (the CANNOT VERIFY sentence and the two appendix citations in §5); then publish CSDN as 转载 with a first-published line (docs/publish-plan.md §7.4) and record both URLs in §6. Otherwise the work is the manual daily sweep (docs/publish-plan.md → 留言维护) and answering PR insodimension/awesome-agent-protocols#36 and PR yzfly/awesome-context-engineering#151, and watching Discussion #1 for assessment requests. **2026-11-27: the user decides the Chinese wait** — if neither channel has reported, choose between withdrawing both and publishing CSDN now (no 首发 claim) or waiting further; do not let the wait continue without that decision. **After that decision, on the same day: write the Chinese demo** (translate `docs/demo.md`) for 掘金 or CSDN; it is new content, so it does not touch the security article's 首发. The editorial pitch is closed: Help Net Security declined to review an AI-flagged email, so there is no 2026-12-10 follow-up. 知乎 is the user's.
+- Phase: published-csdn
+- Next: No work is required for AHP-CONTENT-002. The article is live on CSDN (https://blog.csdn.net/WillCheah/article/details/171523055) and 掘金 is in review (id 7712783067996291112, status 0). If 安全客 passes, do not republish: tell the editor the piece has been on CSDN since 2026-11-28 and ask for a 转载 line or withdraw. The next unit is the Chinese demo: translate docs/demo.md for 掘金/CSDN and open it as AHP-CONTENT-003 with a fresh lease. 知乎 is the user's.
 <!-- AHP:STATUS:END -->
 
 ## Decisions
