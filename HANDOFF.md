@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "COMPLETE"
-updated_at: "2026-11-28T06:59:39+08:00"
+updated_at: "2026-11-28T07:02:21+08:00"
 work_unit_id: "AHP-CONTENT-002"
 phase: "published-csdn"
 owner: "none"
@@ -18,7 +18,7 @@ acceptance: "Met on 2026-11-28: the article is published in a Chinese channel �
 blocked_by: "none"
 running_processes: "none"
 external_responsibilities: "user: report the 安全客 review outcome and publish 知乎; upstream: 掘金 review, awesome-list PR #36 and #151"
-last_verified_at: "2026-11-28T06:59:39+08:00"
+last_verified_at: "2026-11-28T07:02:21+08:00"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -30,6 +30,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - External responsibilities: 安全客 review (user reports); 掘金 review; 知乎 publication (user); awesome-list PR #36 and #151; assessment requests in Discussion #1.
 ## 1. Last completed
 > Entries are newest-first and written on their date: names, counts, channel states and tenses describe that moment, not today. The present is §0 and §2.
+- 2026-11-28 · Wrote `docs/cold-reads.md` and made it binding: `AGENTS.md` step 9 and `docs/limits.md` §6 now require every cold-read finding to name `file:line` and record the commit read. The ledger backfills v1 (8 claimed, 6 named in `docs/lessons-from-production.md` §3.7), v2 (3), v3 (5, never recorded — marked unknown, not reconstructed) and v4 (the four from 2026-11-26). Origin is classified by blaming the cited line or re-running against the parent commit; if neither is possible, the ledger says `unknown`.
 - 2026-11-28 · Answered three war-story comments: `3miba` → `3mnaf` (maxmartella: the failing-fixture rule is already the contract — 19 of 27 tests are negative fixtures and every gate has one; compare shared fields only where the value has a fixed shape, keep the cold read for meaning); `3ml8m` → `3mnag` (gimalay: one query over the parsed frontmatter, not a second parser, with the allowlist in `ahp.config.json`; recorded as a v0.2 candidate and his comment is the external ask); `3mlm2` → `3mnah` (halfcycle: v2's three were mostly created by the v1 fixes, v3's five a mix, and there is no per-item ledger — a cold read reads the current artifact, so 8 → 3 → 5 is not a regression). The demo article still has 0 comments.
 - 2026-11-28 · **先知 rejected; the user deleted the submission.** 安全客 is still `待审核`. The user chose not to wait, so the article went out on CSDN instead of a security channel. CSDN: https://blog.csdn.net/WillCheah/article/details/171523055 — title `Agent 的记忆是攻击面：投毒、过期事实与假绿门禁`, 3 tables, the `假绿门禁` sentinel and the CTA present, tag `网络安全`, 原创 / 全部可见, summary 74 chars; the management list shows 全部(2) / 已发布(2), so the import did not create a second copy. The import path was the markdown file input with the filename as the title; custom tags are refused below level 3, so only a recommended tag was used. 掘金 was submitted with the same body: id `7712783067996291112`, status 0 (审核中), views 0 — the URL may 404 until review. dev.to already carries the English version (`5119922`) and the demo (`5124228`), so nothing new was posted there.
 - 2026-11-26 · **Help Net Security declined without review**: the reply says the email "was flagged as AI-generated" and would not be read by an editor. The pitch had disclosed AI drafting and human revision, so this is a policy on provenance, not on the topic; Dark Reading would apply the same rule to the same text. Recorded in `docs/publish-plan.md` §7.2.4 and on the draft's header. No follow-up is scheduled; the 2026-12-10 nudge is cancelled.

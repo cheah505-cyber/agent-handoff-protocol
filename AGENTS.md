@@ -38,6 +38,7 @@ The **four core files** are `AGENTS.md`, `INDEX.md`, `PROJECT.md`, and `HANDOFF.
 6. Commit. Do not declare completion with a dirty tree when status is `PAUSED` or `COMPLETE`.
 7. Run `node bin/ahp.mjs check` again on the clean tree and amend if it fails. The commit-day check can only be evaluated after the commit, and `GIT_STATE` predicts it beforehand; push only after this pass.
 8. If a release needs to validate a dirty tree, say so explicitly and run the validation twice: once before the commit (non-git gates) and once after the commit (all gates). Do not call a dirty tree `PAUSED`.
+9. If a cold read ran, record every finding in `docs/cold-reads.md` with `file:line` and its origin (`pre-existing`, `introduced by <sha>`, or `unknown`). A finding without a line is a note, not a finding.
 
 ## Commands
 
