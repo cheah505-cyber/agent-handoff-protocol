@@ -72,9 +72,9 @@ curl -s "https://dev.to/api/comments?a_id=5124228" | jq length   # 10 分钟演�
 | 先知（安全文章） | ❌ 未过审 | 中文 | 用户已删除投稿，不再发 |
 | 安全客（安全文章） | 🟡 待审核 | 中文 | 已提交 2026-11-26 08:12:48；CSDN 已先发，若过审只能按转载处理或撤稿 |
 | CSDN（安全文章） | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171523055 （2026-11-28，标签 `网络安全`，2 篇总数、无重复） |
-| 掘金（安全文章） | 🟡 审核中 | 中文 | id `7712783067996291112`，`status 0`；发布页显示成功但 API 仍是审核中 |
+| 掘金（安全文章） | ✅ 已发布 | 中文 | https://juejin.cn/post/7712783067996291112 （2026-11-28 过审上线，0 评论，CTA 渲染） |
 | 掘金（演示） | ✅ 已发布 | 中文 | https://juejin.cn/post/7712966444408995874 （`status 1`，0 阅读） |
-| CSDN（演示） | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171526305 ；`全部(3) / 已发布(3)`，另有同篇旧导入草稿 1 篇 |
+| CSDN（演示） | ✅ 已发布 | 中文 | https://blog.csdn.net/WillCheah/article/details/171526305 ；`全部(3) / 已发布(3) / 草稿箱(0)`（旧导入草稿已于 2026-11-28 删除） |
 | LinkedIn（英文） | ✅ 已发布 | 英文 | 个人动态页可见（LinkedIn 不暴露稳定 post URL）；文案见 §7.3 |
 | r/LLMDevs（英文） | ✅ 已发布 | 英文 | https://old.reddit.com/r/LLMDevs/comments/1y5ncu9/agent_memory_as_an_attack_surface_poisoned_facts/ （flair `Resource`，附作者披露评论） |
 | FreeBuf | ⛔ 放弃 | 中文 | 用户自己的浏览器也返回 405，WAF 拦截；不去绕 |

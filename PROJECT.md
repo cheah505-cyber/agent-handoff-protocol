@@ -6,7 +6,7 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 
 <!-- AHP:STATUS:START -->
 - Phase: cn-demo-published
-- Next: No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The next dated checkpoint is 2026-12-05: review reads, comments, issues and assessment requests before starting anything new. Until then only the daily sweep and external replies. 安全客 (if it passes, 转载 or withdraw), 掘金's security article (status 0), PR #36/#151 and Discussion #1 remain external.
+- Next: No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The next dated checkpoint is 2026-12-05: review reads, comments, issues and assessment requests before starting anything new. Until then only the daily sweep and external replies. 安全客 (if it passes, 转载 or withdraw), PR #36/#151 and Discussion #1 remain external; the 掘金 security article passed review on 2026-11-28 (https://juejin.cn/post/7712783067996291112).
 <!-- AHP:STATUS:END -->
 
 ## Decisions
@@ -115,6 +115,12 @@ AHP is a repo-local, machine-checkable handoff protocol for AI coding agents. It
 - **Learned (CSDN limits):** custom tags are refused below blog level 3 (`博客等级不满足三级，无法创建自定义标签`), so the article carries one recommended tag (`网络安全`), not the six the meta file suggests. The markdown file input still works and uses the filename as the title; the management list shows 全部(2) / 已发布(2), so the import did not create a second article.
 - **Learned (首发的代价):** waiting for a security channel cost two days and ended with a general channel anyway. The article is live without a 首发 line; if 安全客 passes, it can only be a 转载 or a withdrawal. The honest lesson is that a 首发 rule is a scheduling constraint, and a two-day wait for an unpaid channel is a bad trade when the piece has no other blocker.
 - **Next:** the Chinese demo (translate `docs/demo.md`) as `AHP-CONTENT-003`; 安全客's outcome; 掘金's review.
+
+### 2026-11-28 · Takeover sweep: 掘金 passed the security article `#result-external-signal`
+
+- **Did:** Ran the daily sweep at the 2026-11-28 takeover. 掘金's security article **passed review**: `https://juejin.cn/post/7712783067996291112` is live, 0 comments, the CTA renders; the URL is now in the published list and HANDOFF §6. Nothing else moved: dev.to 22/2/0 comment nodes (all answered), 掘金 demo and war story 0 comments, CSDN demo 3 / security 16 / war story 316 reads with no comments, Discussion #1 still empty, PR #36/#151 no maintainer activity.
+- **Learned (environment reach):** from this machine, 掘金 public pages and dev.to API are readable, but CSDN blocks both curl (521) and the in-app browser (navigation timeout) — firecrawl scrape is the working path. Reddit never hydrates its comment tree without login, and 先知, 安全客 and LinkedIn sit behind login walls. The sweep's user-browser items stay with the user.
+- **Next:** the sweep is the only required work until the 2026-12-05 checkpoint; 安全客's outcome (转载 or withdraw) and the PR replies are the remaining external threads.
 
 ### 2026-11-26 · Drift check against the original plan `#result-drift-check`
 

@@ -1,7 +1,7 @@
 ---
 handoff_version: "1"
 status: "COMPLETE"
-updated_at: "2026-11-28T07:37:38+08:00"
+updated_at: "2026-11-28T07:51:03+0800"
 work_unit_id: "AHP-CONTENT-003"
 phase: "cn-demo-published"
 owner: "none"
@@ -13,12 +13,12 @@ touched_paths: "docs/agent-memory-attack-surface.md;docs/agent-memory-attack-sur
 current_file: "none"
 next_action_file: "docs/publish-plan.md"
 next_action_anchor: "## 留言维护"
-next_action: "No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874, status 1) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The next dated checkpoint is 2026-12-05: review reads, comments, issues and assessment requests before starting anything new. Until then only the daily sweep and external replies. 安全客 (if it passes, 转载 or withdraw), 掘金's security article (status 0), PR #36/#151 and Discussion #1 remain external."
+next_action: "No work is required for AHP-CONTENT-003. The Chinese demo is live on 掘金 (https://juejin.cn/post/7712966444408995874) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305). The next dated checkpoint is 2026-12-05: review reads, comments, issues and assessment requests before starting anything new. Until then only the daily sweep and external replies. 安全客 (if it passes, 转载 or withdraw), PR #36/#151 and Discussion #1 remain external; the 掘金 security article passed review on 2026-11-28 (https://juejin.cn/post/7712783067996291112)."
 acceptance: "Met on 2026-11-28: the Chinese demo is published on 掘金 (https://juejin.cn/post/7712966444408995874) and CSDN (https://blog.csdn.net/WillCheah/article/details/171526305); both render the intro, the 制造一处矛盾 sentinel and the assessment CTA. CSDN shows 3 published articles and 0 drafts after the duplicate was deleted. `npm test` 27/27; `node bin/ahp.mjs check` 0 FAIL; `node bin/ahp.mjs sync --check` passes."
 blocked_by: "none"
 running_processes: "none"
-external_responsibilities: "user: report the 安全客 review outcome and publish 知乎; upstream: 掘金 security review, awesome-list PR #36 and #151"
-last_verified_at: "2026-11-28T07:37:38+08:00"
+external_responsibilities: "user: report the 安全客 review outcome and publish 知乎; upstream: awesome-list PR #36 and #151"
+last_verified_at: "2026-11-28T07:51:03+0800"
 last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs sync --check"
 ---
 # HANDOFF — Agent Handoff Protocol
@@ -69,7 +69,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - **Published and verified**: 掘金 `7712966444408995874` (status 1, page renders the CTA) and CSDN `171526305` (1 table, the seven-file table). Both carry the assessment CTA.
 - **The duplicate CSDN draft was deleted** (2026-11-28); `草稿箱` is 0. Do not re-import the article to edit it — that is how the draft was created. The live copy is `171526305`.
 - **安全客**: still pending; if it passes, the security article has been on CSDN since 2026-11-28, so it can only be a 转载 or a withdrawal.
-- **掘金 security article** (`7712783067996291112`) is still `status 0`; do not resubmit.
+- **掘金 security article passed review on 2026-11-28**: https://juejin.cn/post/7712783067996291112 is live, 0 comments, the assessment CTA renders. Recorded in the published list.
 - **English is live**: dev.to (war story, security article, demo), LinkedIn, r/LLMDevs. npm `agent-handoff-cli@0.1.1` is live.
 - **External**: PR #36/#151; Discussion #1 has no assessment request; 知乎 is the user's.
 - Suite 27 / 19 negative fixtures; `check` is 12 PASS / 0 FAIL; comment checking is manual and is item 0 in §4.
@@ -82,7 +82,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 0. **Daily, before other work**: the manual sweep in `docs/publish-plan.md` → 留言维护 (dev.to ×3, Reddit, 掘金 ×2, CSDN ×2, LinkedIn, the 安全客/掘金 reviews, and Discussion #1). Reply by hand; no automation.
 0b. **2026-12-05 — the dated checkpoint.** Review reads, comments, issues and assessment requests. Only then decide whether to start the assessment outreach or add the third list. Before that date, the sweep is the only required work.
 1. **If 安全客 passes**: the security article has been on CSDN since 2026-11-28; do not republish; ask for a 转载 line or withdraw.
-2. **If 掘金 passes the security article**: record `https://juejin.cn/post/7712783067996291112` in §6 and the published list.
+2. **~~If 掘金 passes the security article~~ — done 2026-11-28**: the review passed; `https://juejin.cn/post/7712783067996291112` is recorded in §6 and the published list.
 3. **PRs #36 and #151**: answer the maintainer's review if any; do not re-open or re-push if either is closed.
 4. **Assessment requests**: when one arrives in Discussion #1, run the 13-item checklist read-only, fill `publish/assessment-report-template.md`, and send it before asking for the testimonial sentence.
 5. **Then** the rest of the 90-day roadmap (`docs/open-source-report.md` §11): one newsletter or list beyond the two PRs.
@@ -107,6 +107,7 @@ last_verified_command: "npm test && node bin/ahp.mjs check && node bin/ahp.mjs s
 - Tags are not applied by clicking a list item in some editors (dev.to, CSDN): the click must land on an autocomplete suggestion. Otherwise the platform silently picks its own tag — CSDN chose `arcgis` for an article about agent memory.
 - **The npm page is a snapshot, and external pages link to it.** A README claim edited after `v0.1.1` will not appear on npm until the next patch release; a page that cites the npm description then contradicts it. Re-check on the next release using the diff commands in §4 item 4b.
 ## 6. Last verification
+- 2026-11-28 · Takeover sweep: 掘金 `7712783067996291112` returned 200 and the page renders the title, the `假绿门禁` heading and the CTA — the security article **passed review**; demo `7712966444408995874` and war story `7711934164547141659` both 0 comments. dev.to: war story 22 comment nodes = 11 external + 11 replies (last external `3mlm2` already answered by `3mnah`), security 2 (1 + our reply), demo 0 — nothing new. GitHub: Discussion #1 0 comments, PR #36 and #151 OPEN with no maintainer activity. CSDN (via scrape; the IAB and curl are blocked): demo 3 reads, security 16 reads, war story 316 reads (was 289), no comments anywhere. Reddit, LinkedIn, 先知, 安全客 stay behind login walls or time out from this environment — user-browser items, states unchanged.
 - 2026-11-28 · Chinese demo: 掘金 `7712966444408995874` (`status 1`) and CSDN `171526305`; both pages render the intro, `制造一处矛盾` and the assessment CTA. 掘金 required a 66-character summary (42 was refused), CSDN required a WeChat QR scan. CSDN management: `全部(3) / 已发布(3)` after the duplicate draft was deleted (it had been `草稿箱(1)`).
 - 2026-11-28 · Chinese demo draft: `npx agent-handoff-cli init demo` → 7 files; `check` → 11 PASS / 1 SKIP with exit 0. Broken `current_file` → `FAIL HANDOFF_BODY current_file=src/auth.ts contradicts section 3 ("none")`; `status: ACTIVE` without a lease → `FAIL LEASE ACTIVE requires a lease_until timestamp`; both revert to green. Draft at `publish/demo.zh.md`.
 - 2026-11-26 · npm: `npm view agent-handoff-cli version` → 0.1.1 after the staged placeholder cleared; `npx -y agent-handoff-cli init demo` initialized 7 files and `npx -y agent-handoff-cli check` returned 11 PASS / 1 SKIP with exit 0, in a clean directory. The published tarball was built from `17780c9`, which is where `v0.1.1` points.
